@@ -186,6 +186,56 @@ set ts=2           " Tabs are 2 spaces
 set bs=2           " Backspace over everything in insert mode
 set shiftwidth=2   " Tabs under smart indent
 
+set cf                 " Enable error files & error jumping.
+set clipboard=unnamed  " Yanks go on clipboard instead.
+set history=32         " Number of things to remember in history.
+set autowrite          " Writes on make/shell commands
+set nu                 " Line numbers on
+
+" set nowrap             " Line wrapping off
+set wrap
+set linebreak
+set notimeout
+set ttimeout
+" set timeoutlen=250 " Time to wait after ESC (default causes an annoying delay)
+set synmaxcol=160
+
+set incsearch
+set hlsearch   " Highlight searches
+set ruler              " Ruler on
+
+set nocp incsearch
+" Search
+set ignorecase " Ignore case of searches
+
+set cinoptions=:0,p0,t0
+set cinwords=if,else,while,do,for,switch,case,begin
+set formatoptions=tcqr
+set cindent
+set autoindent
+set smarttab
+set expandtab
+
+set colorcolumn=80,120
+hi ColorColumn guibg=Black
+
+set nostartofline                " Don’t reset cursor to start of line when moving around.
+set noeol                        " Don’t add empty newlines at the end of files
+:autocmd InsertEnter * set cul   " Show cursor line in insert mode
+:autocmd InsertLeave * set nocul " Hide cursor line in insert mode
+
+" Visual
+set showmatch    " Show matching brackets.
+set mat=5        " Bracket blinking.
+                 " Show $ at end of line and trailing space as ~
+set novisualbell " No blinking .
+set noerrorbells " No noise.
+set laststatus=2 " Always show status line.
+
+" Invisibles
+set list                    " show invisibles
+set listchars=tab:▸\ ,eol:¬
+
 if has("gui_running")
   set go-=m " remove menu bar
   set go-=T " remove toolbar
@@ -199,54 +249,8 @@ if has("gui_running")
   let g:miniBufExplModSelTarget = 1
 
   set guifont=Terminus\ 10
-  set cf                 " Enable error files & error jumping.
-  set clipboard=unnamed  " Yanks go on clipboard instead.
-  set history=32         " Number of things to remember in history.
-  set autowrite          " Writes on make/shell commands
-  set nu                 " Line numbers on
-  " set nowrap             " Line wrapping off
-  set wrap
-  set linebreak
-	set notimeout
-	set ttimeout
-  " set timeoutlen=250 " Time to wait after ESC (default causes an annoying delay)
-  set synmaxcol=160
-  set nocp incsearch
-  " Search
-  " set ignorecase " Ignore case of searches
-  set incsearch
-  set hlsearch   " Highlight searches
-  set ruler              " Ruler on
 
-  set cinoptions=:0,p0,t0
-  set cinwords=if,else,while,do,for,switch,case,begin
-  set formatoptions=tcqr
-  set cindent
-  set autoindent
-  set smarttab
-  set expandtab
-
-  set nostartofline                " Don’t reset cursor to start of line when moving around.
-  set colorcolumn=80,120
-  hi ColorColumn guibg=Black
-  set noeol                        " Don’t add empty newlines at the end of files
-  :autocmd InsertEnter * set cul   " Show cursor line in insert mode
-  :autocmd InsertLeave * set nocul " Hide cursor line in insert mode
-
-  " Visual
-  set showmatch    " Show matching brackets.
-  set mat=5        " Bracket blinking.
-                   " Show $ at end of line and trailing space as ~
-  set novisualbell " No blinking .
-  set noerrorbells " No noise.
-  set laststatus=2 " Always show status line.
   " gvim specific
   set mousehide    " Hide mouse after chars typed
   set mouse-=a     " Mouse in all modes
-
-  " Invisibles
-  set list                    " show invisibles
-  set listchars=tab:▸\ ,eol:¬
 end " end for guichecking if
-
-" let $PATH="/home/kressh/.rvm/bin:/home/kressh/bin:".$PATH

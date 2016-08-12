@@ -1,0 +1,68 @@
+
+URxvt*termName: rxvt
+! rxvt-256colors
+!URxvt*foreground: #F5FAFC
+!URxvt*background: #1C1F22
+URxvt*font:       xft:Terminus:size=10:antialias=false
+URxvt*scrollBar:  false
+! URxvt*geometry:   167x54
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+URxvt*secondaryWheel: true
+
+URxvt.urgentOnBell:  true
+
+URxvt.perl-ext: default,clipboard,url-select,keyboard-select
+! tabbed
+! URxvt.tabbed.tabbar-fg: 2
+! URxvt.tabbed.tabbar-bg: 0
+! URxvt.tabbed.tab-fg: 3
+! URxvt.tabbed.tab-bg: 0
+
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+
+URxvt.url-select.launcher: chromium-browser
+URxvt.url-select.underline: true
+URxvt.url-select.button: 1
+URxvt.keysym.M-u: perl:url-select:select_next
+
+! links color
+!URxvt.colorUL: #4682B4
+
+Xft*dpi:                96
+Xft*antialias:          true
+
+xterm*faceName:xft:Terminus:size=10:antialias=false
+
+#include ".Xresources.d/solarized"
+
+!! 0: black
+!*color0:  #000000
+!*color8:  #000000
+!! 1: red
+!*color1:  #FF4141
+!*color9:  #FF4141
+!! 2: green
+!*color2:  #1AE51A
+!*color10: #1AE51A
+!! 3: yellow
+!*color3:  #FFFF3A
+!*color11: #FFFF3A
+!! 4: blue
+!*color4:  #549BE7
+!*color12: #549BE7
+!! 5: magenta
+!*color5:  #FF5AFF
+!*color13: #FF5AFF
+!! 6: cyan
+!*color6:  #4BFFFF
+!*color14: #4BFFFF
+!! 7: white
+!*color7:  #F5FAFC
+!*color15: #F5FAFC

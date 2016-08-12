@@ -1,11 +1,11 @@
 shell -$SHELL
 hardstatus alwayslastline
-hardstatus string '%{= kG}[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][]'
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
 
 startup_message off
 autodetach on
 altscreen on
-defscrollback 1000
+defscrollback 5000
 
 term xterm
 attrcolor b ".I"

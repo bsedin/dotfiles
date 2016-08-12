@@ -98,7 +98,7 @@ let g:nerdtree_tabs_open_on_gui_startup = 0
 let g:nerdtree_tabs_autoclose = 0
 
 " Snipmate
-imap <S-En> <Plug>snipMateNextOrTrigger
+imap <S-Enter> <Plug>snipMateNextOrTrigger
 
 " Syntastic
 " let g:syntastic_ruby_checkers = ['mri']

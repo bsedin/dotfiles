@@ -51,10 +51,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'ervandew/supertab'
-" Plugin 'farseer90718/vim-taskwarrior'
 Plugin 'mileszs/ack.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'farseer90718/vim-taskwarrior'
 
 Plugin 'scrooloose/syntastic'
 Plugin 'syngan/vim-vimlint'
@@ -89,7 +89,7 @@ let g:NERDCompactSexyComs = 1
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 " Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 0
+let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 0
 
@@ -99,6 +99,10 @@ let g:nerdtree_tabs_autoclose = 0
 
 " Snipmate
 imap <S-Enter> <Plug>snipMateNextOrTrigger
+
+" YouCompleteMe
+let g:ycm_key_list_select_completion = ['<TAB>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>']
 
 " Syntastic
 " let g:syntastic_ruby_checkers = ['mri']
@@ -136,6 +140,7 @@ let g:calendar_focus_today = 1
 
 au BufRead,BufNewFile *.rabl setf ruby
 au BufRead,BufNewFile *.arb setf ruby
+au BufRead,BufNewFile *.tag setf coffee " riotjs tags
 
 " silent! nmap <C-f> :FufLine<CR>
 " silent! nmap <C-g> :FufCoverageFile<CR>
@@ -217,7 +222,7 @@ set smarttab
 set expandtab
 
 set colorcolumn=80,120
-hi ColorColumn guibg=Black
+" hi ColorColumn guibg=Black
 
 set nostartofline                " Don’t reset cursor to start of line when moving around.
 set noeol                        " Don’t add empty newlines at the end of files

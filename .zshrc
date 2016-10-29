@@ -204,6 +204,10 @@ alias wiki="cd ~/wiki && vim index.md"
 alias gwiki="cd ~/wiki && gvim index.md"
 
 alias gulp-watch="./node_modules/.bin/gulp watch; notify-send -i error 'Gulp has crashed'"
+alias weather="curl wttr.in/Moscow"
+alias git-commit-random="git commit -em '$(curl -s http://whatthecommit.com/index.txt )'"
+
+export PATH="$HOME/.dynamic-colors/bin:$PATH"
 
 #export PATH="$HOME/Soft/vagrant/bin:$PATH"
 
@@ -213,3 +217,5 @@ export CLOUDSDK_PYTHON=/usr/bin/python2
 source '/home/kressh/Soft/google-cloud-sdk/path.zsh.inc'
 # The next line enables bash completion for gcloud.
 source '/home/kressh/Soft/google-cloud-sdk/completion.zsh.inc'
+
+source $HOME/.dynamic-colors/completions/dynamic-colors.zsh

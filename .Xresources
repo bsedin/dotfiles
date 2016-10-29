@@ -15,9 +15,15 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 URxvt*secondaryWheel: true
 
+# Dynamic colors
+urxvt*dynamicColors: on
+
 URxvt.urgentOnBell:  true
 
 URxvt.perl-ext: default,clipboard,url-select,keyboard-select
+URxvt*perl-ext-common: urxvt-colors
+URxvt*perl-lib: .Xresources.d
+URxvt*keysym.F5: perl:urxvt-colors:
 ! tabbed
 ! URxvt.tabbed.tabbar-fg: 2
 ! URxvt.tabbed.tabbar-bg: 0

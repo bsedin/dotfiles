@@ -17,6 +17,9 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-bundler'
 
+" Productivity
+Plugin 'farseer90718/vim-taskwarrior'
+
 Plugin 'L9'
 " Plugin 'FuzzyFinder'
 " Plugin 'AutoComplPop'
@@ -46,20 +49,19 @@ Plugin 'mattn/calendar-vim'
 Plugin 'vim-scripts/vimwiki'
 " Plugin 'mhinz/vim-startify'
 Plugin 'ngmy/vim-rubocop'
-"Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
-Plugin 'whatyouhide/vim-gotham'
+Plugin 'Shougo/unite.vim'
 Plugin 'ervandew/supertab'
 Plugin 'mileszs/ack.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'farseer90718/vim-taskwarrior'
 
 Plugin 'scrooloose/syntastic'
-Plugin 'syngan/vim-vimlint'
-Plugin 'ynkdir/vim-vimlparser'
+" Plugin 'syngan/vim-vimlint'
+" Plugin 'ynkdir/vim-vimlparser'
 " Plugin 'tpope/vim-dispatch'
+" Plugin 'whatyouhide/vim-gotham'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'szw/vim-maximizer'
@@ -211,7 +213,7 @@ set ruler              " Ruler on
 
 set nocp incsearch
 " Search
-set ignorecase " Ignore case of searches
+" set ignorecase " Ignore case of searches
 
 set cinoptions=:0,p0,t0
 set cinwords=if,else,while,do,for,switch,case,begin

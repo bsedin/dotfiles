@@ -15,7 +15,7 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 URxvt*secondaryWheel: true
 
-# Dynamic colors
+! Dynamic colors
 urxvt*dynamicColors: on
 
 URxvt.urgentOnBell:  true
@@ -46,7 +46,7 @@ Xft*antialias:          true
 
 xterm*faceName:xft:Terminus:size=10:antialias=false
 
-#include ".Xresources.d/solarized"
+!#include ".Xresources.d/solarized"
 
 !! 0: black
 !*color0:  #000000

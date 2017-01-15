@@ -9,8 +9,16 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'pydave/AsyncCommand'
 Plugin 'tpope/vim-fugitive'
-" Plugin 'Lokaltog/vim-easymotion'
-Plugin 'Valloric/YouCompleteMe'
+
+" Autocomplete
+Plugin 'shougo/neocomplete.vim'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Shougo/unite.vim'
+Plugin 'ervandew/supertab'
+
+"
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'Lokaltog/vim-easymotion'
 
 " Ruby/Rails
 Plugin 'tpope/vim-rails'
@@ -19,6 +27,8 @@ Plugin 'tpope/vim-bundler'
 
 " Productivity
 Plugin 'farseer90718/vim-taskwarrior'
+
+Plugin 'majutsushi/tagbar'
 
 Plugin 'L9'
 " Plugin 'FuzzyFinder'
@@ -51,8 +61,6 @@ Plugin 'vim-scripts/vimwiki'
 Plugin 'ngmy/vim-rubocop'
 Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
-Plugin 'Shougo/unite.vim'
-Plugin 'ervandew/supertab'
 Plugin 'mileszs/ack.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -103,8 +111,8 @@ let g:nerdtree_tabs_autoclose = 0
 imap <S-Enter> <Plug>snipMateNextOrTrigger
 
 " YouCompleteMe
-let g:ycm_key_list_select_completion = ['<TAB>']
-let g:ycm_key_list_previous_completion = ['<S-TAB>']
+" let g:ycm_key_list_select_completion = ['<TAB>']
+" let g:ycm_key_list_previous_completion = ['<S-TAB>']
 
 " Syntastic
 " let g:syntastic_ruby_checkers = ['mri']
@@ -143,6 +151,7 @@ let g:calendar_focus_today = 1
 au BufRead,BufNewFile *.rabl setf ruby
 au BufRead,BufNewFile *.arb setf ruby
 au BufRead,BufNewFile *.tag setf coffee " riotjs tags
+au BufRead,BufNewFile *.vue setf coffee " riotjs tags
 
 " silent! nmap <C-f> :FufLine<CR>
 " silent! nmap <C-g> :FufCoverageFile<CR>
@@ -178,6 +187,9 @@ fun! <SID>StripTrailingWhitespaces()
   %s/\s\+$//e
   call cursor(l, c)
 endfun
+
+" tagbar
+nmap <F8> :TagbarToggle<CR>
 
 " Automatically clean trailing whitespaces on save
 autocmd BufWritePre *.* :call <SID>StripTrailingWhitespaces()

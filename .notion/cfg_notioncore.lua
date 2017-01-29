@@ -143,7 +143,7 @@ defbindings("WMPlex.toplevel", {
     kpress(META.."T", "WRegion.set_tagged(_sub, 'toggle')", "_sub:non-nil"),
 
     bdoc("Lock screen"),
-    kpress(META.."L", "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
+    kpress(META.."L", "notioncore.exec_on(_, 'locker')"),
 
     --bdoc("Query for manual page to be displayed."),
     --kpress(META.."F1", "mod_query.query_man(_, ':man')"),
@@ -363,7 +363,7 @@ defmenu("mainmenu", {
     menuentry("Run...",         "mod_query.query_exec(_)"),
     menuentry("Terminal",       "mod_query.exec_on_merr(_, XTERM or 'urxvt')"),
     menuentry("Lock screen",
-        "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
+        "notioncore.exec_on(_, 'locker')"),
     menuentry("Help",           "mod_query.query_man(_)"),
     menuentry("About Notion",      "mod_query.show_about_ion(_)"),
     submenu("Styles",           "stylemenu"),

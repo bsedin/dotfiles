@@ -22,7 +22,7 @@
 
 
 local battery_base_settings = {
-  update_interval = 15*1000, -- every 15 sec
+  update_interval = 10*1000, -- every 15 sec
   important_threshold = 33 , -- 33% cap. remaining
   critical_threshold = 15, -- 15% capacity remaining
 }
@@ -38,15 +38,21 @@ local function read_battery_data ()
   local f = assert(io.open("/sys/class/power_supply/BAT0/uevent", "r"))
   local data = f:read("*all")
   f:close()
+
+  local f = assert(io.popen("acpi -b | awk '{ print $5 }'"))
+  local remaining = f:read("*all")
+  f:close()
+
   local _, _, capacity = string.find(data, "POWER_SUPPLY_CAPACITY=(%d+)")
   local _, _, status = string.find(data, "POWER_SUPPLY_STATUS=(%w+)")
-  return status, tonumber(capacity)
+
+  return status, tonumber(capacity), remaining
 end
 
 -- Write the current state to the statusbar:
 local function inform_battery ()
 
-  local status, cap = read_battery_data()
+  local status, cap, remaining = read_battery_data()
 
   if status == 'Discharging' then
     -- On battery power, percentage remaining:
@@ -61,6 +67,8 @@ local function inform_battery ()
   elseif cap <= battery_settings.important_threshold then
     statusd.inform("battery_hint", "important")
   end
+
+  statusd.inform("battery_remaining", remaining)
 end
 
 

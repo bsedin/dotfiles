@@ -8,19 +8,27 @@ local timelogger_timer
 
 -- Read the active timelogger
 local function read_timelogger_data ()
-  local f = assert(io.popen("head -n 1 $HOME/tmp/timelogger.state | awk '{ print $1 }'"))
-  local data = f:read("*all")
+  local f = assert(io.popen("timelogger status"))
+  local current = f:read("*all")
   f:close()
-  return tonumber(data)
+  local f = assert(io.popen("timelogger today"))
+  local total = f:read("*all")
+  f:close()
+  return tonumber(current), tonumber(total)
 end
 
 -- Write the current state to the statusbar:
 local function inform_timelogger ()
 
-  local timelogger = read_timelogger_data()
+  local tl_current, tl_total = read_timelogger_data()
 
-  statusd.inform("timelogger", tostring(math.floor(timelogger/60).." min"))
-  statusd.inform("timelogger_hint", timelogger >= 25*60 and "critical" or "important")
+  statusd.inform("timelogger", tostring(math.floor(tl_current/60).." min / "..tostring(math.ceil(tl_total/3600).." hr")))
+
+  if tl_current >= 40*60 then
+    statusd.inform("timelogger_hint", "critical")
+  elseif tl_current >= 25*60 then
+    statusd.inform("timelogger_hint", "important")
+  end
 end
 
 

@@ -7,11 +7,11 @@ call vundle#begin()
 " let Vundle manage Vundle
 " required!
 Plugin 'gmarik/Vundle.vim'
-Plugin 'pydave/AsyncCommand'
+" Plugin 'pydave/AsyncCommand'
 Plugin 'tpope/vim-fugitive'
 
 " Autocomplete
-Plugin 'shougo/neocomplete.vim'
+Plugin 'Shougo/deoplete.nvim'
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'Shougo/unite.vim'
 " Plugin 'ervandew/supertab'
@@ -127,10 +127,10 @@ let g:nerdtree_tabs_autoclose = 0
 
 " Neocomplete
 let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#max_list = 10
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#max_list = 10
+let g:deoplete#sources#syntax#min_keyword_length = 3
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete

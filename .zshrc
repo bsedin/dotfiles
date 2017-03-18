@@ -205,7 +205,6 @@ alias gwiki="cd ~/wiki && gvim index.md"
 
 alias gulp-watch="./node_modules/.bin/gulp watch; notify-send -i error 'Gulp has crashed'"
 alias weather="curl wttr.in/Moscow"
-alias git-commit-random="git commit -em '$(curl -s http://whatthecommit.com/index.txt )'"
 
 export PATH="$HOME/.dynamic-colors/bin:$PATH"
 
@@ -219,3 +218,7 @@ source '/home/kressh/Soft/google-cloud-sdk/path.zsh.inc'
 source '/home/kressh/Soft/google-cloud-sdk/completion.zsh.inc'
 
 source $HOME/.dynamic-colors/completions/dynamic-colors.zsh
+
+function git-commit-random() {
+  curl -s http://whatthecommit.com/index.txt | git commit -em
+}

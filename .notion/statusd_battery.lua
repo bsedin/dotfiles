@@ -24,7 +24,7 @@
 local battery_base_settings = {
   update_interval = 10*1000, -- every 15 sec
   important_threshold = 33 , -- 33% cap. remaining
-  critical_threshold = 15, -- 15% capacity remaining
+  critical_threshold = 20, -- 15% capacity remaining
 }
 
 local battery_settings = battery_base_settings
@@ -66,6 +66,8 @@ local function inform_battery ()
     statusd.inform("battery_hint", "critical")
   elseif cap <= battery_settings.important_threshold then
     statusd.inform("battery_hint", "important")
+  else
+    statusd.inform("battery_hint", "normal")
   end
 
   statusd.inform("battery_remaining", remaining)

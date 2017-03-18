@@ -28,6 +28,8 @@ local function inform_timelogger ()
     statusd.inform("timelogger_hint", "critical")
   elseif tl_current >= 25*60 then
     statusd.inform("timelogger_hint", "important")
+  else
+    statusd.inform("timelogger_hint", "normal")
   end
 end
 

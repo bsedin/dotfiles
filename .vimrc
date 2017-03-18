@@ -75,7 +75,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'nathanaelkane/vim-indent-guides'
 
-Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 " Plugin 'syngan/vim-vimlint'
 " Plugin 'ynkdir/vim-vimlparser'
 " Plugin 'tpope/vim-dispatch'
@@ -162,18 +162,18 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
 " Syntastic
-" let g:syntastic_ruby_checkers = ['mri']
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 "let g:syntastic_shell = "/bin/sh"
-"let g:syntastic_loc_list_height = 2
+let g:syntastic_loc_list_height = 3
 "let g:syntastic_enable_balloons = 1
 "let g:syntastic_ruby_checkers = ['rubocop']
 "let g:syntastic_ruby_rubocop_exec ='/home/kressh/.rbenv/versions/2.2.0/bin/rubocop'
 " let g:syntastic_ruby_rubocop_args = '-l'
 " let g:syntastic_quiet_messages = { "type": "style" }
-"let g:syntastic_always_populate_loc_list = 0
-"let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 1
+let g:syntastic_check_on_wq = 1
 
 " Ack
 let g:ack_use_dispatch = 0
@@ -193,6 +193,7 @@ let g:calendar_keys = {'goto_next_month': '<C-Right>',
 let g:calendar_monday = 1
 let g:calendar_focus_today = 1
 
+au BufRead,BufNewFile *.jbuilder setf ruby
 au BufRead,BufNewFile *.rabl setf ruby
 au BufRead,BufNewFile *.arb setf ruby
 au BufRead,BufNewFile *.tag setf coffee " riotjs tags

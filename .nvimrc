@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=$HOME/.config/nvim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle
@@ -75,7 +75,8 @@ Plugin 'mileszs/ack.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'nathanaelkane/vim-indent-guides'
 
-Plugin 'scrooloose/syntastic'
+Plugin 'neomake/neomake'
+" Plugin 'vim-syntastic/syntastic'
 " Plugin 'syngan/vim-vimlint'
 " Plugin 'ynkdir/vim-vimlparser'
 " Plugin 'tpope/vim-dispatch'
@@ -159,21 +160,55 @@ endif
 let g:neosnippet#enable_snipmate_compatibility = 1
 "
 " Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:neosnippet#snippets_directory='~/.config/nvim/bundle/vim-snippets/snippets'
+
+" Neomake
+" Run NeoMake on read and write operations
+autocmd! BufReadPost,BufWritePost * Neomake
+
+let g:neomake_ruby_enabled_makers = ['rubocop']
+let g:neomake_open_list = 2
+let g:neomake_list_height = 4
+let g:neomake_serialize = 1
+let g:neomake_serialize_abort_on_error = 1
+
+let g:neomake_error_sign = {
+  \ 'text': 'E>',
+  \ 'texthl': 'NeomakeErrorSign',
+  \ }
+let g:neomake_warning_sign = {
+  \ 'text': 'S>',
+  \ 'texthl': 'NeomakeWarningSign',
+  \ }
+let g:neomake_info_sign = {
+  \ 'text': 'I>',
+  \ 'texthl': 'NeomakeInfoSign',
+  \ }
+let g:neomake_message_sign = {
+  \ 'text': 'M>',
+  \ 'texthl': 'NeomakeMsg',
+  \ }
+
+augroup my_neomake_signs
+  au!
+  autocmd ColorScheme *
+    \ hi NeomakeErrorSign ctermfg=white |
+    \ hi NeomakeWarningSign ctermfg=yellow
+augroup END
 
 " Syntastic
-" let g:syntastic_ruby_checkers = ['mri']
+" let g:syntastic_ruby_checkers = ['rubocop']
 "let g:syntastic_shell = "/bin/sh"
-"let g:syntastic_loc_list_height = 2
+" let g:syntastic_loc_list_height = 3
 "let g:syntastic_enable_balloons = 1
 "let g:syntastic_ruby_checkers = ['rubocop']
 "let g:syntastic_ruby_rubocop_exec ='/home/kressh/.rbenv/versions/2.2.0/bin/rubocop'
 " let g:syntastic_ruby_rubocop_args = '-l'
 " let g:syntastic_quiet_messages = { "type": "style" }
-"let g:syntastic_always_populate_loc_list = 0
-"let g:syntastic_auto_loc_list = 1
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 1
+" let g:syntastic_check_on_wq = 1
 
 " Ack
 let g:ack_use_dispatch = 0
@@ -193,6 +228,7 @@ let g:calendar_keys = {'goto_next_month': '<C-Right>',
 let g:calendar_monday = 1
 let g:calendar_focus_today = 1
 
+au BufRead,BufNewFile *.jbuilder setf ruby
 au BufRead,BufNewFile *.rabl setf ruby
 au BufRead,BufNewFile *.arb setf ruby
 au BufRead,BufNewFile *.tag setf coffee " riotjs tags

@@ -196,6 +196,7 @@ let g:calendar_focus_today = 1
 au BufRead,BufNewFile *.jbuilder setf ruby
 au BufRead,BufNewFile *.rabl setf ruby
 au BufRead,BufNewFile *.arb setf ruby
+au BufRead,BufNewFile *.axlsx setf ruby
 au BufRead,BufNewFile *.tag setf coffee " riotjs tags
 au BufRead,BufNewFile *.vue setf coffee " riotjs tags
 

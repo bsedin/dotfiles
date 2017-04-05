@@ -18,7 +18,7 @@ notify-xterm no
 notify-screen no
 player mplayer
 refresh-on-startup yes
-reload-time 20
+reload-time 60
 reload-threads 2
 #show-read-articles no
 show-read-feeds yes

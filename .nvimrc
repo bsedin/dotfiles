@@ -71,7 +71,8 @@ Plugin 'vim-scripts/vimwiki'
 Plugin 'ngmy/vim-rubocop'
 Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
+" Plugin 'mileszs/ack.vim'
+Plugin 'numkil/ag.nvim'
 Plugin 'godlygeek/tabular'
 Plugin 'nathanaelkane/vim-indent-guides'
 
@@ -164,9 +165,11 @@ let g:neosnippet#snippets_directory='~/.config/nvim/bundle/vim-snippets/snippets
 
 " Neomake
 " Run NeoMake on read and write operations
-autocmd! BufReadPost,BufWritePost * Neomake
+" autocmd! BufReadPost,BufWritePost * Neomake
+autocmd! BufWritePost * Neomake
+autocmd BufUnload,BufWinLeave * lclose
 
-let g:neomake_ruby_enabled_makers = ['rubocop']
+let g:neomake_ruby_enabled_makers = ['rubocop', 'reek']
 let g:neomake_open_list = 2
 let g:neomake_list_height = 4
 let g:neomake_serialize = 1
@@ -211,7 +214,9 @@ augroup END
 " let g:syntastic_check_on_wq = 1
 
 " Ack
-let g:ack_use_dispatch = 0
+" let g:ack_use_dispatch = 0
+" Ag
+let g:agprg="ag --vimgrep"
 
 syntax enable
 filetype plugin indent on
@@ -231,6 +236,7 @@ let g:calendar_focus_today = 1
 au BufRead,BufNewFile *.jbuilder setf ruby
 au BufRead,BufNewFile *.rabl setf ruby
 au BufRead,BufNewFile *.arb setf ruby
+au BufRead,BufNewFile *.axlsx setf ruby
 au BufRead,BufNewFile *.tag setf coffee " riotjs tags
 au BufRead,BufNewFile *.vue setf coffee " riotjs tags
 
@@ -239,11 +245,13 @@ au BufRead,BufNewFile *.vue setf coffee " riotjs tags
 "
 " Airline
 let g:airline_theme      = 'solarized'
-let g:airline_section_y  = ''  " Don't display encoding
-let g:airline_left_sep   = '▶' " Set custom left separator
-let g:airline_right_sep  = '◀' " Set custom right separator
-"let g:airline#extensions#tabline#enabled      = 1      " Enable airline for tab-bar
-"let g:airline#extensions#tabline#show_buffers = 0 " Don't display buffers in tab-bar with single tab
+" let g:airline_section_s  = ''  " Don't display encoding
+" let g:airline_section_y  = ''  " Don't display encoding
+let g:airline_powerline_fonts = 1
+" let g:airline_left_sep   = '▶' " Set custom left separator
+" let g:airline_right_sep  = '◀' " Set custom right separator
+" let g:airline#extensions#tabline#enabled      = 1      " Enable airline for tab-bar
+" let g:airline#extensions#tabline#show_buffers = 0 " Don't display buffers in tab-bar with single tab
 "let g:airline#extensions#tabline#fnamemod     = ':t'  " Display only filename in tab
 
 " Vim gitgutter

@@ -205,6 +205,7 @@ alias gwiki="cd ~/wiki && gvim index.md"
 
 alias gulp-watch="./node_modules/.bin/gulp watch; notify-send -i error 'Gulp has crashed'"
 alias weather="curl wttr.in/Moscow"
+alias ag="ag --path-to-ignore ~/.agignore"
 
 export PATH="$HOME/.dynamic-colors/bin:$PATH"
 

@@ -34,17 +34,13 @@ local battery_timer
 
 -- Read the battery battery info
 local function read_battery_data ()
-  -- assume only one of possible two batteries is present:
-  local f = assert(io.open("/sys/class/power_supply/BAT0/uevent", "r"))
+  local f = assert(io.popen("upower -i /org/freedesktop/UPower/devices/battery_BAT0"))
   local data = f:read("*all")
   f:close()
 
-  local f = assert(io.popen("acpi -b | awk '{ print $5 }'"))
-  local remaining = f:read("*all")
-  f:close()
-
-  local _, _, capacity = string.find(data, "POWER_SUPPLY_CAPACITY=(%d+)")
-  local _, _, status = string.find(data, "POWER_SUPPLY_STATUS=(%w+)")
+  local _, _, capacity = string.find(data, "percentage:%s*(%d+)")
+  local _, _, remaining = string.find(data, "time to %w+:%s*(%d+\.?%d*%s*%w*)")
+  local _, _, status = string.find(data, "state:%s*(%w+)")
 
   return status, tonumber(capacity), remaining
 end

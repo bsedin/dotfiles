@@ -3,27 +3,6 @@ if [ -d $HOME/bin ] ; then
   PATH=$HOME/bin:$PATH
 fi
 
-# autoload colors && colors
-
-
-# aliases
-alias sdr="screen -aAdr"
-alias la="ls -A"
-alias ll="ls -lAF"
-alias grep='grep --exclude="*.svn*" --exclude="*.git*"'
-alias iddqd="sudo -s"
-alias mkpasswd="head -c16 /dev/urandom | xxd -ps"
-# alias mc="mc -b"
-alias ls='ls --color=auto'
-alias less='vimpager'
-# fix_mp3() { find -iname '*.mp3' -print0 | xargs -0 mid3iconv -eCP1251 --remove-v1 }
-# mpg2flv() { ffmpeg -i $1 -ar 22050 -ab 32 -f flv -s 320x240 `echo $1 | awk -F . '{print $1}'`.flv }
-mcd() { mkdir $1; cd $1 }
-newday() { mcd `date +%F` }
-c() { awk "{ print \$$1 }" }
-ed2pull() { for i in `ls ./engines`; do echo "./engines/$i"; cd ./engines/$i; git pull; cd ../..; done; }
-ed2st() { for i in `ls ./engines`; do echo "./engines/$i"; cd ./engines/$i; git st; cd ../..; done; }
-
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -47,21 +26,15 @@ setopt AUTO_CD
 # SPROMPT='zsh: Исправить '\''%R'\'' на '\''%r'\'' ? [Yes/No/Abort/Edit] '
 
 setopt   notify globdots pushdtohome cdablevars autolist # correct
-
 setopt   recexact longlistjobs
-
 setopt   autoresume histignoredups pushdsilent noclobber
-
 setopt   autopushd pushdminus rcquotes mailwarning extendedglob
-
-
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/kressh//.zshrc'
 bindkey -e
 autoload -U zcalc
-
 autoload -Uz compinit
 compinit
 zmodload -a zsh/stat stat
@@ -81,23 +54,7 @@ eval `dircolors`
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 export GREP_COLOR='1;32'
 
-if [ -f /usr/bin/grc ]; then
-	alias ping="grc --colour=auto ping"
-	alias traceroute="grc --colour=auto traceroute"
-	alias make="grc --colour=auto make"
-	alias diff="grc --colour=auto diff"
-	alias cvs="grc --colour=auto cvs"
-	alias netstat="grc --colour=auto netstat"
-	alias mount="grc --colour=auto mount"
-	alias ifconfig="grc --colour=auto ifconfig"
-	alias dig="grc --colour=auto dig"
-	alias ps="grc --colour=auto ps"
-fi
-
-myip() {links -source http://www.formyip.com/ |grep The | awk {'print $5'}}
-
 ## key binds Pgup pgdown, home, end
-
 bindkey "^[[2~" yank
 bindkey "^[[3~" delete-char
 bindkey "^[[5~" up-line-or-history
@@ -172,54 +129,13 @@ esac
 
 export LANGUAGE="en_US:en_GB:en"
 
-# RVM stuff
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-# rbenv stuff
-unset RUBYOPT
-
-PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-source $HOME/.rbenv/completions/rbenv.zsh
-
-# bundler aliases
-alias rails="bundle exec rails"
-alias hanami="bundle exec hanami"
-alias rake="bundle exec rake"
-alias rspec="bundle exec rspec"
-alias foreman="bundle exec foreman"
-alias sidekiq="bundle exec sidekiq"
-alias cap="bundle exec cap"
-alias mina="bundle exec mina"
-alias heroku="$HOME/Soft/heroku-client/bin/heroku"
-alias rgrep="grep --exclude-dir=Godeps --exclude-dir=node_modules --exclude-dir=log --exclude-dir=vendor --exclude-dir=tmp --exclude-dir=public --exclude-dir=.git --exclude=.swp -rn"
-alias vagrant="BUNDLE_GEMFILE=$HOME/Soft/vagrant/Gemfile bundle exec vagrant"
-alias vimb="HTTP_PROXY='http://localhost:8118' vimb"
-alias chromium="chromium --proxy-server='localhost:8118'"
-alias grep="grep --color=auto"
-alias bdocker="DOCKER_HOST=tcp://10.8.0.1:2375 docker"
-alias wiki="cd ~/wiki && vim index.md"
-alias gwiki="cd ~/wiki && gvim index.md"
-
-alias gulp-watch="./node_modules/.bin/gulp watch; notify-send -i error 'Gulp has crashed'"
-alias weather="curl wttr.in/Moscow"
-alias ag="ag --path-to-ignore ~/.agignore"
-
 export PATH="$HOME/.dynamic-colors/bin:$PATH"
-
-#export PATH="$HOME/Soft/vagrant/bin:$PATH"
-
-# Google SDK
-export CLOUDSDK_PYTHON=/usr/bin/python2
-# The next line updates PATH for the Google Cloud SDK.
-source '/home/kressh/Soft/google-cloud-sdk/path.zsh.inc'
-# The next line enables bash completion for gcloud.
-source '/home/kressh/Soft/google-cloud-sdk/completion.zsh.inc'
 
 source $HOME/.dynamic-colors/completions/dynamic-colors.zsh
 
-function git-commit-random() {
-  curl -s http://whatthecommit.com/index.txt | git commit -em
-}
+# Load all files from .shell/zshrc.d directory
+if [ -d $HOME/.zshrc.d ]; then
+  for file in $HOME/.zshrc.d/*.zsh; do
+    source $file
+  done
+fi

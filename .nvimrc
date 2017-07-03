@@ -61,6 +61,7 @@ Plugin 'fatih/vim-go'
 Plugin 'wavded/vim-stylus'
 Plugin 'tpope/vim-haml'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'Glench/Vim-Jinja2-Syntax'
 
 " CVS
 Plugin 'phleet/vim-mercenary'
@@ -69,6 +70,7 @@ Plugin 'mattn/calendar-vim'
 Plugin 'vim-scripts/vimwiki'
 " Plugin 'mhinz/vim-startify'
 Plugin 'ngmy/vim-rubocop'
+Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 " Plugin 'mileszs/ack.vim'
@@ -195,9 +197,11 @@ let g:neomake_message_sign = {
 augroup my_neomake_signs
   au!
   autocmd ColorScheme *
-    \ hi NeomakeErrorSign ctermfg=white |
+    \ hi NeomakeErrorSign ctermfg=red |
     \ hi NeomakeWarningSign ctermfg=yellow
 augroup END
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " Syntastic
 " let g:syntastic_ruby_checkers = ['rubocop']

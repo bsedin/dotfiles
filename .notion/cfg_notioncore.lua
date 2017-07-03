@@ -109,8 +109,8 @@ defbindings("WClientWin", {
          "programs' resizing problems."),
        kpress_wait(META.."L", "WClientWin.nudge(_)"),
 
-       bdoc("Kill client owning the client window."),
-       kpress("C", "WClientWin.kill(_)"),
+       -- bdoc("Kill client owning the client window."),
+       -- kpress("C", "WClientWin.kill(_)"),
 
        bdoc("Send next key press to the client window. "..
             "Some programs may not allow this by default."),
@@ -134,7 +134,7 @@ defbindings("WGroupCW", {
 
 defbindings("WMPlex", {
     bdoc("Close current object."),
-    kpress_wait(META.."C", "WRegion.rqclose_propagate(_, _sub)"),
+    kpress_wait(META.."Shift+C", "WRegion.rqclose_propagate(_, _sub)"),
 })
 
 -- Frames for transient windows ignore this bindmap
@@ -143,13 +143,13 @@ defbindings("WMPlex.toplevel", {
     kpress(META.."T", "WRegion.set_tagged(_sub, 'toggle')", "_sub:non-nil"),
 
     bdoc("Lock screen"),
-    kpress(META.."L", "notioncore.exec_on(_, 'locker')"),
+    kpress(META.."Shift+L", "notioncore.exec_on(_, 'locker')"),
 
-    --bdoc("Query for manual page to be displayed."),
-    --kpress(META.."F1", "mod_query.query_man(_, ':man')"),
+    bdoc("Query for manual page to be displayed."),
+    kpress(META.."F1", "mod_query.query_man(_, ':man')"),
 
-    bdoc("Show the Notion manual page."),
-    kpress(META.."F1", "ioncore.exec_on(_, ':man notion')"),
+    -- bdoc("Show the Notion manual page."),
+    -- kpress(META.."F1", "ioncore.exec_on(_, ':man notion')"),
 
     bdoc("Run password menu."),
     kpress(META.."V", "ioncore.exec_on(_, '/home/kressh/scripts/passmenu.sh')"),
@@ -158,7 +158,7 @@ defbindings("WMPlex.toplevel", {
     --kpress(META.."T", "mod_query.exec_on_merr(_, XTERM or 'urxvt')"),
 
     bdoc("Run a browser."),
-    kpress(META.."B", "mod_query.exec_on_merr(_, BROWSER or 'vimb')"),
+    kpress(META.."Shift+B", "mod_query.exec_on_merr(_, BROWSER or 'vimb')"),
 
     bdoc("Query for command line to execute."),
     kpress(META.."F2", "mod_query.query_exec(_)"),
@@ -169,17 +169,17 @@ defbindings("WMPlex.toplevel", {
     --bdoc("Query for host to connect to with SSH."),
     --kpress(ALTMETA.."F4", "mod_query.query_ssh(_, ':ssh')"),
 
-    bdoc("Zumhotface file!."),
-    kpress(META.."Z",
-	   "mod_query.query_runfile(_, 'zhfup -f')"),
-
-    bdoc("Zumhotface from buffer."),
-    kpress(META.."X",
-	   "ioncore.exec_on(_, 'zhfclip')"),
-
-    bdoc("Zumhotface screen."),
-    kpress(META.."Print",
-	   "ioncore.exec_on(_, 'zhfscreen')"),
+    -- bdoc("Zumhotface file!."),
+    -- kpress(META.."Z",
+		--  "mod_query.query_runfile(_, 'zhfup -f')"),
+    --
+    -- bdoc("Zumhotface from buffer."),
+    -- kpress(META.."X",
+		--  "ioncore.exec_on(_, 'zhfclip')"),
+    --
+    -- bdoc("Zumhotface screen."),
+    -- kpress(META.."Print",
+		--  "ioncore.exec_on(_, 'zhfscreen')"),
 
     bdoc("Query for file to view."),
     kpress(META.."F3",

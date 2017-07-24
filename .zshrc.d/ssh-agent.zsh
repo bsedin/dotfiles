@@ -4,7 +4,7 @@ if [ "$?" == 2 ]; then
 
   ssh-add -l > /dev/null 2>&1
   if [ "$?" == 2 ]; then
-    (umask 066; ssh-agent > $HOME/.ssh-agent)
+    (umask 066; ssh-agent >| $HOME/.ssh-agent)
     eval "$(<$HOME/.ssh-agent)" > /dev/null
     ssh-add
   fi

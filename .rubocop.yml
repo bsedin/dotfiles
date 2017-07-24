@@ -76,7 +76,7 @@ Style/Documentation:
 #     method_call(a,
 #       b)
 #
-Layout/AlignParameters:
+Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
 Style/BlockDelimiters:
@@ -93,10 +93,10 @@ Style/NumericLiterals:
 Style/LambdaCall:
   Enabled: false
 
-Layout/MultilineMethodCallIndentation:
+Style/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
-Layout/MultilineOperationIndentation:
+Style/MultilineOperationIndentation:
   EnforcedStyle: indented
 
 Style/NumericPredicate:

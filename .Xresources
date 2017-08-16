@@ -1,7 +1,8 @@
 URxvt*termName: xterm-256color
 ! URxvt*foreground: #F5FAFC
 ! URxvt*background: #1C1F22
-URxvt*font:       xft:Terminus:size=10:antialias=false
+URxvt*font:       xft:xos4\ Terminus:size=12:antialias=false
+
 URxvt*scrollBar:  false
 ! URxvt*geometry:   167x54
 
@@ -44,6 +45,6 @@ Xft*dpi:                96
 Xft*antialias:          true
 
 xterm*termName: xterm-256color
-xterm*faceName: xft:Terminus:size=10:antialias=false
+xterm*faceName: xft:xos4\ Terminus:size=12:antialias=false
 
 #include ".Xresources.d/solarized"

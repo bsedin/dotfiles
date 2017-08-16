@@ -3,6 +3,9 @@
 BROWSER=chromium
 XTERM=urxvt
 
+export QT_QPA_PLATFORMTHEME=qt5ct
+unset QT_STYLE_OVERRIDE
+
 # TrackPoint+Middleclick scroll
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Button" 2

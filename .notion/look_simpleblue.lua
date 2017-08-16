@@ -9,12 +9,11 @@ de.defstyle("*", {
     highlight_colour = "black",
     background_colour = "#222222",
     foreground_colour = "#9f9f9f",
-    padding_pixels = 1,
+    padding_pixels = 0,
     highlight_pixels = 0,
     shadow_pixels = 0,
     border_style = "elevated",
-    font = "-misc-fixed-medium-r-*-*-13-*-*-*-*-60-*-*",
-    -- font = "-*-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*",
+    font = "-*-Fixedsys Excelsior-regular-r-*-*-14-*-*-*-*-*-*",
     text_align = "center",
 })
 

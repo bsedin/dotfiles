@@ -7,13 +7,13 @@ de.reset()
 de.defstyle("*", {
     shadow_colour = "black",
     highlight_colour = "black",
-    background_colour = "#222222",
+    background_colour = "#073642",
     foreground_colour = "#9f9f9f",
     padding_pixels = 0,
     highlight_pixels = 0,
     shadow_pixels = 0,
     border_style = "elevated",
-    font = "-*-Fixedsys Excelsior-regular-r-*-*-14-*-*-*-*-*-*",
+    font = "-*-Fixedsys Excelsior-regular-r-*-*-13-*-*-*-*-*-*",
     text_align = "center",
 })
 
@@ -29,23 +29,22 @@ de.defstyle("frame", {
     de.substyle("active", {
         shadow_colour = "black",
         highlight_colour = "black",
-        background_colour = "#D58919",
+        background_colour = "#657b83",
         foreground_colour = "#ffffff",
     }),
 })
 
 de.defstyle("tab", {
-    --font = "-*-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*",
     de.substyle("active-selected", {
         shadow_colour = "black",
         highlight_colour = "black",
-        background_colour = "#D58919",
-        foreground_colour = "#000000",
+        background_colour = "#657b83",
+        foreground_colour = "#fdf6e3",
     }),
     --de.substyle("active-unselected", {
         --shadow_colour = "black",
         --highlight_colour = "black",
-        --background_colour = "#222222",
+        --background_colour = "#073642",
         --foreground_colour = "#9f9f9f",
     --}),
     --de.substyle("inactive-selected", {
@@ -57,17 +56,18 @@ de.defstyle("tab", {
     --de.substyle("inactive-unselected", {
         --shadow_colour = "black",
         --highlight_colour = "black",
-        --background_colour = "#222222",
+        --background_colour = "#073642",
         --foreground_colour = "#9f9f9f",
     --}),
+    padding_pixels = 1,
     text_align = "left",
 })
 
 de.defstyle("input", {
     shadow_colour = "black",
     highlight_colour = "black",
-    background_colour = "#3f3f3f",
-    foreground_colour = "white",
+    background_colour = "#657b83",
+    foreground_colour = "#fdf6e3",
     padding_pixels = 1,
     highlight_pixels = 0,
     shadow_pixels = 0,
@@ -87,6 +87,23 @@ de.defstyle("input-menu", {
 })
 
 dopath("lookcommon_clean")
+
+de.defstyle("stdisp", {
+    shadow_pixels = 0,
+    highlight_pixels = 0,
+    text_align = "left",
+    background_colour = "black",
+    foreground_colour = "#93a1a1",
+    font = "-*-Fixedsys Excelsior-regular-r-*-*-13-*-*-*-*-*-*",
+
+    de.substyle("important", {
+        foreground_colour = "green",
+    }),
+
+    de.substyle("critical", {
+        foreground_colour = "red",
+    }),
+})
 
 gr.refresh()
 

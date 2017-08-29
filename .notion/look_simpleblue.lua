@@ -8,7 +8,7 @@ de.defstyle("*", {
     shadow_colour = "black",
     highlight_colour = "black",
     background_colour = "#073642",
-    foreground_colour = "#9f9f9f",
+    foreground_colour = "#93a1a1",
     padding_pixels = 0,
     highlight_pixels = 0,
     shadow_pixels = 0,

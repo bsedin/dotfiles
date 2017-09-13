@@ -152,7 +152,7 @@ defbindings("WMPlex.toplevel", {
     -- kpress(META.."F1", "ioncore.exec_on(_, ':man notion')"),
 
     bdoc("Run password menu."),
-    kpress(META.."V", "ioncore.exec_on(_, '/home/kressh/scripts/passmenu.sh')"),
+    kpress(META.."V", "notioncore.exec_on(_, '/home/kressh/scripts/passmenu.sh')"),
 
     --bdoc("Run a terminal emulator."),
     --kpress(META.."T", "mod_query.exec_on_merr(_, XTERM or 'urxvt')"),
@@ -162,6 +162,24 @@ defbindings("WMPlex.toplevel", {
 
     bdoc("Query for command line to execute."),
     kpress(META.."F2", "mod_query.query_exec(_)"),
+
+    bdoc("Incr volume."),
+    kpress(META.."KP_Add", "notioncore.exec_on(_, '/usr/local/bin/volume_control incr')"),
+
+    bdoc("Incr volume."),
+    kpress(META.."KP_Subtract", "notioncore.exec_on(_, '/usr/local/bin/volume_control decr')"),
+
+    bdoc("Play/pause mpc."),
+    kpress(META.."Down", "notioncore.exec_on(_, 'mpc toggle')"),
+
+    bdoc("Stop mpc."),
+    kpress(META.."Up", "notioncore.exec_on(_, 'mpc stop')"),
+
+    bdoc("Play prev."),
+    kpress(META.."Left", "notioncore.exec_on(_, 'mpc prev')"),
+
+    bdoc("Play next."),
+    kpress(META.."Right", "notioncore.exec_on(_, 'mpc next')"),
 
     --bdoc("Query for Lua code to execute."),
     --kpress(META.."F3", "mod_query.query_lua(_)"),

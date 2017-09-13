@@ -61,13 +61,14 @@ ioncore.set{
 
     -- Mouse focus mode; set to "sloppy" if you want the focus to follow the
     -- mouse, and to "disabled" otherwise.
-    mousefocus="sloppy",
-    -- mousefocus="disabled",
+    -- mousefocus="sloppy",
+    mousefocus="disabled",
 
     -- Controls Notion's reaction to stacking requests sent by clients. Set to
     -- "ignore" to ignore these requests, and to "activate" to set the activity
     -- flag on a window that requests to be stacked "Above".
-    --window_stacking_request="ignore",
+    -- window_stacking_request="ignore",
+    window_stacking_request="activate",
 
     -- Time (in ms) that a window has to be focussed in order to be added to the
     -- focus list. Set this to <=0 (or comment it out) to disable the logic, and

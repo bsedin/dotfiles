@@ -7,6 +7,8 @@ AllCops:
     - 'db/**/*'
     - 'config/**/*'
     - 'script/**/*'
+    - 'vendor/bundle/**/*'
+    - 'app/assets/**/*'
 
 Rails:
   Enabled: true

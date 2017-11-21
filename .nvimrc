@@ -28,6 +28,9 @@ Plugin 'tpope/vim-bundler'
 " Productivity
 Plugin 'farseer90718/vim-taskwarrior'
 
+" Money
+Plugin 'ledger/vim-ledger'
+
 Plugin 'majutsushi/tagbar'
 
 Plugin 'L9'
@@ -136,6 +139,14 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#max_list = 10
 let g:deoplete#sources#syntax#min_keyword_length = 3
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Deoplete with multiple cursors
+function Multiple_cursors_before()
+  let g:deoplete#disable_auto_complete = 1
+endfunction
+function Multiple_cursors_after()
+  let g:deoplete#disable_auto_complete = 0
+endfunction
 
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 

@@ -1,7 +1,9 @@
 #!/bin/sh
 
-BROWSER=chromium
-XTERM=urxvt
+export BROWSER=firefox
+export XTERM=urxvt
+export LANGUAGE=en_US:en_GB:en
+export LC_TIME=ru_RU.UTF-8
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 unset QT_STYLE_OVERRIDE

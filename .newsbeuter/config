@@ -6,7 +6,7 @@
 # ----------------------------------------------------------------------
 
 auto-reload yes
-browser surf
+browser firefox
 cleanup-on-quit yes
 # download-path "/home/moparx/downloads/podcasts"
 feed-sort-order title-dec

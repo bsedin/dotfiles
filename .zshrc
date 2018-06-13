@@ -1,4 +1,7 @@
-# Добавляем ~/bin в PATH
+if [ -d $HOME/.local/bin ] ; then
+  PATH=$HOME/.local/bin:$PATH
+fi
+
 if [ -d $HOME/bin ] ; then
   PATH=$HOME/bin:$PATH
 fi
@@ -128,9 +131,7 @@ esac
 # shopt -s extglob; if [[ -z $DISPLAY ]] && ! pgrep X &>/dev/null; then tput setaf 3; tput bold; read -t 5 -p 'Start X? [Y/n] '; tput sgr0; [[ -z $REPLY || $REPLY = [Yy]?([Ee][Ss]) ]] && startx; fi
 
 export LANGUAGE="en_US:en_GB:en"
-
 export PATH="$HOME/.dynamic-colors/bin:$PATH"
-
 source $HOME/.dynamic-colors/completions/dynamic-colors.zsh
 
 # Load all files from .shell/zshrc.d directory

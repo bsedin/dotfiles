@@ -2,7 +2,7 @@ set nocompatible
 filetype off
 
 set rtp+=$HOME/.config/nvim/bundle/Vundle.vim
-call vundle#begin()
+call vundle#begin('$HOME/.config/nvim/bundle')
 
 " let Vundle manage Vundle
 " required!

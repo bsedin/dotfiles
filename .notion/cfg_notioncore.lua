@@ -194,10 +194,10 @@ defbindings("WMPlex.toplevel", {
     -- bdoc("Zumhotface from buffer."),
     -- kpress(META.."X",
 		--  "ioncore.exec_on(_, 'zhfclip')"),
-    --
-    -- bdoc("Zumhotface screen."),
-    -- kpress(META.."Print",
-		--  "ioncore.exec_on(_, 'zhfscreen')"),
+
+    bdoc("Save screenshot."),
+    kpress(META.."Print",
+     "ioncore.exec_on(_, '/home/kressh/bin/screenshot-fs')"),
 
     bdoc("Query for file to view."),
     kpress(META.."F3",
@@ -380,6 +380,7 @@ defbindings("WMoveresMode", {
 defmenu("mainmenu", {
     menuentry("Run...",         "mod_query.query_exec(_)"),
     menuentry("Terminal",       "mod_query.exec_on_merr(_, XTERM or 'urxvt')"),
+    menuentry("Shrug",       "mod_query.exec_on_merr(_, shrugger)"),
     menuentry("Lock screen",
         "notioncore.exec_on(_, 'locker')"),
     menuentry("Help",           "mod_query.query_man(_)"),

@@ -12,6 +12,7 @@ Plugin 'tpope/vim-fugitive'
 
 " Autocomplete
 Plugin 'Shougo/deoplete.nvim'
+Plugin 'jiangmiao/auto-pairs'
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'Shougo/unite.vim'
 " Plugin 'ervandew/supertab'
@@ -108,6 +109,9 @@ let g:vimwiki_hl_headers = 1
 let g:vimwiki_hl_cb_checked = 1
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.mkd': 'markdown', '.wiki': 'media'}
 
+" Disable markdown syntax concealing
+let g:vimwiki_conceallevel=0
+
 " NERD Commenter
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -167,7 +171,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " For conceal markers.
 if has('conceal')
-  set conceallevel=2 concealcursor=niv
+  set conceallevel=0 concealcursor=niv
 endif
 
 " Enable snipMate compatibility feature.
@@ -253,7 +257,6 @@ au BufRead,BufNewFile *.rabl setf ruby
 au BufRead,BufNewFile *.arb setf ruby
 au BufRead,BufNewFile *.axlsx setf ruby
 au BufRead,BufNewFile *.tag setf coffee " riotjs tags
-au BufRead,BufNewFile *.vue setf coffee " riotjs tags
 
 " silent! nmap <C-f> :FufLine<CR>
 " silent! nmap <C-g> :FufCoverageFile<CR>
@@ -265,9 +268,14 @@ let g:airline_theme      = 'solarized'
 let g:airline_powerline_fonts = 1
 " let g:airline_left_sep   = '▶' " Set custom left separator
 " let g:airline_right_sep  = '◀' " Set custom right separator
-" let g:airline#extensions#tabline#enabled      = 1      " Enable airline for tab-bar
+let g:airline#extensions#tabline#enabled      = 1 " Enable airline for tab-bar
 " let g:airline#extensions#tabline#show_buffers = 0 " Don't display buffers in tab-bar with single tab
-"let g:airline#extensions#tabline#fnamemod     = ':t'  " Display only filename in tab
+" let g:airline#extensions#tabline#fnamemod     = ':t'  " Display only filename in tab
+
+" Buffer/Tab navigation like Firefox.
+nnoremap <C-b>h :bp<CR>
+nnoremap <C-b>l :bn<CR>
+nnoremap <C-b>d :bd<CR>
 
 " Vim gitgutter
 let g:gitgutter_sign_added = '█'
@@ -280,6 +288,7 @@ let g:ctrlp_map = '<c-g>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = '\v(node_modules|vendor\/bundle)$'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_dont_split = 'NERD'
 
 " Vim maximizer
 let g:maximizer_default_mapping_key = '<F3>'

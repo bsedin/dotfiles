@@ -40,3 +40,5 @@ alias gulp-watch="./node_modules/.bin/gulp watch; notify-send -i error 'Gulp has
 alias weather="curl wttr.in/Moscow"
 alias ag="ag --path-to-ignore ~/.agignore --nogroup"
 alias vim="nvim"
+alias igt="git"
+alias gti="git"

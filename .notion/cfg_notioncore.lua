@@ -158,7 +158,7 @@ defbindings("WMPlex.toplevel", {
     --kpress(META.."T", "mod_query.exec_on_merr(_, XTERM or 'urxvt')"),
 
     bdoc("Run a browser."),
-    kpress(META.."Shift+B", "mod_query.exec_on_merr(_, BROWSER or 'vimb')"),
+    kpress(META.."Shift+B", "notioncore.exec_on(_, 'browser')"),
 
     bdoc("Query for command line to execute."),
     kpress(META.."F2", "mod_query.query_exec(_)"),

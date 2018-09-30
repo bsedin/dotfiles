@@ -272,8 +272,10 @@ let g:airline#extensions#tabline#enabled      = 1 " Enable airline for tab-bar
 " let g:airline#extensions#tabline#show_buffers = 0 " Don't display buffers in tab-bar with single tab
 " let g:airline#extensions#tabline#fnamemod     = ':t'  " Display only filename in tab
 
-" Buffer/Tab navigation like Firefox.
+" Buffer/Tab navigation
+nnoremap <C-b>p :bp<CR>
 nnoremap <C-b>h :bp<CR>
+nnoremap <C-b>n :bn<CR>
 nnoremap <C-b>l :bn<CR>
 nnoremap <C-b>d :bd<CR>
 

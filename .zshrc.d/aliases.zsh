@@ -2,11 +2,10 @@
 alias sdr="screen -aAdr"
 alias la="ls -A"
 alias ll="ls -lAF"
-alias grep='grep --exclude="*.svn*" --exclude="*.git*"'
 alias mkpasswd="head -c16 /dev/urandom | xxd -ps"
 alias mc="mc -b"
 alias ls='ls --color=auto'
-alias less='vimpager'
+# alias less='vimpager'
 
 if [ -f /usr/bin/grc ]; then
   alias ping="grc --colour=auto ping"
@@ -30,15 +29,22 @@ alias foreman="bundle exec foreman"
 alias sidekiq="bundle exec sidekiq"
 alias cap="bundle exec cap"
 alias mina="bundle exec mina"
-alias heroku="$HOME/Soft/heroku-client/bin/heroku"
-alias rgrep="grep --exclude-dir=Godeps --exclude-dir=node_modules --exclude-dir=log --exclude-dir=vendor --exclude-dir=tmp --exclude-dir=public --exclude-dir=.git --exclude=.swp -rn"
-alias grep="grep --color=auto"
-alias wiki="cd ~/wiki && vim index.md"
-alias xwiki="cd ~/wiki && xvim index.md"
 
-alias gulp-watch="./node_modules/.bin/gulp watch; notify-send -i error 'Gulp has crashed'"
+alias rgrep="grep --exclude-dir=Godeps --exclude-dir=node_modules --exclude-dir=log --exclude-dir=vendor --exclude-dir=tmp --exclude-dir=public --exclude-dir=.git --exclude=.swp -rn"
+alias grep="grep --exclude-dir=.git --color=auto"
+
+alias wiki="cd $HOME/wiki && vim index.md"
+alias xwiki="cd $HOME/wiki && xvim index.md"
+
 alias weather="curl wttr.in/Moscow"
-alias ag="ag --path-to-ignore ~/.agignore --nogroup"
+alias ag="ag --path-to-ignore $HOME/.agignore --nogroup"
 alias vim="nvim"
+
+# Typos
 alias igt="git"
 alias gti="git"
+alias gitst="git st"
+
+# Ledger
+alias ledger="noglob ledger"
+alias "bin/ledger"="noglob bin/ledger"

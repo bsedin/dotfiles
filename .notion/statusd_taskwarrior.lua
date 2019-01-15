@@ -8,7 +8,7 @@ local task_timer
 
 -- Read the active task
 local function read_task_data ()
-  local f = assert(io.popen("/usr/bin/task statusd limit:1 | head -n 4 | tail -n 1"))
+  local f = assert(io.popen("/usr/bin/task statusd limit:1 | head -n 4 | tail -n 1 | sed 's/\s\+/ /g'"))
   local data = f:read("*all")
   f:close()
   return data

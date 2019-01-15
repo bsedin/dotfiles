@@ -1,5 +1,9 @@
 **min.js
-**/public/**
-**/log/**
-**/tmp/**
-**/vendor/bundle/**
+*.lock
+*.locked
+*.log
+public/**
+log/**
+tmp/**
+vendor/**
+node_modules/**

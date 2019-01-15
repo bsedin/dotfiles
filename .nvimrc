@@ -11,26 +11,29 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 
 " Autocomplete
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'jiangmiao/auto-pairs'
-" Plugin 'Valloric/YouCompleteMe'
-" Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plugin 'ervandew/supertab'
 
 "
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Lokaltog/vim-easymotion'
 
-" Ruby/Rails
+" Languages
+Plugin 'rust-lang/rust.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-bundler'
+Plugin 'ledger/vim-ledger'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'slim-template/vim-slim'
+Plugin 'fatih/vim-go'
+Plugin 'wavded/vim-stylus'
+Plugin 'tpope/vim-haml'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'Glench/Vim-Jinja2-Syntax'
 
 " Productivity
 Plugin 'farseer90718/vim-taskwarrior'
-
-" Money
-Plugin 'ledger/vim-ledger'
 
 Plugin 'majutsushi/tagbar'
 
@@ -48,24 +51,15 @@ Plugin 'vim-scripts/tlib'
 
 " Snippets
 " Plugin 'garbas/vim-snipmate'
-" Plugin 'honza/vim-snippets'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
+Plugin 'honza/vim-snippets'
 
 Plugin 'vim-scripts/taglist.vim'
 
 " Appearance
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-
-" Langs
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'slim-template/vim-slim'
-Plugin 'fatih/vim-go'
-Plugin 'wavded/vim-stylus'
-Plugin 'tpope/vim-haml'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'Glench/Vim-Jinja2-Syntax'
 
 " CVS
 Plugin 'phleet/vim-mercenary'
@@ -91,6 +85,7 @@ Plugin 'neomake/neomake'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'szw/vim-maximizer'
+Plugin 'kassio/neoterm'
 
 call vundle#end()
 
@@ -186,6 +181,8 @@ let g:neosnippet#snippets_directory='~/.config/nvim/bundle/vim-snippets/snippets
 autocmd! BufWritePost * Neomake
 autocmd BufUnload,BufWinLeave * lclose
 
+let g:AutoPairsMultilineClose = 0
+
 let g:neomake_ruby_enabled_makers = ['rubocop', 'reek']
 let g:neomake_open_list = 2
 let g:neomake_list_height = 4
@@ -252,6 +249,9 @@ let g:calendar_keys = {'goto_next_month': '<C-Right>',
 let g:calendar_monday = 1
 let g:calendar_focus_today = 1
 
+" RustFmt rust
+let g:rustfmt_autosave = 1
+
 au BufRead,BufNewFile *.jbuilder setf ruby
 au BufRead,BufNewFile *.rabl setf ruby
 au BufRead,BufNewFile *.arb setf ruby
@@ -278,6 +278,12 @@ nnoremap <C-b>h :bp<CR>
 nnoremap <C-b>n :bn<CR>
 nnoremap <C-b>l :bn<CR>
 nnoremap <C-b>d :bd<CR>
+
+" Terminal
+tnoremap <Esc> <C-\><C-n>
+command Term split term://$SHELL
+let g:neoterm_autoinsert = 1
+let g:neoterm_default_mod = 'rightbelow'
 
 " Vim gitgutter
 let g:gitgutter_sign_added = '█'
@@ -364,8 +370,8 @@ set colorcolumn=80,120
 
 set nostartofline                " Don’t reset cursor to start of line when moving around.
 set noeol                        " Don’t add empty newlines at the end of files
-:autocmd InsertEnter * set cul   " Show cursor line in insert mode
-:autocmd InsertLeave * set nocul " Hide cursor line in insert mode
+autocmd InsertEnter * set cul    " Show cursor line in insert mode
+autocmd InsertLeave * set nocul  " Hide cursor line in insert mode
 
 " Visual
 set showmatch    " Show matching brackets.

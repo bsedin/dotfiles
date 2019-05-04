@@ -1,5 +1,5 @@
 local task_base_settings = {
-  update_interval = 30*1000, -- every minute
+  update_interval = 15*1000, -- every 15 seconds
 }
 
 local task_settings = task_base_settings
@@ -8,7 +8,7 @@ local task_timer
 
 -- Read the active task
 local function read_task_data ()
-  local f = assert(io.popen("/usr/bin/task statusd limit:1 | head -n 4 | tail -n 1 | sed 's/\s\+/ /g'"))
+  local f = assert(io.popen("~/.notion/statusd_task"))
   local data = f:read("*all")
   f:close()
   return data
@@ -20,6 +20,7 @@ local function inform_task ()
   local task = read_task_data()
 
   statusd.inform("taskwarrior", task)
+  statusd.inform("taskwarrior_hint", "critical")
 end
 
 

@@ -6,23 +6,30 @@
 # ----------------------------------------------------------------------
 
 auto-reload yes
-browser firefox
+browser qutebrowser
 cleanup-on-quit yes
 # download-path "/home/moparx/downloads/podcasts"
-feed-sort-order title-dec
+feed-sort-order firsttag
 max-downloads 4
 notify-always yes
-notify-format "newsbeuter: %n unread articles within %f unread feeds"
+notify-format "newsboat: %n unread articles within %f unread feeds"
 notify-program notify-send
 notify-xterm no
 notify-screen no
-player mplayer
+player mpv
 refresh-on-startup yes
 reload-time 60
 reload-threads 2
 #show-read-articles no
 show-read-feeds yes
+prepopulate-query-feeds yes
 
+feedlist-format "%4i %11u %T > %t"
+
+define-filter "Only query feeds" "feedtitle =~ \"====\""
+ 
+
+include "~/.newsboat/nextcloud"
 
 # binds ----------------------------------------------------------------
 

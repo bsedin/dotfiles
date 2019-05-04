@@ -22,7 +22,6 @@
 --ALTMETA=""
 
 -- Terminal emulator.
-XTERM="urxvt"
 
 -- Some basic settings.
 ioncore.set{

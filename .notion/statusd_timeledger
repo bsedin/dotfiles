@@ -1,0 +1,7 @@
+#!/bin/bash
+
+CURRENT_TASK=$(cd ~/.work-ledger && ./bin/ledger bal -p today --depth 1 ^Work | sed 's/\s\+/ /g')
+
+echo $CURRENT_TASK
+
+exit 0

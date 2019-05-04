@@ -48,3 +48,5 @@ alias gitst="git st"
 # Ledger
 alias ledger="noglob ledger"
 alias "bin/ledger"="noglob bin/ledger"
+
+alias icat="kitty +kitten icat"

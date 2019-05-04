@@ -1,0 +1,34 @@
+[include]
+  path = .gituser
+
+[core]
+  excludesfile = ~/.gitignore_global
+  pager = diff-so-fancy | less --tabs=2 -RFX
+
+[alias]
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  pl = pull
+  ps = push
+  today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lf = !sh -c 'git lg --grep=$1 --max-count=5' -
+  tree = log --graph --decorate --pretty=oneline --abbrev-commit
+  patch = !git --no-pager diff --no-color
+
+[color]
+  status = always
+  diff = always
+
+[push]
+  default = simple
+
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
+
+[mergetool]
+  prompt = false

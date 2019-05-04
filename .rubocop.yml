@@ -26,6 +26,8 @@ Rails/Date:
 Metrics/BlockLength:
   Exclude:
   - 'spec/**/*_spec.rb'
+  - 'app/endpoints/**/*.rb'
+  - '*.gemspec'
 
 # Commonly used screens these days easily fit more than 80 characters.
 Metrics/LineLength:
@@ -99,3 +101,6 @@ Style/AndOr:
   Enabled: true
   Exclude:
     - 'app/controllers/**/*'
+
+Layout/AlignParameters:
+  Enabled: false

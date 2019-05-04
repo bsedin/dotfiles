@@ -1,0 +1,11 @@
+#!/bin/bash
+
+CURRENT_TASK=$(/usr/bin/task active 2>&1 | head -n 4 | tail -n 1 | sed 's/\s\+/ /g')
+
+if [[ $CURRENT_TASK == 'No matches.' ]]; then
+  echo ''
+else
+  echo "Task: $CURRENT_TASK"
+fi
+
+exit 0

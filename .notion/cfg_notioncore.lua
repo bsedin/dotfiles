@@ -379,7 +379,7 @@ defbindings("WMoveresMode", {
 -- Main menu
 defmenu("mainmenu", {
     menuentry("Run...",         "mod_query.query_exec(_)"),
-    menuentry("Terminal",       "mod_query.exec_on_merr(_, XTERM or 'urxvt')"),
+    menuentry("Terminal",       "mod_query.exec_on_merr(_, XTERM or 'terminal')"),
     menuentry("Shrug",       "mod_query.exec_on_merr(_, shrugger)"),
     menuentry("Lock screen",
         "notioncore.exec_on(_, 'locker')"),

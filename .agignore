@@ -1,4 +1,4 @@
-**min.js
+*min.js
 *.lock
 *.locked
 *.log
@@ -7,3 +7,6 @@ log/**
 tmp/**
 vendor/**
 node_modules/**
+.git/
+.hg/
+.svn/

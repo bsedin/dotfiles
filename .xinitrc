@@ -16,4 +16,4 @@ xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Axes" 6 7 4 5
 
 # exec ck-launch-session dbus-launch
 xrdb -merge ~/.Xresources
-exec notion > $HOME/.notion/log.txt 2>&1
+exec i3 > $HOME/log/i3.txt 2>&1

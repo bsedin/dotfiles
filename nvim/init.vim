@@ -440,6 +440,8 @@ noremap   <Right>  <NOP>
 set splitbelow
 set splitright
 
+set title
+
 " Quicker window movement
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k

@@ -1,7 +1,6 @@
-URxvt*termName: xterm-256color
 ! URxvt*foreground: #F5FAFC
 ! URxvt*background: #1C1F22
-URxvt*font:       xft:xos4\ Terminus:size=12:antialias=false
+URxvt*font:       xft:Iosevka\ Term:size=12
 
 URxvt*scrollBar:  false
 ! URxvt*geometry:   167x54
@@ -14,21 +13,9 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 URxvt*secondaryWheel: true
 
-! Dynamic colors
-urxvt*dynamicColors: on
-
 URxvt.urgentOnBell:  true
 
 URxvt.perl-ext: default,clipboard,url-select,keyboard-select
-URxvt*perl-ext-common: urxvt-colors
-URxvt*perl-lib: .Xresources.d
-! URxvt*keysym.F5: perl:urxvt-colors:
-URxvt*keysym.C-F5: perl:urxvt-colors:
-! tabbed
-! URxvt.tabbed.tabbar-fg: 2
-! URxvt.tabbed.tabbar-bg: 0
-! URxvt.tabbed.tab-fg: 3
-! URxvt.tabbed.tab-bg: 0
 
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
@@ -41,10 +28,9 @@ URxvt.keysym.M-u: perl:url-select:select_next
 ! links color
 !URxvt.colorUL: #4682B4
 
-Xft*dpi:                96
-Xft*antialias:          true
-
-xterm*termName: xterm-256color
-xterm*faceName: xft:xos4\ Terminus:size=12:antialias=false
-
-#include ".Xresources.d/solarized"
+Xft*dpi:       96
+Xft*antialias: true
+Xft.hinting:   true
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+Xft.rgba:      rgb

@@ -21,9 +21,7 @@ interval = 10
 
 [[block]]
 block = "sound"
-driver = "alsa"
-name = "Master"
-on_click = "volume_control mute"
+driver = "auto"
 
 [[block]]
 block = "uptime"

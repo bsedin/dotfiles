@@ -200,7 +200,7 @@ bar {
         active_workspace   #5f676a #5f676a #fbf1c7
         inactive_workspace #5f676a #5f676a #fbf1c7
         urgent_workspace   #fb4934 #fb4934 #fbf1c7
-        binding_mode       #fb4934 #fb4934 #fbf1c7
+        binding_mode       #fb4934 #fb4934 #1d2021
     }
 }
 

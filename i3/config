@@ -50,7 +50,7 @@ client.unfocused        #333333 #222222 #bdae93 #292d2e   #222222
 client.urgent           #2f343a #900000 #fbf1c7 #900000   #900000
 client.placeholder      #000000 #0c0c0c #fbf1c7 #000000   #0c0c0c
 
-client.background       #ffffff
+client.background       #000000
 
 # start a terminal
 bindsym $mod+Shift+t exec terminal
@@ -189,7 +189,7 @@ bindsym $mod+space scratchpad show
 # finds out, if available)
 bar {
     status_command i3status-rs ~/.config/i3status-rs/config.toml
-    font pango:Iosevka Term, FontAwesome Bold 12px
+    font pango:Iosevka Term, FontAwesome Bold 14px
     colors {
         background #000000
         statusline #d5c4a1

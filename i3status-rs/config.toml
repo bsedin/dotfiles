@@ -30,7 +30,7 @@ driver = "alsa"
 
 [[block]]
 block = "net"
-device = "wlan0"
+device = "wlp1s0"
 ssid = true
 ip = true
 speed_down = false

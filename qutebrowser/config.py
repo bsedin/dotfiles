@@ -384,51 +384,51 @@ c.fonts.monospace = '"Iosevka Term", Terminus, Monospace, "DejaVu Sans Mono", Mo
 
 # Font used in the completion widget.
 # Type: Font
-c.fonts.completion.entry = '7pt bold monospace'
+c.fonts.completion.entry = '12pt bold monospace'
 
 # Font used in the completion categories.
 # Type: Font
-c.fonts.completion.category = 'bold 7pt monospace'
+c.fonts.completion.category = 'bold 12pt monospace'
 
 # Font used for the debugging console.
 # Type: QtFont
-c.fonts.debug_console = '7pt bold monospace'
+c.fonts.debug_console = '12pt bold monospace'
 
 # Font used for the downloadbar.
 # Type: Font
-c.fonts.downloads = '7pt bold monospace'
+c.fonts.downloads = '12pt bold monospace'
 
 # Font used for the hints.
 # Type: Font
-c.fonts.hints = '7pt bold monospace'
+c.fonts.hints = '12pt bold monospace'
 
 # Font used in the keyhint widget.
 # Type: Font
-c.fonts.keyhint = '7pt bold monospace'
+c.fonts.keyhint = '12pt bold monospace'
 
 # Font used for error messages.
 # Type: Font
-c.fonts.messages.error = '7pt bold monospace'
+c.fonts.messages.error = '12pt bold monospace'
 
 # Font used for info messages.
 # Type: Font
-c.fonts.messages.info = '7pt bold monospace'
+c.fonts.messages.info = '12pt bold monospace'
 
 # Font used for warning messages.
 # Type: Font
-c.fonts.messages.warning = '7pt bold monospace'
+c.fonts.messages.warning = '12pt bold monospace'
 
 # Font used for prompts.
 # Type: Font
-c.fonts.prompts = '10pt sans-serif'
+c.fonts.prompts = '16pt sans-serif'
 
 # Font used in the statusbar.
 # Type: Font
-c.fonts.statusbar = '7pt bold monospace'
+c.fonts.statusbar = '12pt bold monospace'
 
 # Font used in the tab bar.
 # Type: QtFont
-c.fonts.tabs = '7pt bold monospace'
+c.fonts.tabs = '12pt bold monospace'
 
 # Font family for cursive fonts.
 # Type: FontFamily

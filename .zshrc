@@ -132,11 +132,6 @@ esac
 
 # shopt -s extglob; if [[ -z $DISPLAY ]] && ! pgrep X &>/dev/null; then tput setaf 3; tput bold; read -t 5 -p 'Start X? [Y/n] '; tput sgr0; [[ -z $REPLY || $REPLY = [Yy]?([Ee][Ss]) ]] && startx; fi
 
-if [ -d $HOME/.dynamic-colors ]; then
-  export PATH="$HOME/.dynamic-colors/bin:$PATH"
-  source $HOME/.dynamic-colors/completions/dynamic-colors.zsh
-fi
-
 # Load all files from .shell/zshrc.d directory
 if [ -d $HOME/.zshrc.d ]; then
   for file in $HOME/.zshrc.d/*.zsh; do

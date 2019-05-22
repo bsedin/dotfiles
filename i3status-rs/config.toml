@@ -20,11 +20,13 @@ command = "taskwarrior_active"
 interval = 10
 
 [[block]]
-block = "sound"
-driver = "auto"
+block = "custom"
+command = "timelogger statusbar"
+interval = 10
 
 [[block]]
-block = "uptime"
+block = "sound"
+driver = "alsa"
 
 [[block]]
 block = "net"

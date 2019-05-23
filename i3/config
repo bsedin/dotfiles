@@ -53,8 +53,8 @@ client.placeholder      #000000 #0c0c0c #fbf1c7 #000000   #0c0c0c
 client.background       #ffffff
 
 # start a terminal
-bindsym $mod+Shift+t exec i3-sensible-terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+t exec kitty
+bindsym $mod+Return exec kitty
 bindsym $mod+b exec qutebrowser
 
 # kill focused window

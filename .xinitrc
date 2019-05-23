@@ -1,7 +1,8 @@
 #!/bin/sh
 
 export BROWSER=browser
-export XTERM=kitty
+export TERMINAL=terminal
+export XTERM=terminal
 export LANGUAGE=en_US:en_GB:en
 export LC_TIME=ru_RU.UTF-8
 

@@ -1,0 +1,12 @@
+*.swp
+/.bundle
+npm-debug.log
+vendor/bundle/
+vendor/cache/
+.sass-cache/
+node_modules/
+yarn-error.log
+.env.local
+*.gem
+.pgsync.yml
+stats.json

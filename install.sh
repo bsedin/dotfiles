@@ -18,6 +18,6 @@ ln -s $PWD/.railsrc \
       ~/
 
 ln -s  $PWD/htop ~/.config/
+ln -s $PWD/qutebrowser/config.py ~/.config/qutebrowser/config.py
 
-cp $PWD/qutebrowser/config.py ~/.config/qutebrowser/config.py
-cp $PWD/.bundle-config ~/.bundle/config
+cp -n $PWD/.bundle-config ~/.bundle/config

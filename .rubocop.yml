@@ -9,6 +9,9 @@ AllCops:
     - 'script/**/*'
     - 'vendor/bundle/**/*'
     - 'app/assets/**/*'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+    - 'log/**/*'
 
 Rails:
   Enabled: true

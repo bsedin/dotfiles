@@ -8,7 +8,6 @@
 auto-reload yes
 browser qutebrowser
 cleanup-on-quit yes
-# download-path "/home/moparx/downloads/podcasts"
 feed-sort-order firsttag
 max-downloads 4
 notify-always yes
@@ -17,12 +16,12 @@ notify-program notify-send
 notify-xterm no
 notify-screen no
 player mpv
-refresh-on-startup yes
+refresh-on-startup no
 reload-time 60
-reload-threads 2
+reload-threads 4
 #show-read-articles no
 show-read-feeds yes
-prepopulate-query-feeds yes
+prepopulate-query-feeds no
 
 feedlist-format "%4i %11u %T > %t"
 

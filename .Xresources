@@ -1,6 +1,4 @@
-! URxvt*foreground: #F5FAFC
-! URxvt*background: #1C1F22
-URxvt*font:       xft:Iosevka\ Term:size=12
+URxvt*font:       xft:Iosevka\ Term:size=11
 
 URxvt*scrollBar:  false
 ! URxvt*geometry:   167x54
@@ -34,3 +32,6 @@ Xft.hinting:   true
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 Xft.rgba:      rgb
+
+#include ".Xresources.d/base16-gruvbox-dark-hard-256"
+#include ".Xresources.d/st"

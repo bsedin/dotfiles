@@ -1,0 +1,42 @@
+# [Created by task 2.3.0 10/27/2014 13:01:27]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-faq',
+# 'man task-tutorial', 'man task-color', 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=~/.task
+
+# Color theme (uncomment one to use)
+# include /usr/share/task/light-16.theme
+# include /usr/share/task/light-256.theme
+# include /usr/share/task/dark-256.theme
+# include /usr/share/task/dark-red-256.theme
+# include /usr/share/task/dark-green-256.theme
+# include /usr/share/task/dark-blue-256.theme
+# include /usr/share/task/dark-violets-256.theme
+include /usr/share/task/dark-yellow-green.theme
+# include /usr/share/task/dark-gray-256.theme
+# include /usr/share/task/solarized-dark-256.theme
+
+alias.rm=delete
+alias.mod=modify
+
+uda.totalactivetime.type=duration
+uda.totalactivetime.label=Total active time
+uda.totalactivetime.values=
+
+default.command=list
+
+report.active.columns=id,project,description.truncated,start.age
+report.active.labels=ID,Project,Description,Time
+
+report.list.labels=ID,Active,Age,Time,D,P,Project,Tags,R,Sch,Due,Until,Description,Urg
+report.list.columns=id,start.age,entry.age,totalactivetime,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
+

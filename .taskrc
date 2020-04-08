@@ -10,20 +10,24 @@
 
 # Use the command 'task show' to see all defaults and overrides
 
+weekstart=Monday
+
 # Files
 data.location=~/.task
 
 # Color theme (uncomment one to use)
-# include /usr/share/task/light-16.theme
-# include /usr/share/task/light-256.theme
-# include /usr/share/task/dark-256.theme
-# include /usr/share/task/dark-red-256.theme
-# include /usr/share/task/dark-green-256.theme
-# include /usr/share/task/dark-blue-256.theme
-# include /usr/share/task/dark-violets-256.theme
-include /usr/share/task/dark-yellow-green.theme
-# include /usr/share/task/dark-gray-256.theme
-# include /usr/share/task/solarized-dark-256.theme
+# include /usr/share/task/rc/light-16.theme
+# include /usr/share/task/rc/light-256.theme
+include /usr/share/task/rc/dark-256.theme
+# include /usr/share/task/rc/dark-red-256.theme
+# include /usr/share/task/rc/dark-green-256.theme
+# include /usr/share/task/rc/dark-blue-256.theme
+# include /usr/share/task/rc/dark-violets-256.theme
+# include /usr/share/task/rc/dark-yellow-green.theme
+# include /usr/share/task/rc/dark-gray-256.theme
+# include /usr/share/task/rc/solarized-dark-256.theme
+
+search.case.sensitive=no
 
 alias.rm=delete
 alias.mod=modify
@@ -31,6 +35,11 @@ alias.mod=modify
 uda.totalactivetime.type=duration
 uda.totalactivetime.label=Total active time
 uda.totalactivetime.values=
+
+uda.priority.values=H,M,,L
+urgency.uda.priority.H.coefficient=3.0
+urgency.uda.priority.L.coefficient=0.5
+urgency.uda.priority.M.coefficient=2.0
 
 default.command=list
 

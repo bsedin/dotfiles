@@ -19,56 +19,6 @@ set index_format='%4C %Z %<[y?%<[m?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%m/%y ]>
 # %[y   This year   %[%b %d]       Dec 10
 #  —    Older       %[%m/%y ]      06/15
 
-# Color if the attachment is autoviewed
-color   attach_headers     brightgreen     default    "Autoview"
-# Color only the brackets around the headers
-color   attach_headers     brightyellow    default    "^\\[--"
-color   attach_headers     brightyellow    default    "--]$"
-# Color the mime type and the size
-color   attach_headers     green           default    "Type: [a-z]+/[a-z0-9\-]+"
-color   attach_headers     green           default    "Size: [0-9\.]+[KM]"
-# Color GPGME signature checks
-color   attach_headers     brightgreen     default    "Good signature from.*"
-color   attach_headers     brightred       default    "Bad signature from.*"
-color   attach_headers     brightred       default    "BAD signature from.*"
-color   attach_headers     brightred       default    "Note: This key has expired!"
-color   attach_headers     brightmagenta   default    "Problem signature from.*"
-color   attach_headers     brightmagenta   default    "WARNING: This key is not certified with a trusted signature!"
-color   attach_headers     brightmagenta   default    "         There is no indication that the signature belongs to the owner."
-color   attach_headers     brightmagenta   default    "can't handle these multiple signatures"
-color   attach_headers     brightmagenta   default    "signature verification suppressed"
-color   attach_headers     brightmagenta   default    "invalid node with packet of type"
-
-# Entire index line
-color index white black '.*'
-# Author name, %A %a %F %L %n
-# Give the author column a dark grey background
-color index_author default color234 '.*'
-# Highlight a particular from (~f)
-# color index_author brightyellow color234 '~fRay Charles'
-# Message flags, %S %Z
-# Highlight the flags for flagged (~F) emails
-color index_flags default red '~F'
-# Subject, %s
-# Look for a particular subject (~s)
-# color index_subject brightcyan default '~s\(closes #[0-9]+\)'
-# Number of messages in a collapsed thread, %M
-color index_collapsed default brightblue
-# Date field
-color index_date green default
-# Message label, %y %Y
-color index_label default brightgreen
-# Message number, %C
-color index_number red default
-# Message size, %c %l
-color index_size cyan default
-
-# The 'progress' feature provides clear visual feedback for
-# slow tasks, such as indexing a large folder over the net.
-
-# Set the color of the progress bar
-# White text on a red background
-color progress white red
 
 # Limit view to current thread
 bind index <esc>L limit-current-thread
@@ -80,46 +30,48 @@ bind index <esc>L limit-current-thread
 # Show three quoted lines before the reply
 set skip_quoted_offset = 3
 
-set new_mail_command="notify-send 'New e-mail' '%n new messages, %u unread.' &"
+# Macros
+macro index Z "<shell-escape>mbsync -a<enter>" "Sync all"
+
+# More vim-like bindings
+# bind index i  noop
+bind attach,index g  noop # clear for next binding
+bind attach,index gg first-entry
+bind attach,index G  last-entry
+bind index N  search-opposite
+# bind pager i  exit
+# bind pager q  toggle-quoted
+bind pager /  search
+
+# QWERTY
+bind pager j  next-line
+bind pager k  previous-line
+
+bind pager g  noop # clear for next binding
+bind pager gg top
+bind pager G  bottom
+bind index,pager \# noop
+bind index,pager \& noop
+bind index,pager R  group-reply
 
 ## Keys
-bind pager j next-line
-bind pager k previous-line
 bind attach,index,pager \CD next-page
 bind attach,index,pager \CU previous-page
-bind pager g top
-bind pager G bottom
-bind attach,index g first-entry
-bind attach,index G last-entry
-bind index,pager B sidebar-toggle-visible
-bind index \Cg imap-fetch-mail
 
-bind index,pager \CK sidebar-prev
-bind index,pager \CJ sidebar-next
+bind index,pager B sidebar-toggle-visible
 bind index,pager \CO sidebar-open
 
-macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && qutebrowser file:///home/kressh/.cache/mutt/mail.html && rm ~/.cache/mutt/mail.html<enter>"
+# QWERTY
+bind index,pager \Ck sidebar-prev
+bind index,pager \Cj sidebar-next
+
+macro attach 'V' "<pipe-entry>cat > ~/.cache/mutt/mail.html; ~/bin/preview-html ~/.cache/mutt/mail.html; rm ~/.cache/mutt/mail.html<enter>"
 macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 
-# Etc
-set mail_check        = 30
-set move              = no
-set imap_keepalive    = 900
-set sort              = threads
-set sort_browser      = date
-set sort_aux          = reverse-last-date-received
-set editor            = "nvim"
-set send_charset      = "utf-8"
-
-set sidebar_visible   = no
-set sidebar_format    = "%B%?F? [%F]?%* %?N?%N/?%S"
-set mail_check_stats
-
-set pager_index_lines = 10
-
 set mailcap_path 	= ~/.config/mutt/mailcap
-alternative_order text/plain text/html
 auto_view text/html
+alternative_order text/plain text/html
+
 
 # GnuPG bootstrap
 # source ~/.mutt/gpg.rc

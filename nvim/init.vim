@@ -1,88 +1,81 @@
 set nocompatible
 filetype off
 
-set rtp+=$HOME/.config/nvim/bundle/Vundle.vim
-call vundle#begin('$HOME/.config/nvim/bundle')
+source $HOME/go/src/github.com/junegunn/fzf/plugin/fzf.vim
 
-" let Vundle manage Vundle
-" required!
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
+call plug#begin('$HOME/.config/nvim/bundle')
+
+Plug 'tpope/vim-sensible'
 
 " Colors
-Plugin 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 
-" Autocomplete
-Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'terryma/vim-multiple-cursors'
+Plug 'Lokaltog/vim-easymotion'
 
-"
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'rust-lang/rust.vim'
+" Plug 'racer-rust/vim-racer'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-bundler'
+Plug 'calviken/vim-gdscript3'
+" Plug 'tpope/vim-projectionist'
+" Plug 'tpope/vim-haml'
+Plug 'ledger/vim-ledger'
+Plug 'slim-template/vim-slim'
+Plug 'fatih/vim-go'
+" Plug 'wavded/vim-stylus'
+" Plug 'digitaltoad/vim-jade'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'HerringtonDarkholme/yats.vim'
 
-" Languages
-Plugin 'rust-lang/rust.vim'
-Plugin 'racer-rust/vim-racer'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-rake'
-Plugin 'tpope/vim-bundler'
-Plugin 'ledger/vim-ledger'
-Plugin 'slim-template/vim-slim'
-Plugin 'fatih/vim-go'
-Plugin 'wavded/vim-stylus'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'Glench/Vim-Jinja2-Syntax'
+Plug 'tomtom/tcomment_vim'
 
-" Productivity
-Plugin 'farseer90718/vim-taskwarrior'
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
-Plugin 'majutsushi/tagbar'
-
-" Plugin 'L9'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-" Plugin 'vim-scripts/tlib'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'milkypostman/vim-togglelist' " <leader>l and <leader>q
 
 " Snippets
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'honza/vim-snippets'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
 
 " Appearance
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
+Plug 'shinchu/lightline-gruvbox.vim'
 
-Plugin 'mattn/calendar-vim'
-Plugin 'vim-scripts/vimwiki'
-" Plugin 'mhinz/vim-startify'
-" Plugin 'ngmy/vim-rubocop'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-endwise'
-Plugin 'rstacruz/vim-closer'
+Plug 'ryanoasis/vim-devicons'
 
-Plugin 'kien/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'nathanaelkane/vim-indent-guides'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-endwise'
+Plug 'rstacruz/vim-closer'
+
+Plug 'junegunn/fzf.vim'
+Plug 'godlygeek/tabular'
+Plug 'nathanaelkane/vim-indent-guides'
 
 " Linters and syntax stuff
-Plugin 'w0rp/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'w0rp/ale'
 "
-" Plugin 'neomake/neomake'
-" Plugin 'vim-syntastic/syntastic'
-" Plugin 'syngan/vim-vimlint'
-" Plugin 'ynkdir/vim-vimlparser'
-" Plugin 'tpope/vim-dispatch'
-" Plugin 'whatyouhide/vim-gotham'
-" Plugin 'altercation/vim-colors-solarized'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'szw/vim-maximizer'
-Plugin 'kassio/neoterm'
+" Plug 'tpope/vim-dispatch'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'kassio/neoterm'
+Plug 'janko/vim-test'
 
-call vundle#end()
+" Tasks
+Plug 'blindFS/vim-taskwarrior'
+Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'vimwiki/vimwiki', {'branch': 'dev'}
+Plug 'tbabej/taskwiki'
+
+call plug#end()
 
 " Colorscheme
 set t_Co=256
@@ -93,62 +86,161 @@ colorscheme base16-gruvbox-dark-hard
 
 " NERD Commenter
 " Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
+" let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
+" let g:NERDCompactSexyComs = 1
 " Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
+" let g:NERDDefaultAlign = 'left'
 " Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
+" let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 0
-
-" NERDtree-tabs
-let g:nerdtree_tabs_open_on_gui_startup = 0
-let g:nerdtree_tabs_autoclose = 0
+" let g:NERDTrimTrailingWhitespace = 0
 
 " Snipmate
 " imap <S-Enter> <Plug>snipMateNextOrTrigger
 " let g:snipMate = get(g:, 'snipMate', {}) " Allow for vimrc re-sourcing
 
-" YouCompleteMe
-" let g:ycm_key_list_select_completion = ['<TAB>']
-" let g:ycm_key_list_previous_completion = ['<S-TAB>']
+" coc.nvim
+"
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 
-" Neocomplete
-let g:acp_enableAtStartup = 0
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#max_list = 10
-let g:deoplete#sources#syntax#min_keyword_length = 3
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 
-" Deoplete with multiple cursors
-function Multiple_cursors_before()
-  let g:deoplete#disable_auto_complete = 1
+let g:coc_global_extensions = [
+  \ 'coc-css',
+  \ 'coc-fish',
+  \ 'coc-html',
+  \ 'coc-lists',
+  \ 'coc-omni',
+  \ 'coc-sh',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-docker',
+  \ 'coc-highlight',
+  \ 'coc-json',
+  \ 'coc-neosnippet',
+  \ 'coc-rust-analyzer',
+  \ 'coc-solargraph',
+  \ 'coc-yaml'
+  \ ]
+
+highlight CocErrorSign   ctermfg=9 ctermbg=18 guifg=#ff0000 guibg=#3c3836
+highlight CocWarningSign ctermfg=130 ctermbg=18 guifg=#ff922b guibg=#3c3836
+highlight CocInfoSign    ctermfg=11 ctermbg=18 guifg=#fab005 guibg=#3c3836
+highlight CocHintSign    ctermfg=12 ctermbg=18 guifg=#15aabf guibg=#3c3836
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gl :CocList outline<CR>
+
+nnoremap <Leader>s :CocSearch<Space>
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
 endfunction
-function Multiple_cursors_after()
-  let g:deoplete#disable_auto_complete = 0
-endfunction
 
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Remap for do codeAction of current line
+" nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+" autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType ledger setlocal sw=4 ts=4 sts=4
 autocmd FileType rust setlocal sw=4 ts=4 sts=4
+
+" FZF with dev icons
+function! FZFWithDevIcons()
+  let l:fzf_files_options = ' -m --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up --preview "bat --color always --style numbers {2..}"'
+
+  function! s:files()
+    let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
+    return s:prepend_icon(l:files)
+  endfunction
+
+  function! s:prepend_icon(candidates)
+    let result = []
+    for candidate in a:candidates
+      let filename = fnamemodify(candidate, ':p:t')
+      let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
+      call add(result, printf("%s %s", icon, candidate))
+    endfor
+
+    return result
+  endfunction
+
+  function! s:edit_file(items)
+    let items = a:items
+    let i = 1
+    let ln = len(items)
+    while i < ln
+      let item = items[i]
+      let parts = split(item, ' ')
+      let file_path = get(parts, 1, '')
+      let items[i] = file_path
+      let i += 1
+    endwhile
+    call s:Sink(items)
+  endfunction
+
+  let opts = fzf#wrap({})
+  let opts.source = <sid>files()
+  let s:Sink = opts['sink*']
+  let opts['sink*'] = function('s:edit_file')
+  let opts.options .= l:fzf_files_options
+  call fzf#run(opts)
+
+endfunction
 
 " Neocomplete snippets
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
@@ -159,112 +251,70 @@ endif
 let g:neosnippet#enable_snipmate_compatibility = 1
 "
 " Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.config/nvim/bundle/vim-snippets/snippets'
-
-" Neomake
-" Run NeoMake on read and write operations
-" autocmd! BufReadPost,BufWritePost * Neomake
-" autocmd! BufWritePost * Neomake
-" autocmd BufUnload,BufWinLeave * lclose
+let g:neosnippet#snippets_directory='$HOME/.config/nvim/bundle/vim-snippets/snippets'
 
 " ALE
 " let g:ale_sign_column_always = 1
-let g:airline#extensions#ale#enabled = 1
+let g:ale_enabled = 1
 let g:ale_list_window_size = 3
-let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
-let g:ale_open_list = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_insert_leave = 0
+let g:ale_open_list = 0
+let g:ale_linters_explicit = 1
 
-" let g:ale_sign_error = 'E>'
-" let g:ale_sign_warning = 'W>'
-let g:ale_sign_error = '×'
-let g:ale_sign_warning = '•'
+let g:ale_linters = {
+      \ 'ruby': ['reek'],
+      \ 'scss': ['stylelint'],
+      \ 'sass': ['stylelint'],
+      \  'css': ['stylelint'],
+      \ 'slim': ['slimlint'],
+      \ }
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\}
+
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
+
+" let g:ale_set_loclist = 0
+" let g:ale_set_quickfix = 1
+" let g:ale_keep_list_window_open = 1
+
+" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+" nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+let g:ale_set_highlights = 1
+
+let g:ale_sign_error = 'E>'
+let g:ale_sign_warning = 'W>'
 
 let g:ale_echo_msg_error_str = 'Error'
 let g:ale_echo_msg_warning_str = 'Warning'
 let g:ale_echo_msg_format = '[%severity%] %s [%linter%]'
 
-" let g:neomake_ruby_enabled_makers = ['rubocop', 'reek']
-" let g:neomake_open_list = 2
-" let g:neomake_list_height = 4
-" let g:neomake_serialize = 1
-" let g:neomake_serialize_abort_on_error = 1
-"
-" let g:neomake_error_sign = {
-"   \ 'text': 'E>',
-"   \ 'texthl': 'NeomakeErrorSign',
-"   \ }
-" let g:neomake_warning_sign = {
-"   \ 'text': 'S>',
-"   \ 'texthl': 'NeomakeWarningSign',
-"   \ }
-" let g:neomake_info_sign = {
-"   \ 'text': 'I>',
-"   \ 'texthl': 'NeomakeInfoSign',
-"   \ }
-" let g:neomake_message_sign = {
-"   \ 'text': 'M>',
-"   \ 'texthl': 'NeomakeMsg',
-"   \ }
-"
-" augroup my_neomake_signs
-"   au!
-"   autocmd ColorScheme *
-"     \ hi NeomakeErrorSign ctermfg=red |
-"     \ hi NeomakeWarningSign ctermfg=yellow
-" augroup END
-
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
-" Syntastic
-" let g:syntastic_ruby_checkers = ['rubocop']
-"let g:syntastic_shell = "/bin/sh"
-" let g:syntastic_loc_list_height = 3
-"let g:syntastic_enable_balloons = 1
-"let g:syntastic_ruby_checkers = ['rubocop']
-"let g:syntastic_ruby_rubocop_exec ='/home/kressh/.rbenv/versions/2.2.0/bin/rubocop'
-" let g:syntastic_ruby_rubocop_args = '-l'
-" let g:syntastic_quiet_messages = { "type": "style" }
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 1
+" FZF ripgrep
+nnoremap <Leader>g :Rg<Space>
 
-" Ack
-" let g:ack_use_dispatch = 0
-" Ag
-if executable('rg')
-  let g:ackprg = 'rg --vimgrep'
-  cnoreabbrev ag Ack
-  cnoreabbrev aG Ack
-  cnoreabbrev Ag Ack
-  cnoreabbrev AG Ack
-endif
-
-syntax enable
-filetype plugin indent on
-
-silent! nmap <C-p> :NERDTreeTabsToggle<CR>
+" NerdTREE
+silent! nmap <C-g> :NERDTreeToggle<CR>
 silent! map <F4> :NERDTreeFind<CR>
 let g:NERDTreeMapActivateNode="<F4>"
 let g:NERDTreeMapPreview="<F3>"
 
-let g:calendar_keys = {'goto_next_month': '<C-Right>',
-      \ 'goto_prev_month': '<C-Left>',
-      \ 'goto_prev_year': '<C-Down>',
-      \ 'goto_next_year': '<C-Up>'}
-let g:calendar_monday = 1
-let g:calendar_focus_today = 1
-
 " RustFmt rust
-let g:rustfmt_autosave = 1
+" let g:rustfmt_autosave = 1
 
 " Racer
-let g:racer_experimental_completer = 1
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
+" let g:racer_experimental_completer = 1
+" au FileType rust nmap gd <Plug>(rust-def)
+" au FileType rust nmap gs <Plug>(rust-def-split)
+" au FileType rust nmap gx <Plug>(rust-def-vertical)
+" au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 au BufRead,BufNewFile *.jbuilder setf ruby
 au BufRead,BufNewFile *.rabl setf ruby
@@ -275,56 +325,122 @@ au BufRead,BufNewFile *.tag setf coffee " riotjs tags
 " silent! nmap <C-f> :FufLine<CR>
 " silent! nmap <C-g> :FufCoverageFile<CR>
 "
-" Airline
-let g:airline_theme      = 'base16'
-" let g:airline_section_s  = ''  " Don't display encoding
-" let g:airline_section_y  = ''  " Don't display encoding
-let g:airline_powerline_fonts = 1
-" let g:airline_left_sep   = '▶' " Set custom left separator
-" let g:airline_right_sep  = '◀' " Set custom right separator
-let g:airline#extensions#tabline#enabled      = 1 " Enable airline for tab-bar
-" let g:airline#extensions#tabline#show_buffers = 0 " Don't display buffers in tab-bar with single tab
-" let g:airline#extensions#tabline#fnamemod     = ':t'  " Display only filename in tab
+" Lightline
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
 
-" Buffer/Tab navigation
-nnoremap <C-b>h :bp<CR>
-nnoremap <C-b>n :bn<CR>
-nnoremap <C-b>l :bn<CR>
-nnoremap <C-b>d :bd<CR>
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+
+let g:lightline.component_function = {
+      \   'cocstatus': 'coc#status'
+      \ }
+
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
+
+let g:lightline.active = {
+      \ 'left': [ [ 'mode', 'paste' ],
+      \           [ 'gitbranch', 'readonly', 'filename', 'modified' ],
+      \           [ 'cocstatus' ]],
+      \ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+      \            [ 'lineinfo' ],
+      \            [ 'percent' ],
+      \            [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ }
+
+set shell=fish
 
 " Terminal
 tnoremap <Esc> <C-\><C-n>
-command Term split term://$SHELL
+command Term split term://fish
 let g:neoterm_autoinsert = 1
 let g:neoterm_default_mod = 'rightbelow'
 
+" vim-test
+" make test commands execute using neoterm
+let test#strategy = "neoterm"
+
 " Vim gitgutter
-let g:gitgutter_sign_added = '█'
-let g:gitgutter_sign_modified = '█'
-let g:gitgutter_sign_removed = '█'
-let g:gitgutter_sign_removed_first_line = '█'
-let g:gitgutter_sign_modified_removed = '█'
+let g:gitgutter_enabled = 1
+let g:gitgutter_signs = 1
+" let g:gitgutter_sign_added = ' '
+" let g:gitgutter_sign_modified = ' '
+" let g:gitgutter_sign_removed = ' '
+" let g:gitgutter_sign_removed_first_line = ' '
+" let g:gitgutter_sign_modified_removed = ' '
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '-'
+let g:gitgutter_sign_modified_removed = '~'
+let g:gitgutter_highlight_linenrs = 1
+let g:gitgutter_highlight_lines = 0
 
-let g:ctrlp_map = '<c-g>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_user_command = "fd --type file --full-path -c never -H -E node_modules -E vendor -E public -E tmp -E log -E .git -E .hg -E .svn -E '*.min.js' -E '*.log' -E '.keep' %s"
-let g:ctrlp_dont_split = 'NERD'
-let g:ctrlp_root_markers = ['Dockerfile', 'gems.locked', 'Gemfile.lock', '.gitignore']
-let g:ctrlp_working_path_mode = 'aw'
-let g:ctrlp_use_caching = 0
+highlight GitGutterChangeLineNr ctermfg=16 ctermbg=18 guifg=#83a598 guibg=#3c3836
+highlight GitGutterChangeDeleteLineNr ctermfg=16 ctermbg=18 guifg=#d3869b guibg=#3c3836
 
-" Vim maximizer
-let g:maximizer_default_mapping_key = '<F3>'
+highlight link GitGutterAddLineNr GitGutterAddLine
+highlight link GitGutterDeleteLineNr GitGutterDeleteLine
+
+" fzf
+" silent! nmap <C-p> :FZF<CR>
+silent! nmap <C-p> :call FZFWithDevIcons()<CR>
+
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-o': 'edit' }
+
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~30%' }
+
+" hide the statusline of the containing buffer
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " Replace current word with yanked or deleted text
-nnoremap S "_diwP
-
-fun! <SID>StripTrailingWhitespaces()
-  let l = line(".")
-  let c = col(".")
-  %s/\s\+$//e
-  call cursor(l, c)
-endfun
+" nnoremap S "_diwP
 
 " tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -352,9 +468,6 @@ let g:tagbar_type_ruby = {
   \ ]
 \}
 
-" Automatically clean trailing whitespaces on save
-autocmd BufWritePre *.* :call <SID>StripTrailingWhitespaces()
-
 " vim-indent-guides
 " let g:indent_guides_enable_on_vim_startup = 1
 " let g:indent_guides_auto_colors = 0
@@ -362,6 +475,17 @@ autocmd BufWritePre *.* :call <SID>StripTrailingWhitespaces()
 " let g:indent_guides_start_level = 2
 " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=8
 " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=0
+
+" Vimwiki
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
+" FIXME: this is strange workaround for workaround for bug in kitty
+autocmd FileType vimwiki nnoremap <Leader>wH <Plug>VimwikiGoBackLink
+
+" Taskwiki
+let g:taskwiki_markup_syntax = "markdown"
+" let g:taskwiki_source_tw_colors = "yes"
+nnoremap <Leader>tR :TaskWikiBufferLoad<CR>
 
 set noswapfile
 
@@ -372,40 +496,35 @@ set shiftwidth=2   " Tabs under smart indent
 
 set cf                 " Enable error files & error jumping.
 set clipboard=unnamed  " Yanks go on clipboard instead.
-set history=32         " Number of things to remember in history.
-set autowrite          " Writes on make/shell commands
 set nu                 " Line numbers on
+set relativenumber
+set cursorline
 
-" set nowrap             " Line wrapping off
 set wrap
 set linebreak
-set notimeout
-set ttimeout
 " set timeoutlen=250 " Time to wait after ESC (default causes an annoying delay)
-set synmaxcol=200
 
-set incsearch
+set cmdheight=1
+
+set updatetime=300
+
 set hlsearch   " Highlight searches
-set ruler              " Ruler on
 
-set re=1
+set re=0
 " set ttyfast
 " set lazyredraw
+set redrawtime=1000
 
-set nocp incsearch
 " Search
-" set ignorecase " Ignore case of searches
+set ignorecase smartcase " Ignore case of searches
 
 set cinoptions=:0,p0,t0
 set cinwords=if,else,while,do,for,switch,case,begin
 set formatoptions=tcqr
 set cindent
-set autoindent
-set smarttab
 set expandtab
 
 set colorcolumn=80,120
-" hi ColorColumn guibg=Black
 
 set nostartofline                " Don’t reset cursor to start of line when moving around.
 set noeol                        " Don’t add empty newlines at the end of files
@@ -418,23 +537,26 @@ set mat=5        " Bracket blinking.
                  " Show $ at end of line and trailing space as ~
 set novisualbell " No blinking .
 set noerrorbells " No noise.
-set laststatus=2 " Always show status line.
 
 " Invisibles
-" set listchars=tab:▸\ ,eol:¬
 set list listchars=tab:▸·,trail:·,nbsp:·
 
 " Use one space, not two, after punctuation.
 set nojoinspaces
 
-" inoremap  <Up>     <NOP>
-" inoremap  <Down>   <NOP>
-" inoremap  <Left>   <NOP>
-" inoremap  <Right>  <NOP>
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
+" Disable some keys
+" noremap   <Up>       <NOP>
+" noremap   <Down>     <NOP>
+" noremap   <Left>     <NOP>
+" noremap   <Right>    <NOP>
+" noremap   <PageUp>   <NOP>
+" noremap   <PageDown> <NOP>
+" noremap   <Home>     <NOP>
+" noremap   <End>      <NOP>
+" inoremap  <PageUp>   <NOP>
+" inoremap  <PageDown> <NOP>
+" inoremap  <Home>     <NOP>
+" inoremap  <End>      <NOP>
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -447,3 +569,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+nnoremap Y y$
+nnoremap S hs
+
+" Save & quit
+noremap Q :q<CR>
+noremap <C-q> :qa<CR>

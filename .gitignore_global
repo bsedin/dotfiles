@@ -1,5 +1,6 @@
 *.swp
 /.bundle
+/.vim
 npm-debug.log
 vendor/bundle/
 vendor/cache/
@@ -10,3 +11,13 @@ yarn-error.log
 *.gem
 .pgsync.yml
 stats.json
+tags
+.ctags.d/
+
+/.direnv
+.envrc
+*.pid
+*.sock
+
+report*.json
+.clinic/

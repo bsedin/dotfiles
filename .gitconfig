@@ -12,11 +12,15 @@
   co = checkout
   df = diff
   pl = pull
+  pul = pull
   ps = push
+  pus = push
   today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lgs = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --stat
   lf = !sh -c 'git lg --grep=$1 --max-count=5' -
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
+  # lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   patch = !git --no-pager diff --no-color
 
 [color]
@@ -32,3 +36,6 @@
 
 [mergetool]
   prompt = false
+
+[credential]
+  helper = cache

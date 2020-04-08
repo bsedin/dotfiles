@@ -5,6 +5,7 @@ alias ll="ls -lAF"
 alias mkpasswd="head -c16 /dev/urandom | xxd -ps"
 alias mc="mc -b"
 alias ls='ls --color=auto'
+alias cdp='cd $($HOME/bin/cdp)'
 # alias less='vimpager'
 
 if [ -f /usr/bin/grc ]; then
@@ -32,9 +33,6 @@ alias mina="bundle exec mina"
 
 alias rgrep="grep --exclude-dir=Godeps --exclude-dir=node_modules --exclude-dir=log --exclude-dir=vendor --exclude-dir=tmp --exclude-dir=public --exclude-dir=.git --exclude=.swp -rn"
 alias grep="grep --exclude-dir=.git --color=auto"
-
-alias wiki="cd $HOME/wiki && vim index.md"
-alias xwiki="cd $HOME/wiki && xvim index.md"
 
 alias weather="curl wttr.in/Moscow"
 alias ag="ag --path-to-ignore $HOME/.agignore --nogroup"

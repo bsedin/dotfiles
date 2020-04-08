@@ -5,8 +5,8 @@
 # vim: set ai et fenc=utf-8 ft=conf nu si sts=0 sw=4 ts=8 tw=0 :
 # ----------------------------------------------------------------------
 
-auto-reload yes
-browser qutebrowser
+auto-reload no
+browser surf
 cleanup-on-quit yes
 feed-sort-order firsttag
 max-downloads 4
@@ -26,9 +26,8 @@ prepopulate-query-feeds no
 feedlist-format "%4i %11u %T > %t"
 
 define-filter "Only query feeds" "feedtitle =~ \"====\""
- 
 
-include "~/.newsboat/nextcloud"
+include "~/.config/newsboat/nextcloud"
 
 # binds ----------------------------------------------------------------
 
@@ -38,6 +37,18 @@ bind-key \ reload-all
 bind-key "RIGHT" select-tag
 bind-key "SPACE" open
 
+# unbind keys
+unbind-key ENTER
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+
+# bind keys - vim style
+bind-key j down
+bind-key k up
+bind-key l open
+bind-key h quit
 
 # hide articles matching: ---------------------------------------------
 
@@ -67,3 +78,19 @@ highlight article     ":.*\\(embedded flash\\)$"            color74  default
 color listnormal                                            white    default
 color listfocus                                             default  color240
 color info                                                  default  color240
+
+color background          color236   default
+color listnormal          color248   default
+color listnormal_unread   color6     default
+color listfocus           color236   color12
+color listfocus_unread    color15    color12
+color info                color248   color236
+color article             color248   default
+
+# highlights
+highlight article "^(Feed|Link):.*$" color6 default bold
+highlight article "^(Title|Date|Author):.*$" color6 default bold
+highlight article "https?://[^ ]+" color10 default underline
+highlight article "\\[[0-9]+\\]" color10 default bold
+highlight article "\\[image\\ [0-9]+\\]" color10 default bold
+highlight feedlist "^─.*$" color6 color236 bold

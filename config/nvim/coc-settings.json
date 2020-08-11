@@ -1,0 +1,38 @@
+{
+  "solargraph.diagnostics": true,
+  "solargraph.useBundler": false,
+  "solargraph.hover": true,
+  "solargraph.references": true,
+  "solargraph.definitions": true,
+  "diagnostic.errorSign": "E>",
+  "diagnostic.warningSign": "W>",
+  "diagnostic.infoSign": "I>",
+  "diagnostic.hintSign": "?>",
+  "diagnostic.locationlist": true,
+  "diagnostic.displayByAle": false,
+  "diagnostic.messageTarget": "float",
+  "diagnostic.messageDelay": 250,
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.refreshAfterSave": true,
+  "highlight.disableLanguages": ["slim", "md"],
+  "coc.source.omni.filetypes": [],
+  "coc.source.omni.enable": false,
+  "eslint.enable": true,
+  "rust-analyzer.cargo-watch.enable": true,
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true
+      }
+    },
+    "godot": {
+      "host": "127.0.0.1",
+      "port": 6008,
+      "trace.server": "verbose",
+      "filetypes": ["gd", "tscn", "gdscript3"]
+    }
+  }
+}

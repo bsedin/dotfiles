@@ -1,0 +1,11 @@
+---
+BUNDLE_BUILD__NOKOGIRI: "--use-system-libraries"
+BUNDLE_BUILD__SASSC: "--disable-lto"
+BUNDLE_PATH: "vendor/bundle"
+BUNDLE_GEM__COC: "0"
+BUNDLE_GEM__MIT: "1"
+BUNDLE_GEM__TEST: "minitest"
+BUNDLE_GIT__ALLOW_INSECURE: "true"
+BUNDLE_PREFER_GEMS_RB: "true"
+BUNDLE_INIT_GEMS_RB: "true"
+BUNDLE_JOBS: "8"

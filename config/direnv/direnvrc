@@ -1,0 +1,9 @@
+use_ruby() {
+  local ruby_root=$HOME/.ruby/$1
+  load_prefix "$ruby_root"
+  layout_ruby
+}
+
+check_env() {
+  local ret=0; for var in "$@"; do [[ -v $var ]] || { echo "$var is missing"; ret=1; }; done; return $ret;
+}

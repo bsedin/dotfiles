@@ -1,0 +1,179 @@
+## General options
+set header_cache = "~/.cache/mutt"
+
+set mbox_type = Maildir
+set folder = ~/Mail
+set include
+set markers = no
+set realname = "Sergey Besedin"
+set reverse_name
+
+set confirmappend = no
+set delete
+set edit_headers
+set fast_reply
+set mail_check        = 30
+set move              = no
+set sort_browser      = date
+set sort              = threads
+set sort_aux          = reverse-last-date-received
+set editor            = "nvim"
+set send_charset      = "utf-8"
+
+set new_mail_command="notify-send 'New e-mail' '%n new messages, %u unread.' &"
+
+source ~/.config/mutt/colors
+
+# notmuch configuration
+# set nm_default_uri = "notmuch:///home/krsh/Mail"
+# set virtual_spoolfile=yes
+#
+# virtual-mailboxes "inbox" "notmuch://?query=tag:inbox"
+# virtual-mailboxes "archive" "notmuch://?query=tag:archive"
+# virtual-mailboxes "sent" "notmuch://?query=tag:sent"
+# virtual-mailboxes "newsletters" "notmuch://?query=tag:newsletters"
+#
+# macro index A "<modify-labels>+archive -unread -inbox\\n" "Archive message"
+# macro index c "<change-vfolder>?" "Change to vfolder overview"
+# macro index \\\\ "<vfolder-from-query>" "Search mailbox"
+
+# set nm_db_limit = 0
+# set nm_exclude_tags = "spam"
+# set nm_query_type = "messages"
+
+# The messages tagged with these tags are excluded and not loaded
+# from notmuch DB to NeoMutt unless specified explicitly.
+
+# # This option specifies timeout for Notmuch database. Default is 5 seconds.
+# set nm_open_timeout = 5
+# # This variable specifies notmuch query type, supported types: 'threads' and
+# # 'messages'.
+# set nm_query_type = messages
+# # Add messages stored to the NeoMutt record (see $record in the NeoMutt docs)
+# # also to notmuch DB. If you reply to an email then the new email inherits
+# # tags from the original email.
+# set nm_record = no
+# # Tags that should be removed or added to the to the messages stored in the NeoMutt record.
+# # example:
+# #   set record = "~/sent-mails"
+# #   set nm_record = yes
+# #   set nm_record_tags = "-inbox,archive,me"
+# set nm_record_tags = ""
+# # This variable specifies notmuch tag which is used for unread messages.
+# set nm_unread_tag = unread
+# # This variable allows you to customize the file browser display for virtual
+# # folders to your personal taste.
+# # %C   current folder number
+# # %f   folder name (description)
+# # %m   number of messages in the mailbox *
+# # %n   number of unread messages in the mailbox *
+# # %N   N if mailbox has new mail, blank otherwise
+# # %>X  right justify the rest of the string and pad with character ``X''
+# # %|X  pad to the end of the line with character ``X''
+# # %*X  soft-fill with character ``X'' as pad
+# set vfolder_format = "%6n(%6N) %f"
+# # When set, NeoMutt will use the first virtual mailbox (see virtual-mailboxes)
+# # as a spoolfile.
+# set virtual_spoolfile = no
+# setup time window preferences
+# first setup the duration, and then the time unit of that duration
+# when set to 0 (the default) the search window feature is disabled
+# set nm_query_window_duration=1
+# set nm_query_window_timebase="month" # or "hour", "day", "week", "month", "year"
+# --------------------------------------------------------------------------
+# FUNCTIONS – shown with an example mapping
+# --------------------------------------------------------------------------
+# open a different virtual folder
+# bind index,pager X change-vfolder
+# # read entire thread of the current message
+# bind index,pager + entire-thread
+# # generate virtual folder from query
+# bind index,pager \eX vfolder-from-query
+# # generate virtual folder from query with time window
+# bind index < vfolder-window-backward
+# bind index > vfolder-window-forward
+
+set sidebar_width         = 30
+set sidebar_visible       = no
+# set sidebar_format      = "%B%?F? ?%* %?N?%N/?%S"
+set sidebar_format        = "%B %* %?N?%N/?%?S?%S?"
+set sidebar_new_mail_only = no
+set sidebar_delim_chars   = "/"             # Delete everything up to the last / character
+set sidebar_short_path    = no
+set sidebar_folder_indent               # Indent folders whose names we've shortened
+set sidebar_indent_string="  "          # Indent with two spaces
+set mail_check_stats
+
+set pager_index_lines = 10
+
+# The default index_format is:
+#       '%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s'
+#
+# We replace the date field '%{%b %d}', giving:
+set index_format='%4C %Z %<[y?%<[m?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%m/%y ]> %-15.15L (%?l?%4l&%4c?) %s'
+# Test  Date Range  Format String  Example
+# --------------------------------------------
+# %[d   Today       %[%H:%M ]      12:34
+# %[m   This month  %[%a %d]       Thu 12
+# %[y   This year   %[%b %d]       Dec 10
+#  —    Older       %[%m/%y ]      06/15
+
+
+# Limit view to current thread
+bind index <esc>L limit-current-thread
+
+# The 'S' (skip-quoted) command scrolls the pager past the quoted text (usually
+# indented with '> '. Setting 'skip_quoted_offset' leaves some lines of quoted
+# text on screen for context.
+
+# Show three quoted lines before the reply
+set skip_quoted_offset = 3
+
+# Macros
+macro index Z "<shell-escape>mbsync -a<enter>" "Sync all"
+
+# More vim-like bindings
+# bind index i  noop
+bind attach,index g  noop # clear for next binding
+bind attach,index gg first-entry
+bind attach,index G  last-entry
+bind index N  search-opposite
+# bind pager i  exit
+# bind pager q  toggle-quoted
+bind pager /  search
+
+# QWERTY
+bind pager j  next-line
+bind pager k  previous-line
+
+bind pager g  noop # clear for next binding
+bind pager gg top
+bind pager G  bottom
+bind index,pager \# noop
+bind index,pager \& noop
+bind index,pager R  group-reply
+
+## Keys
+bind attach,index,pager \CD next-page
+bind attach,index,pager \CU previous-page
+
+bind index,pager B sidebar-toggle-visible
+bind index,pager \CO sidebar-open
+
+# QWERTY
+bind index,pager \Ck sidebar-prev
+bind index,pager \Cj sidebar-next
+
+macro attach 'V' "<pipe-entry>cat > ~/.cache/mutt/mail.html; ~/bin/preview-html ~/.cache/mutt/mail.html; rm ~/.cache/mutt/mail.html<enter>"
+macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
+
+set mailcap_path = ~/.config/mutt/mailcap
+auto_view text/html
+alternative_order text/plain text/html
+
+folder-hook . 'set read_inc=1000'
+
+# GnuPG bootstrap
+# source ~/.mutt/gpg.rc
+
+source ~/.config/mutt/mailboxes.muttrc

@@ -1,2 +1,5 @@
+COPY_ALWAYS="ssh/*id_*"
 DOTFILES_DIRS="/home/krsh/.dotfiles"
 EXCLUDES="README.md install.sh"
+SYMLINK_DIRS="bin scripts"
+UNDOTTED="bin scripts"

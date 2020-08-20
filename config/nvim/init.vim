@@ -56,6 +56,7 @@ Plug 'tpope/vim-endwise'
 Plug 'rstacruz/vim-closer'
 
 Plug 'junegunn/fzf.vim'
+
 Plug 'godlygeek/tabular'
 Plug 'nathanaelkane/vim-indent-guides'
 
@@ -193,49 +194,6 @@ set hidden
 " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType ledger setlocal sw=4 ts=4 sts=4
 autocmd FileType rust setlocal sw=4 ts=4 sts=4
-
-" FZF with dev icons
-" function! FZFWithDevIcons()
-"   let l:fzf_files_options = ' -m --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up --preview "bat --color always --style numbers {2..}"'
-"
-"   function! s:files()
-"     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
-"     return s:prepend_icon(l:files)
-"   endfunction
-"
-"   function! s:prepend_icon(candidates)
-"     let result = []
-"     for candidate in a:candidates
-"       let filename = fnamemodify(candidate, ':p:t')
-"       let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
-"       call add(result, printf("%s %s", icon, candidate))
-"     endfor
-"
-"     return result
-"   endfunction
-"
-"   function! s:edit_file(items)
-"     let items = a:items
-"     let i = 1
-"     let ln = len(items)
-"     while i < ln
-"       let item = items[i]
-"       let parts = split(item, ' ')
-"       let file_path = get(parts, 1, '')
-"       let items[i] = file_path
-"       let i += 1
-"     endwhile
-"     call s:Sink(items)
-"   endfunction
-"
-"   let opts = fzf#wrap({})
-"   let opts.source = <sid>files()
-"   let s:Sink = opts['sink*']
-"   let opts['sink*'] = function('s:edit_file')
-"   let opts.options .= l:fzf_files_options
-"   call fzf#run(opts)
-"
-" endfunction
 
 " Neocomplete snippets
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -396,8 +354,9 @@ highlight link GitGutterAddLineNr GitGutterAddLine
 highlight link GitGutterDeleteLineNr GitGutterDeleteLine
 
 " fzf
-silent! nmap <C-p> :FZF<CR>
-" silent! nmap <C-p> :call FZFWithDevIcons()<CR>
+let $FZF_DEFAULT_COMMAND="fd --type file --full-path -c never -H -E node_modules -E vendor -E public -E tmp -E log -E .git -E .hg -E .svn -E '*.min.js' -E '*.log' -E '.keep'"
+
+silent! nmap <C-p> :Files<CR>
 
 " An action can be a reference to a function that processes selected lines
 function! s:build_quickfix_list(lines)
@@ -414,14 +373,22 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit',
   \ 'ctrl-o': 'edit' }
 
-" Default fzf layout
-" - down / up / left / right
-let g:fzf_layout = { 'down': '~30%' }
+let g:fzf_preview_window = 'right:60%'
 
-" hide the statusline of the containing buffer
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
+" let g:fzf_layout = { 'window': { 'width': 0.4, 'height': 0.25 } }
+" let g:fzf_preview_window = ''
+let g:fzf_buffers_jump = 1
+
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =

@@ -2,4 +2,3 @@ vendor/bundle
 .git/
 .import/
 target/debug/
-

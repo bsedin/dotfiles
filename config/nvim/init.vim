@@ -511,10 +511,10 @@ set list listchars=tab:▸·,trail:·,nbsp:·
 set nojoinspaces
 
 " Disable some keys
-" noremap   <Up>       <NOP>
-" noremap   <Down>     <NOP>
-" noremap   <Left>     <NOP>
-" noremap   <Right>    <NOP>
+noremap   <Up>       <NOP>
+noremap   <Down>     <NOP>
+noremap   <Left>     <NOP>
+noremap   <Right>    <NOP>
 noremap   <PageUp>   <NOP>
 noremap   <PageDown> <NOP>
 noremap   <Home>     <NOP>

@@ -43,6 +43,7 @@ for_window [class="(?i)thunderbird"] move container to workspace $ws1
 for_window [class="(?i)telegram"] move container to workspace $ws2
 for_window [class="(?i)discord"] move container to workspace $ws2
 for_window [class="mpv"] floating enable
+for_window [class="(?i)zooout"] floating enable
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #B8BB26 #B8BB26 #1D2021 #2e9ef4   #B8BB26
@@ -220,9 +221,9 @@ bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 5
 bindsym XF86Search exec --no-startup-id suspend
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id volume_control.sh incr
-bindsym XF86AudioLowerVolume exec --no-startup-id volume_control.sh decr
-bindsym XF86AudioMute exec --no-startup-id volume_control.sh mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up
+bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down
+bindsym XF86AudioMute exec --no-startup-id pulseaudio-ctl mute
 
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle

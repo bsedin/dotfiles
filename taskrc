@@ -48,27 +48,3 @@ report.active.labels=ID,Project,Description,Time
 
 report.list.labels=ID,Active,Age,Time,D,P,Project,Tags,R,Sch,Due,Until,Description,Urg
 report.list.columns=id,start.age,entry.age,totalactivetime,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
-
-report.wts.description=WTS tasks
-report.wts.labels=ID,Active,Age,Time,D,Project,Tags,R,Sch,Due,Until,Description,Urg
-report.wts.columns=id,start.age,entry.age,totalactivetime,depends.indicator,priority,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
-report.wts.filter=proj:WTS status:pending
-report.wts.sort=start-,due+,project+,urgency-
-
-report.aww.description=AWW tasks
-report.aww.labels=ID,Active,Age,Time,D,Project,Tags,R,Sch,Due,Until,Description,Urg
-report.aww.columns=id,start.age,entry.age,totalactivetime,depends.indicator,priority,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
-report.aww.filter=proj:AWW status:pending
-report.aww.sort=start-,due+,project+,urgency-
-
-report.1158.description=1158 tasks
-report.1158.labels=ID,Active,Age,Time,D,Project,Tags,R,Sch,Due,Until,Description,Urg
-report.1158.columns=id,start.age,entry.age,totalactivetime,depends.indicator,priority,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
-report.1158.filter=proj:1158 status:pending
-report.1158.sort=start-,due+,project+,urgency-
-
-report.crc.description=crc tasks
-report.crc.labels=ID,Active,Age,Time,D,Project,Tags,R,Sch,Due,Until,Description,Urg
-report.crc.columns=id,start.age,entry.age,totalactivetime,depends.indicator,priority,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
-report.crc.filter=proj:CRC status:pending
-report.crc.sort=start-,due+,project+,urgency-

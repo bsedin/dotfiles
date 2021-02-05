@@ -8,17 +8,14 @@
   "diagnostic.warningSign": "W>",
   "diagnostic.infoSign": "I>",
   "diagnostic.hintSign": "?>",
-  "diagnostic.locationlist": true,
+  "diagnostic.locationlistUpdate": true,
   "diagnostic.displayByAle": false,
   "diagnostic.messageTarget": "float",
   "diagnostic.messageDelay": 250,
   "diagnostic.refreshOnInsertMode": true,
-  "diagnostic.refreshAfterSave": true,
   "highlight.disableLanguages": ["slim", "md"],
   "coc.source.omni.filetypes": [],
   "coc.source.omni.enable": false,
-  "eslint.enable": true,
-  "rust-analyzer.cargo-watch.enable": true,
   "languageserver": {
     "golang": {
       "command": "gopls",

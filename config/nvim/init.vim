@@ -117,6 +117,8 @@ colorscheme base16-gruvbox-dark-hard
 "   return !col || getline('.')[col - 1]  =~# '\s'
 " endfunction
 
+" let g:node_client_debug = 1
+
 let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-fish',
@@ -509,6 +511,9 @@ set list listchars=tab:▸·,trail:·,nbsp:·
 
 " Use one space, not two, after punctuation.
 set nojoinspaces
+
+" Disable folding
+set nofoldenable
 
 " Disable some keys
 noremap   <Up>       <NOP>

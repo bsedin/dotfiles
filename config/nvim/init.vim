@@ -328,10 +328,15 @@ tnoremap <Esc> <C-\><C-n>
 command Term split term://fish
 let g:neoterm_autoinsert = 1
 let g:neoterm_default_mod = 'rightbelow'
+let g:neoterm_size = '20'
 
 " vim-test
 " make test commands execute using neoterm
 let test#strategy = "neoterm"
+
+nnoremap <Leader>tn :TestNearest<CR>
+nnoremap <Leader>tf :TestFile<CR>
+nnoremap <Leader>ts :TestSuite<CR>
 
 " Vim gitgutter
 let g:gitgutter_enabled = 1

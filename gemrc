@@ -9,3 +9,4 @@
 install: ''
 uninstall: ''
 update: ''
+gem: "--document=yri"

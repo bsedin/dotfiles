@@ -5,6 +5,7 @@ export TERMINAL=st
 export XTERM=st
 export LANGUAGE=en_US:en_GB:en
 export LC_TIME=ru_RU.UTF-8
+export COLORTERM=truecolor
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 unset QT_STYLE_OVERRIDE

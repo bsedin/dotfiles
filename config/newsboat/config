@@ -6,7 +6,7 @@
 # ----------------------------------------------------------------------
 
 auto-reload no
-browser qutebrowser
+browser firefox
 cleanup-on-quit yes
 feed-sort-order firsttag
 max-downloads 4

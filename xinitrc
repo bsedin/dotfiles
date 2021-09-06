@@ -12,6 +12,9 @@ unset QT_STYLE_OVERRIDE
 
 export VDPAU_DRIVER=radeonsi
 
+# https://github.com/robbert-vdh/yabridge#environment-configuration
+export WINEFSYNC=1
+
 export $(dbus-launch)
 
 # TrackPoint+Middleclick scroll

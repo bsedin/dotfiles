@@ -19,6 +19,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-markdown'
 Plug 'calviken/vim-gdscript3'
 " Plug 'tpope/vim-projectionist'
 " Plug 'tpope/vim-haml'
@@ -73,7 +74,7 @@ Plug 'janko/vim-test'
 " Tasks
 Plug 'blindFS/vim-taskwarrior'
 Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'vimwiki/vimwiki', {'branch': 'dev'}
+Plug 'vimwiki/vimwiki'
 Plug 'tbabej/taskwiki'
 
 call plug#end()

@@ -31,6 +31,10 @@ Plug 'fatih/vim-go'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'HerringtonDarkholme/yats.vim'
 
+" Elixir
+Plug 'elixir-editors/vim-elixir'
+Plug 'mhinz/vim-mix-format'
+
 Plug 'tomtom/tcomment_vim'
 
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
@@ -362,7 +366,7 @@ highlight link GitGutterAddLineNr GitGutterAddLine
 highlight link GitGutterDeleteLineNr GitGutterDeleteLine
 
 " fzf
-let $FZF_DEFAULT_COMMAND="fd --type file --full-path -c never -H -E node_modules -E vendor -E public -E tmp -E log -E .git -E .hg -E .svn -E '*.min.js' -E '*.log' -E '.keep'"
+let $FZF_DEFAULT_COMMAND="fd --type file --full-path -c never -H"
 
 silent! nmap <C-p> :Files<CR>
 

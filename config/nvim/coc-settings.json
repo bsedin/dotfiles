@@ -16,6 +16,7 @@
   "highlight.disableLanguages": ["slim", "md"],
   "coc.source.omni.filetypes": [],
   "coc.source.omni.enable": false,
+  "tailwindCSS.emmetCompletions": true,
   "languageserver": {
     "golang": {
       "command": "gopls",

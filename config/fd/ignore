@@ -1,6 +1,6 @@
 *.swp
-/.bundle
-/.vim
+.bundle/
+.vim/
 npm-debug.log
 vendor/bundle/
 vendor/cache/
@@ -14,12 +14,15 @@ stats.json
 tags
 .ctags.d/
 
-/.direnv
-.envrc
+.direnv/
 *.pid
 *.sock
 
 report*.json
 .clinic/
 
-/.elixir_ls/
+.elixir_ls/
+_build/
+deps/
+
+priv/static

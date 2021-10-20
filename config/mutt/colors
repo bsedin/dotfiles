@@ -13,7 +13,7 @@ color sidebar_flagged default color234
 # Color to give mailboxes containing new mail
 color sidebar_new color108 color234
 # color sidebar_spoolfile green default
-color sidebar_spoolfile yellow color234
+# color sidebar_spoolfile yellow color234
 # Color to give mailboxes containing no new/flagged mail, etc.
 color sidebar_ordinary default color234
 

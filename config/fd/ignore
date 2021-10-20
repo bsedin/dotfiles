@@ -1,4 +1,6 @@
 *.swp
+.git/
+.hg/
 .bundle/
 .vim/
 npm-debug.log

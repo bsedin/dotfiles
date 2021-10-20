@@ -31,6 +31,10 @@
       "port": 6008,
       "trace.server": "verbose",
       "filetypes": ["gd", "tscn", "gdscript3"]
+    },
+    "erlang": {
+      "command": "erlang_ls",
+      "filetypes": ["erlang"]
     }
   }
 }

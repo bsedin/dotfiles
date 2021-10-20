@@ -43,7 +43,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'milkypostman/vim-togglelist' " <leader>l and <leader>q
 
 " Snippets
-Plug 'Shougo/neosnippet'
+" Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
 
@@ -201,11 +201,6 @@ set hidden
 " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType ledger setlocal sw=4 ts=4 sts=4
 autocmd FileType rust setlocal sw=4 ts=4 sts=4
-
-" Neocomplete snippets
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " For conceal markers.
 if has('conceal')

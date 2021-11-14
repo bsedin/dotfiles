@@ -30,6 +30,11 @@ Plug 'fatih/vim-go'
 " Plug 'digitaltoad/vim-jade'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'm-pilia/vim-ccls'
+Plug 'm-pilia/vim-yggdrasil'
+
+" Zig
+Plug 'ziglang/zig.vim'
 
 " Elixir
 Plug 'elixir-editors/vim-elixir'
@@ -43,16 +48,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'milkypostman/vim-togglelist' " <leader>l and <leader>q
 
 " Snippets
-" Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'honza/vim-snippets'
+Plug 'L3MON4D3/LuaSnip'
 
 " Appearance
 Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
 Plug 'shinchu/lightline-gruvbox.vim'
-
-" Plug 'ryanoasis/vim-devicons'
+Plug 'spywhere/lightline-lsp'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
@@ -63,12 +64,20 @@ Plug 'rstacruz/vim-closer'
 Plug 'junegunn/fzf.vim'
 
 Plug 'godlygeek/tabular'
-Plug 'nathanaelkane/vim-indent-guides'
 
-" Linters and syntax stuff
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'w0rp/ale'
-"
+" LSP
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'folke/lsp-colors.nvim'
+
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+" For luasnip users.
+Plug 'saadparwaiz1/cmp_luasnip'
+
 " Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -90,111 +99,6 @@ set background=dark
 let base16colorspace=256
 colorscheme base16-gruvbox-dark-hard
 
-" NERD Commenter
-" Add spaces after comment delimiters by default
-" let g:NERDSpaceDelims = 1
-" Use compact syntax for prettified multi-line comments
-" let g:NERDCompactSexyComs = 1
-" Align line-wise comment delimiters flush left instead of following code indentation
-" let g:NERDDefaultAlign = 'left'
-" Allow commenting and inverting empty lines (useful when commenting a region)
-" let g:NERDCommentEmptyLines = 1
-" Enable trimming of trailing whitespace when uncommenting
-" let g:NERDTrimTrailingWhitespace = 0
-
-" Snipmate
-" imap <S-Enter> <Plug>snipMateNextOrTrigger
-" let g:snipMate = get(g:, 'snipMate', {}) " Allow for vimrc re-sourcing
-
-" coc.nvim
-"
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-
-" let g:node_client_debug = 1
-
-let g:coc_global_extensions = [
-  \ 'coc-css',
-  \ 'coc-fish',
-  \ 'coc-html',
-  \ 'coc-lists',
-  \ 'coc-omni',
-  \ 'coc-sh',
-  \ 'coc-tsserver',
-  \ 'coc-eslint',
-  \ 'coc-docker',
-  \ 'coc-highlight',
-  \ 'coc-json',
-  \ 'coc-neosnippet',
-  \ 'coc-rust-analyzer',
-  \ 'coc-solargraph',
-  \ 'coc-yaml'
-  \ ]
-
-highlight CocErrorSign   ctermfg=9 ctermbg=18 guifg=#ff0000 guibg=#3c3836
-highlight CocWarningSign ctermfg=130 ctermbg=18 guifg=#ff922b guibg=#3c3836
-highlight CocInfoSign    ctermfg=11 ctermbg=18 guifg=#fab005 guibg=#3c3836
-highlight CocHintSign    ctermfg=12 ctermbg=18 guifg=#15aabf guibg=#3c3836
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gl :CocList outline<CR>
-
-nnoremap <Leader>s :CocSearch<Space>
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-" Remap for do codeAction of current line
-" nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
 " Required for operations modifying multiple buffers like rename.
 set hidden
 
@@ -213,48 +117,171 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='$HOME/.config/nvim/bundle/vim-snippets/snippets'
 
-" ALE
-" let g:ale_sign_column_always = 1
-let g:ale_enabled = 1
-let g:ale_list_window_size = 3
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_insert_leave = 0
-let g:ale_open_list = 0
-let g:ale_linters_explicit = 1
+" nvim-lspconfig
 
-let g:ale_linters = {
-      \ 'ruby': ['reek'],
-      \ 'scss': ['stylelint'],
-      \ 'sass': ['stylelint'],
-      \  'css': ['stylelint'],
-      \ 'slim': ['slimlint'],
-      \ }
+lua << EOF
+local nvim_lsp = require('lspconfig')
 
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\}
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-" Set this variable to 1 to fix files when you save them.
-let g:ale_fix_on_save = 1
+  -- Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-" let g:ale_set_loclist = 0
-" let g:ale_set_quickfix = 1
-" let g:ale_keep_list_window_open = 1
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
 
-" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-" nmap <silent> <C-j> <Plug>(ale_next_wrap)
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-let g:ale_set_highlights = 1
+end
 
-let g:ale_sign_error = 'E>'
-let g:ale_sign_warning = 'W>'
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = {
+  'eslint',
+  'erlangls',
+  'solargraph',
+  'tsserver',
+  'stylelint_lsp',
+  'eslint',
+  'zls',
+  'ansiblels',
+  'bashls',
+  'ccls'
+}
 
-let g:ale_echo_msg_error_str = 'Error'
-let g:ale_echo_msg_warning_str = 'Warning'
-let g:ale_echo_msg_format = '[%severity%] %s [%linter%]'
+-- Setup lspconfig.
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
+
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    flags = {
+      debounce_text_changes = 150,
+    },
+    on_attach = on_attach,
+    capabilities = capabilities
+  }
+end
+
+nvim_lsp.elixirls.setup{
+    cmd = { "elixir-ls" },
+    on_attach = on_attach,
+    capabilities = capabilities
+}
+
+EOF
+
+set completeopt=menu,menuone,noselect
+
+lua <<EOF
+  -- Setup nvim-cmp.
+  local cmp = require('cmp')
+  local luasnip = require('luasnip')
+  local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  end
+
+  cmp.setup({
+    experimental = {
+      ghost_text = { hl_group = 'Comment' }
+    },
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        luasnip.lsp_expand(args.body) -- For `luasnip` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+      end,
+    },
+    mapping = {
+      ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+
+      ['<C-y>'] = 
+      cmp.mapping.confirm({
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true
+      }),
+
+      ['<C-n>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        elseif has_words_before() then
+          cmp.complete()
+        else
+          fallback()
+        end
+      end, { 'i', 's' }),
+
+      ['<C-p>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { 'i', 's' }),
+
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' }, -- For luasnip users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+EOF
+
+" EditorConfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " FZF ripgrep
@@ -266,25 +293,6 @@ silent! map <F4> :NERDTreeFind<CR>
 let g:NERDTreeMapActivateNode="<F4>"
 let g:NERDTreeMapPreview="<F3>"
 
-" RustFmt rust
-" let g:rustfmt_autosave = 1
-
-" Racer
-" let g:racer_experimental_completer = 1
-" au FileType rust nmap gd <Plug>(rust-def)
-" au FileType rust nmap gs <Plug>(rust-def-split)
-" au FileType rust nmap gx <Plug>(rust-def-vertical)
-" au FileType rust nmap <leader>gd <Plug>(rust-doc)
-
-au BufRead,BufNewFile *.jbuilder setf ruby
-au BufRead,BufNewFile *.rabl setf ruby
-au BufRead,BufNewFile *.arb setf ruby
-au BufRead,BufNewFile *.axlsx setf ruby
-au BufRead,BufNewFile *.tag setf coffee " riotjs tags
-
-" silent! nmap <C-f> :FufLine<CR>
-" silent! nmap <C-g> :FufCoverageFile<CR>
-"
 " Lightline
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
@@ -294,31 +302,28 @@ let g:lightline = {
       \ }
 
 let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
-
-let g:lightline.component_function = {
-      \   'cocstatus': 'coc#status'
+      \  'linter_hints': 'lightline#lsp#hints',
+      \  'linter_infos': 'lightline#lsp#infos',
+      \  'linter_warnings': 'lightline#lsp#warnings',
+      \  'linter_errors': 'lightline#lsp#errors',
+      \  'linter_ok': 'lightline#lsp#ok',
       \ }
 
 let g:lightline.component_type = {
-      \     'linter_checking': 'left',
+      \     'linter_hints': 'right',
+      \     'linter_infos': 'right',
       \     'linter_warnings': 'warning',
       \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
+      \     'linter_ok': 'right',
       \ }
 
 let g:lightline.active = {
       \ 'left': [ [ 'mode', 'paste' ],
-      \           [ 'gitbranch', 'readonly', 'filename', 'modified' ],
-      \           [ 'cocstatus' ]],
-      \ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-      \            [ 'lineinfo' ],
+      \           [ 'gitbranch', 'readonly', 'filename', 'modified' ]],
+      \ 'right': [ [ 'lineinfo' ],
       \            [ 'percent' ],
-      \            [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \            [ 'fileformat', 'fileencoding', 'filetype' ],
+      \            [ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints', 'linter_ok' ]]
       \ }
 
 set shell=fish
@@ -341,11 +346,6 @@ nnoremap <Leader>ts :TestSuite<CR>
 " Vim gitgutter
 let g:gitgutter_enabled = 1
 let g:gitgutter_signs = 1
-" let g:gitgutter_sign_added = ' '
-" let g:gitgutter_sign_modified = ' '
-" let g:gitgutter_sign_removed = ' '
-" let g:gitgutter_sign_removed_first_line = ' '
-" let g:gitgutter_sign_modified_removed = ' '
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_removed = '-'
@@ -442,14 +442,6 @@ let g:tagbar_type_ruby = {
   \ ]
 \}
 
-" vim-indent-guides
-" let g:indent_guides_enable_on_vim_startup = 1
-" let g:indent_guides_auto_colors = 0
-" let g:indent_guides_guide_size = 1
-" let g:indent_guides_start_level = 2
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=8
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=0
-
 " Vimwiki
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
@@ -484,7 +476,6 @@ set updatetime=300
 set hlsearch   " Highlight searches
 
 set re=0
-" set ttyfast
 " set lazyredraw
 set redrawtime=1000
 

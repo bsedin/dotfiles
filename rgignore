@@ -7,3 +7,6 @@ _build/
 deps/
 node_modules/
 priv/static
+.ccls-cache/
+.pio/
+.cache/

@@ -28,3 +28,6 @@ _build/
 deps/
 
 priv/static
+.ccls-cache/
+.pio/
+.cache/

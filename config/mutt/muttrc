@@ -164,7 +164,7 @@ bind index,pager \CO sidebar-open
 bind index,pager \Ck sidebar-prev
 bind index,pager \Cj sidebar-next
 
-macro attach 'V' "<pipe-entry>cat > ~/.cache/mutt/mail.html; ~/bin/preview-html ~/.cache/mutt/mail.html; rm ~/.cache/mutt/mail.html<enter>"
+macro attach 'V' "<pipe-entry>cat > $HOME/.cache/mutt/mail.html; ~/bin/preview-html file://$HOME/.cache/mutt/mail.html; rm $HOME/.cache/mutt/mail.html<enter>"
 macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 
 set mailcap_path = ~/.config/mutt/mailcap

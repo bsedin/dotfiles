@@ -44,6 +44,7 @@ for_window [class="(?i)telegram"] move container to workspace $ws2
 for_window [class="(?i)discord"] move container to workspace $ws2
 for_window [class="mpv"] floating enable
 for_window [class="(?i)zooout"] floating enable
+for_window [class="(?i)netsurf"] floating enable
 
 for_window [class="(?i)cadence"] move container to workspace $ws7 floating enable
 for_window [class="(?i)catia"] move container to workspace $ws7 floating enable
@@ -241,6 +242,9 @@ bar {
 # bindsym XF86AudioNext exec --no-startup-id mpc next
 
 bindsym $mod+Shift+o exec "~/scripts/xrandr_switcher.sh"
+
+bindsym $mod+minus exec "dunstctl close-all"
+bindsym $mod+equal exec "dunstctl history-pop"
 
 # Autorun
 exec --no-startup-id feh --bg-fill ~/.config/i3/bg.jpg

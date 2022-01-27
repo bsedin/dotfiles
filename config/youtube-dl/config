@@ -1,0 +1,6 @@
+--prefer-free-formats
+--mark-watched
+-f mp4+best/mp4+bestaudio/bestvideo+bestaudio/best
+--retries infinite
+--socket-timeout 1
+--external-downloader aria2c

@@ -39,10 +39,8 @@ workspace_auto_back_and_forth no
 workspace_layout default
 
 for_window [class="(?i)firefox"] move container to workspace $ws1
-for_window [class="(?i)thunderbird"] move container to workspace $ws1
 for_window [class="(?i)telegram"] move container to workspace $ws2
-for_window [class="(?i)discord"] move container to workspace $ws2
-for_window [class="mpv"] floating enable
+for_window [class="mpv"] floating enable border none
 for_window [class="(?i)zooout"] floating enable
 for_window [class="(?i)netsurf"] floating enable
 
@@ -79,6 +77,7 @@ bindsym $mod+F2 exec "dmenu_run"
 
 bindsym $mod+F4 exec "x edit_project"
 bindsym $mod+v exec "passmenu"
+bindsym $mod+Shift+v exec "passotpmenu"
 
 # change focus
 # QWERTY
@@ -125,6 +124,11 @@ bindsym $mod+Shift+w layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+Shift+0 sticky toggle
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+space scratchpad show
 
 # change focus between tiling / floating windows
 bindsym $mod+Tab focus mode_toggle
@@ -157,6 +161,9 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
+
+workspace $ws1 output primary
+workspace $ws6 output LVDS1
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -201,17 +208,31 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-#
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus move scratchpad
 
-# Show the first scratchpad window
-bindsym $mod+space scratchpad show
+# disable system tray
+bar {
+    tray_output none
+    output nonprimary
+    font pango:Iosevka Term, FontAwesome Bold 12px
+    colors {
+        background #000000
+        statusline #d5c4a1
+        separator #666666
+
+        focused_workspace  #B8BB26 #B8BB26 #3c3836
+        active_workspace   #5f676a #5f676a #fbf1c7
+        inactive_workspace #5f676a #5f676a #fbf1c7
+        urgent_workspace   #fb4934 #fb4934 #fbf1c7
+        binding_mode       #fb4934 #fb4934 #1d2021
+    }
+}
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
     # strip_workspace_numbers yes
+    output primary
+    tray_output primary
     status_command i3status-rs-with-env ~/.config/i3status-rs/config.toml
     font pango:Iosevka Term, FontAwesome Bold 12px
     colors {
@@ -242,7 +263,7 @@ bindsym XF86AudioMute exec --no-startup-id amixer -c 0 set Master toggle
 # bindsym XF86AudioStop exec --no-startup-id mpc stop
 # bindsym XF86AudioNext exec --no-startup-id mpc next
 
-bindsym $mod+Shift+o exec "~/scripts/xrandr_switcher.sh"
+bindsym $mod+Shift+o exec "display_switch"
 
 bindsym $mod+minus exec "dunstctl close-all"
 bindsym $mod+equal exec "dunstctl history-pop"

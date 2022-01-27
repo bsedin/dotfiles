@@ -60,3 +60,7 @@ fi
 if [ -d $HOME/bin ] ; then
   export PATH="$HOME/bin:$PATH"
 fi
+
+if [ -d $HOME/.nimble/bin ] ; then
+  export PATH="$HOME/.nimble/bin:$PATH"
+fi

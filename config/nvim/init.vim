@@ -187,7 +187,8 @@ local servers = {
   'zls',
   'ansiblels',
   'bashls',
-  'ccls'
+  'ccls',
+  'gdscript'
 }
 
 -- Setup lspconfig.

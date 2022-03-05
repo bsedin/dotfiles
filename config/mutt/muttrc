@@ -15,8 +15,7 @@ set fast_reply
 set mail_check        = 30
 set move              = no
 set sort_browser      = date
-set sort              = threads
-set sort_aux          = reverse-last-date-received
+set sort              = reverse-last-date-received
 set editor            = "nvim"
 set send_charset      = "utf-8"
 
@@ -85,7 +84,7 @@ source ~/.config/mutt/colors
 # --------------------------------------------------------------------------
 # open a different virtual folder
 # bind index,pager X change-vfolder
-# # read entire thread of the current message
+# read entire thread of the current message
 # bind index,pager + entire-thread
 # # generate virtual folder from query
 # bind index,pager \eX vfolder-from-query
@@ -120,7 +119,7 @@ set index_format='%4C %Z %<[y?%<[m?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%m/%y ]>
 
 
 # Limit view to current thread
-bind index <esc>L limit-current-thread
+# bind index <esc>L limit-current-thread
 
 # The 'S' (skip-quoted) command scrolls the pager past the quoted text (usually
 # indented with '> '. Setting 'skip_quoted_offset' leaves some lines of quoted

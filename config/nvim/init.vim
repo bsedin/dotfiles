@@ -188,7 +188,7 @@ local servers = {
   'ansiblels',
   'bashls',
   'ccls',
-  'gdscript'
+  'gdscript',
 }
 
 -- Setup lspconfig.
@@ -229,6 +229,16 @@ nvim_lsp.rust_analyzer.setup({
                 enable = true
             },
         }
+    }
+})
+
+nvim_lsp.tailwindcss.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+      tailwindCSS = {
+        emmetCompletions = true,
+      }
     }
 })
 

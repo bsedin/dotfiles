@@ -6,7 +6,6 @@ set folder = ~/Mail
 set include
 set markers = no
 set realname = "Sergey Besedin"
-set reverse_name
 
 set confirmappend = no
 set delete
@@ -20,6 +19,10 @@ set editor            = "nvim"
 set send_charset      = "utf-8"
 
 set new_mail_command="notify-send 'New e-mail' '%n new messages, %u unread.' &"
+
+# unset envelope_from_address
+set reverse_name
+set use_envelope_from
 
 source ~/.config/mutt/colors
 

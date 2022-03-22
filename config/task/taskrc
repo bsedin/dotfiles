@@ -13,19 +13,9 @@
 weekstart=Monday
 
 # Files
-data.location=~/.task
-
-# Color theme (uncomment one to use)
-# include /usr/share/task/rc/light-16.theme
-# include /usr/share/task/rc/light-256.theme
-include /usr/share/task/rc/dark-256.theme
-# include /usr/share/task/rc/dark-red-256.theme
-# include /usr/share/task/rc/dark-green-256.theme
-# include /usr/share/task/rc/dark-blue-256.theme
-# include /usr/share/task/rc/dark-violets-256.theme
-# include /usr/share/task/rc/dark-yellow-green.theme
-# include /usr/share/task/rc/dark-gray-256.theme
-# include /usr/share/task/rc/solarized-dark-256.theme
+data.location=$HOME/.config/task
+hooks.location=$HOME/.config/task/hooks/
+include $HOME/.config/task/themes/dark-256.theme
 
 search.case.sensitive=no
 
@@ -48,3 +38,4 @@ report.active.labels=ID,Project,Description,Time
 
 report.list.labels=ID,Active,Age,Time,D,P,Project,Tags,R,Sch,Due,Until,Description,Urg
 report.list.columns=id,start.age,entry.age,totalactivetime,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
+news.version=2.6.0

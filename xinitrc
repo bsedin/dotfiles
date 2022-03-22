@@ -10,6 +10,9 @@ export COLORTERM=truecolor
 export QT_QPA_PLATFORMTHEME=qt5ct
 unset QT_STYLE_OVERRIDE
 
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+
 # export VDPAU_DRIVER=radeonsi
 
 # https://github.com/robbert-vdh/yabridge#environment-configuration

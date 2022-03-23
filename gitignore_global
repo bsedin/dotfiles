@@ -23,5 +23,6 @@ report*.json
 .clinic/
 
 /.elixir_ls/
+/.ignore/
 
 .gitignore.local

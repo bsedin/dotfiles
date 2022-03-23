@@ -120,12 +120,17 @@ lua << EOF
 -- telescope
 
 require('telescope').setup{
+  -- defaults = {
+  --   layout_config = {
+  --     vertical = { width = 0.9 }
+  --   }
+  -- },
   pickers = {
     find_files = {
-      theme = "dropdown",
+      theme = "ivy",
     },
     live_grep = {
-      theme = "dropdown",
+      theme = "ivy",
     }
   },
 }
@@ -199,7 +204,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     flags = {
-      debounce_text_changes = 150,
+      debounce_text_changes = 400,
     },
     on_attach = on_attach,
     capabilities = capabilities

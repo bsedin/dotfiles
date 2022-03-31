@@ -45,10 +45,6 @@ if [ -d $HOME/.cargo/bin ] ; then
   export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-if [ -d $GOPATH/bin ] ; then
-  export PATH="$GOPATH/bin:$PATH"
-fi
-
 if [ -d $HOME/.rbenv/bin ] ; then
   export PATH="$HOME/.rbenv/bin:$PATH"
 fi

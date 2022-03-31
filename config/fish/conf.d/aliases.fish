@@ -24,7 +24,6 @@ alias rgrep="grep --exclude-dir=Godeps --exclude-dir=node_modules --exclude-dir=
 alias grep="grep --exclude-dir=.git --color=auto"
 
 alias ag="ag --path-to-ignore $HOME/.agignore --nogroup"
-alias vim="nvim"
 
 # Typos
 alias igt="git"

@@ -26,6 +26,9 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'm-pilia/vim-ccls'
 Plug 'm-pilia/vim-yggdrasil'
 
+" Fish shell
+Plug 'dag/vim-fish'
+
 " Zig
 Plug 'ziglang/zig.vim'
 

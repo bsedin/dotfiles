@@ -55,6 +55,9 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-eunuch'
 Plug 'rstacruz/vim-closer'
 
 Plug 'godlygeek/tabular'
@@ -186,17 +189,16 @@ end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
-  'eslint',
-  'erlangls',
-  'solargraph',
-  'tsserver',
-  'stylelint_lsp',
-  'eslint',
-  'zls',
   'ansiblels',
   'bashls',
   'ccls',
+  'erlangls',
+  'eslint',
   'gdscript',
+  'solargraph',
+  'stylelint_lsp',
+  'tsserver',
+  'zls',
 }
 
 -- Setup lspconfig.
@@ -207,7 +209,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     flags = {
-      debounce_text_changes = 400,
+      debounce_text_changes = 1000,
     },
     on_attach = on_attach,
     capabilities = capabilities

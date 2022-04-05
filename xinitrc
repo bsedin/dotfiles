@@ -19,6 +19,7 @@ export DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
 
 # https://github.com/robbert-vdh/yabridge#environment-configuration
 export WINEFSYNC=1
+export SUDO_ASKPASS=/usr/bin/ssh-askpass-fullscreen
 
 # TrackPoint+Middleclick scroll
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1

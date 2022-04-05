@@ -10,14 +10,12 @@ SETUVAR __fish_init_2_39_8:\x1d
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_init_3_x:\x1d
 SETUVAR __fish_initialized:3100
-SETUVAR _fisher_FabioAntunes_2F_fish_2D_nvm_files:/home/krsh/\x2econfig/fish/functions/__nvm_run\x2efish\x1e/home/krsh/\x2econfig/fish/functions/node\x2efish\x1e/home/krsh/\x2econfig/fish/functions/npm\x2efish\x1e/home/krsh/\x2econfig/fish/functions/npx\x2efish\x1e/home/krsh/\x2econfig/fish/functions/nvm\x2efish\x1e/home/krsh/\x2econfig/fish/functions/nvm_alias_command\x2efish\x1e/home/krsh/\x2econfig/fish/functions/nvm_alias_function\x2efish\x1e/home/krsh/\x2econfig/fish/functions/yarn\x2efish\x1e/home/krsh/\x2econfig/fish/completions/nvm\x2efish
 SETUVAR _fisher_edc_2F_bass_files:/home/krsh/\x2econfig/fish/functions/__bass\x2epy\x1e/home/krsh/\x2econfig/fish/functions/bass\x2efish
 SETUVAR _fisher_franciscolourenco_2F_done_files:/home/krsh/\x2econfig/fish/conf\x2ed/done\x2efish
 SETUVAR _fisher_jethrokuan_2F_fzf_files:/home/krsh/\x2econfig/fish/functions/__fzf_cd\x2efish\x1e/home/krsh/\x2econfig/fish/functions/__fzf_complete\x2efish\x1e/home/krsh/\x2econfig/fish/functions/__fzf_complete_preview\x2efish\x1e/home/krsh/\x2econfig/fish/functions/__fzf_find_file\x2efish\x1e/home/krsh/\x2econfig/fish/functions/__fzf_get_dir\x2efish\x1e/home/krsh/\x2econfig/fish/functions/__fzf_open\x2efish\x1e/home/krsh/\x2econfig/fish/functions/__fzf_parse_commandline\x2efish\x1e/home/krsh/\x2econfig/fish/functions/__fzf_reverse_isearch\x2efish\x1e/home/krsh/\x2econfig/fish/functions/__fzfcmd\x2efish\x1e/home/krsh/\x2econfig/fish/conf\x2ed/fzf\x2efish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:/home/krsh/\x2econfig/fish/functions/fisher\x2efish\x1e/home/krsh/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_jorgebucaran_2F_spark_2E_fish_files:/home/krsh/\x2econfig/fish/functions/spark\x2efish\x1e/home/krsh/\x2econfig/fish/completions/spark\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1erbenv/fish\x2drbenv\x1ejethrokuan/fzf\x1ejorgebucaran/spark\x2efish\x1efranciscolourenco/done\x1eFabioAntunes/fish\x2dnvm\x1eedc/bass
-SETUVAR _fisher_rbenv_2F_fish_2D_rbenv_files:/home/krsh/\x2econfig/fish/functions/rbenv\x2efish\x1e/home/krsh/\x2econfig/fish/conf\x2ed/rbenv\x2efish\x1e/home/krsh/\x2econfig/fish/completions/rbenv\x2efish
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejethrokuan/fzf\x1ejorgebucaran/spark\x2efish\x1efranciscolourenco/done\x1eedc/bass
 SETUVAR fish_color_autosuggestion:969896
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:7aa6da
@@ -48,4 +46,5 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR --export fish_user_paths:/home/krsh/\x2erbenv/bin
+SETUVAR grc_plugin_execs:cat\x1ecvs\x1edf\x1ediff\x1edig\x1egcc\x1eg\x2b\x2b\x1els\x1eifconfig\x1emake\x1emount\x1emtr\x1enetstat\x1eping\x1eps\x1etail\x1etraceroute\x1ewdiff\x1eblkid\x1edu\x1ednf\x1edocker\x1edocker\x2dcompose\x1edocker\x2dmachine\x1eenv\x1eid\x1eip\x1eiostat\x1ejournalctl\x1ekubectl\x1elast\x1elsattr\x1elsblk\x1elspci\x1elsmod\x1elsof\x1egetfacl\x1egetsebool\x1eulimit\x1euptime\x1enmap\x1efdisk\x1efindmnt\x1efree\x1esemanage\x1esar\x1ess\x1esysctl\x1esystemctl\x1estat\x1eshowmount\x1etcpdump\x1etune2fs\x1evmstat\x1ew\x1ewho\x1esockstat
 SETUVAR pure_version:2\x2e1\x2e8

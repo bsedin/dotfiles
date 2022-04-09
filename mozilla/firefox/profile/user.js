@@ -1,7 +1,7 @@
 /******
 *    name: arkenfox user.js
-*    date: 10 March 2022
-* version: 98
+*    date: 9 April 2022
+* version: 99
 *     url: https://github.com/arkenfox/user.js
 * license: MIT: https://github.com/arkenfox/user.js/blob/master/LICENSE.txt
 
@@ -854,7 +854,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
     418986 - limit window.screen & CSS media queries (FF41)
       [TEST] https://arkenfox.github.io/TZP/tzp.html#screen
    1281949 - spoof screen orientation (FF50)
-   1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50)
+   1281963 - hide the contents of navigator.plugins and navigator.mimeTypes (FF50-99)
       FF53: fixes GetSupportedNames in nsMimeTypeArray and nsPluginArray (1324044)
    1330890 - spoof timezone as UTC0 (FF55)
    1360039 - spoof navigator.hardwareConcurrency as 2 (FF55)
@@ -899,6 +899,7 @@ user_pref("privacy.sanitize.timeSpan", 0);
    1461454 - spoof smooth=true and powerEfficient=false for supported media in MediaCapabilities (FF82)
  FF91+
     531915 - use fdlibm's sin, cos and tan in jsmath (FF93, ESR91.1)
+   1756280 - enforce navigator.pdfViewerEnabled as true and plugins/mimeTypes as hard-coded values (FF100)
 ***/
 user_pref("_user.js.parrot", "4500 syntax error: the parrot's popped 'is clogs");
 /* 4501: enable privacy.resistFingerprinting [FF41+]
@@ -1081,9 +1082,6 @@ user_pref("extensions.blocklist.enabled", true); // [DEFAULT: true]
 /* 6002: enforce no referer spoofing
  * [WHY] Spoofing can affect CSRF (Cross-Site Request Forgery) protections ***/
 user_pref("network.http.referer.spoofSource", false); // [DEFAULT: false]
-/* 6003: enforce CSP (Content Security Policy)
- * [1] https://developer.mozilla.org/docs/Web/HTTP/CSP ***/
-user_pref("security.csp.enable", true); // [DEFAULT: true]
 /* 6004: enforce a security delay on some confirmation dialogs such as install, open/save
  * [1] https://www.squarefree.com/2004/07/01/race-conditions-in-security-dialogs/ ***/
 user_pref("security.dialog_enable_delay", 1000); // [DEFAULT: 1000]
@@ -1353,6 +1351,11 @@ user_pref("app.update.background.scheduling.enabled", false);
 // 7006: onions - replaced by new 7006 "allowlist"
    // [-] https://bugzilla.mozilla.org/1744006
    // user_pref("dom.securecontext.whitelist_onions", true); // 1382359
+// FF99
+// 6003: enforce CSP (Content Security Policy)
+   // [1] https://developer.mozilla.org/docs/Web/HTTP/CSP
+   // [-] https://bugzilla.mozilla.org/1754301
+user_pref("security.csp.enable", true); // [DEFAULT: true]
 // ***/
 
 /* END: internal custom pref to test for syntax errors ***/
@@ -1417,3 +1420,31 @@ user_pref("privacy.donottrackheader.enabled", true);
  * [SETUP-CHROME] If you think disk cache helps perf, then feel free to override this
  * [NOTE] We also clear cache on exit (2811) ***/
 user_pref("browser.cache.disk.enable", true);
+
+user_pref("keyword.enabled", true);
+
+/* 2802: delete cache on exit [FF96+]
+ * [NOTE] We already disable disk cache (1001) and clear on exit (2811) which is more robust
+ * [1] https://bugzilla.mozilla.org/1671182 ***/
+user_pref("privacy.clearsitedata.cache.enabled", false);
+
+/* 2812: reset default items to clear with Ctrl-Shift-Del (to match 2811) [SETUP-CHROME]
+ * This dialog can also be accessed from the menu History>Clear Recent History
+ * Firefox remembers your last choices. This will reset them when you start Firefox
+ * [NOTE] Regardless of what you set "downloads" to, as soon as the dialog
+ * for "Clear Recent History" is opened, it is synced to the same as "history" ***/
+user_pref("privacy.cpd.cache", false);    // [DEFAULT: true]
+user_pref("privacy.cpd.formdata", false); // [DEFAULT: true]
+user_pref("privacy.cpd.history", false);  // [DEFAULT: true]
+user_pref("privacy.cpd.sessions", false); // [DEFAULT: true]
+user_pref("privacy.cpd.offlineApps", false); // [DEFAULT: false]
+user_pref("privacy.cpd.cookies", false);
+   // user_pref("privacy.cpd.downloads", true); // not used, see note above
+   // user_pref("privacy.cpd.passwords", false); // [DEFAULT: false] not listed
+   // user_pref("privacy.cpd.siteSettings", false); // [DEFAULT: false]
+/* 2813: clear Session Restore data when sanitizing on shutdown or manually [FF34+]
+ * [NOTE] Not needed if Session Restore is not used (0102) or it is already cleared with history (2811)
+ * [NOTE] privacy.clearOnShutdown.openWindows prevents resuming from crashes (also see 5008)
+ * [NOTE] privacy.cpd.openWindows has a bug that causes an additional window to open ***/
+   // user_pref("privacy.clearOnShutdown.openWindows", true);
+   // user_pref("privacy.cpd.openWindows", true);

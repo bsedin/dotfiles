@@ -44,3 +44,6 @@
 #   gpgsign = true
 [init]
 	defaultBranch = master
+
+[core]
+  hooksPath = /dev/null

@@ -1,3 +1,5 @@
 .notion/*.bkp
 .notion/*session*
 .notion/log.txt
+
+mozilla/firefox/profile/userjs_backups/

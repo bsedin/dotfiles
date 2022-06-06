@@ -8,14 +8,12 @@
 
 currdir=$(pwd)
 
-## get the full path of this script (readlink for Linux, greadlink for Mac with coreutils installed)
-sfp=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || greadlink -f "${BASH_SOURCE[0]}" 2>/dev/null)
-
-## fallback for Macs without coreutils
-if [ -z "$sfp" ]; then sfp=${BASH_SOURCE[0]}; fi
+sfp=$HOME/.mozilla/firefox/profile
 
 ## change directory to the Firefox profile directory
-cd "$(dirname "${sfp}")"
+cd $sfp
+
+echo $(pwd)
 
 fQuit() {
 	## change directory back to the original working directory

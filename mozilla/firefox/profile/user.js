@@ -1448,3 +1448,7 @@ user_pref("privacy.cpd.cookies", false);
  * [NOTE] privacy.cpd.openWindows has a bug that causes an additional window to open ***/
    // user_pref("privacy.clearOnShutdown.openWindows", true);
    // user_pref("privacy.cpd.openWindows", true);
+/* 1003: disable storing extra session data [SETUP-CHROME]
+ * define on which sites to save extra session data such as form content, cookies and POST data
+ * 0=everywhere, 1=unencrypted sites, 2=nowhere ***/
+user_pref("browser.sessionstore.privacy_level", 0);

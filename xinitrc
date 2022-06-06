@@ -1,8 +1,8 @@
 #!/bin/bash
 
 export BROWSER=browser
-export TERMINAL=st
-export XTERM=st
+export TERMINAL=kitty
+export XTERM=kitty
 export LANGUAGE=en_US:en_GB:en
 export LC_TIME=ru_RU.UTF-8
 export COLORTERM=truecolor

@@ -5,19 +5,19 @@ call plug#begin('$HOME/.config/nvim/bundle')
 
 Plug 'tpope/vim-sensible'
 
-" Colors
-Plug 'chriskempson/base16-vim'
+" Gruvbox colors
+" Plug 'ellisonleao/gruvbox.nvim'
+Plug '~/Projects/libs/gruvbox.nvim'
 
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Lokaltog/vim-easymotion'
 
 Plug 'simrat39/rust-tools.nvim'
-Plug 'vim-ruby/vim-ruby'
+" Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-markdown'
-Plug 'calviken/vim-gdscript3'
 Plug 'ledger/vim-ledger'
 Plug 'slim-template/vim-slim'
 Plug 'fatih/vim-go'
@@ -25,6 +25,8 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'm-pilia/vim-ccls'
 Plug 'm-pilia/vim-yggdrasil'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Fish shell
 Plug 'dag/vim-fish'
@@ -48,7 +50,6 @@ Plug 'L3MON4D3/LuaSnip'
 
 " Appearance
 Plug 'itchyny/lightline.vim'
-Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'bsedin/lightline-lsp'
 
 Plug 'editorconfig/editorconfig-vim'
@@ -96,11 +97,19 @@ Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
 " Colorscheme
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set t_Co=256
 set termguicolors
+
+" Gruvbox colors
+" autocmd vimenter * ++nested colorscheme mygruvbox
+" let g:gruvbox_contrast_dark='medium'
+" let g:gruvbox_contrast_light='medium'
+
+colorscheme gruvbox
 set background=dark
-let base16colorspace=256
-colorscheme base16-gruvbox-dark-hard
+silent! map <F5> :set background=dark<CR>
+silent! map <F6> :set background=light<CR>
 
 " Required for operations modifying multiple buffers like rename.
 set hidden
@@ -108,6 +117,8 @@ set hidden
 " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType ledger setlocal sw=4 ts=4 sts=4
 autocmd FileType rust setlocal sw=4 ts=4 sts=4
+
+au BufNewFile,BufRead *.es6 :setlocal filetype=javascript
 
 " For conceal markers.
 if has('conceal')
@@ -122,6 +133,36 @@ let g:neosnippet#snippets_directory='$HOME/.config/nvim/bundle/vim-snippets/snip
 
 
 lua << EOF
+
+-- tree-sitter
+
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  -- ensure_installed = { "all" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- List of parsers to ignore installing (for "all")
+  -- ignore_install = { "javascript" },
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- the name of the parser)
+    -- list of language that will be disabled
+    -- disable = { "c", "rust" },
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
 
 -- telescope
 
@@ -381,7 +422,7 @@ let g:NERDTreeMapPreview="<F3>"
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'FugitiveHead'
       \ },
       \ }
 
@@ -437,12 +478,6 @@ let g:gitgutter_sign_removed_first_line = '-'
 let g:gitgutter_sign_modified_removed = '~'
 let g:gitgutter_highlight_linenrs = 1
 let g:gitgutter_highlight_lines = 0
-
-highlight GitGutterChangeLineNr ctermfg=16 ctermbg=18 guifg=#83a598 guibg=#3c3836
-highlight GitGutterChangeDeleteLineNr ctermfg=16 ctermbg=18 guifg=#d3869b guibg=#3c3836
-
-highlight link GitGutterAddLineNr GitGutterAddLine
-highlight link GitGutterDeleteLineNr GitGutterDeleteLine
 
 " Replace current word with yanked or deleted text
 " nnoremap S "_diwP
@@ -571,7 +606,6 @@ inoremap  <End>      <NOP>
 set splitbelow
 set splitright
 
-set title
 set completeopt=menuone,noinsert,noselect
 
 " Quicker window movement

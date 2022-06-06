@@ -16,6 +16,32 @@ set $mod Mod4
 # font pango:Fixedsys Excelsior 10
 font pango:DejaVu Sans Condensed Bold 8
 
+################################
+#### Gruvbox Material Light ####
+################################
+# set $bg       #fbf1c7
+# set $fg       #654735
+# set $red      #c14a4a
+# set $orange   #c35e0a
+# set $green    #6c782e
+# set $blue     #45707a
+# set $purple   #945e80
+# set $aqua     #4c7a5d
+# set $darkgray #fbf1c7
+
+###############################
+#### Gruvbox Material Dark ####
+###############################
+set $bg       #282828
+set $fg       #d4be98
+set $red      #ea6962
+set $orange   #e78a4e
+set $green    #a9b665
+set $blue     #7daea3
+set $purple   #d3869b
+set $aqua     #89b482
+set $darkgray #282828
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -39,12 +65,11 @@ workspace_auto_back_and_forth no
 workspace_layout default
 
 for_window [class="(?i)firefox"] move container to workspace $ws1
-for_window [class="(?i)vivaldi"] move container to workspace $ws1
 for_window [class="(?i)telegram"] move container to workspace $ws2
 for_window [class="mpv"] floating enable border none
 for_window [class="(?i)zooout"] floating enable
 for_window [class="(?i)netsurf"] floating enable
-for_window [class="(?i)proton"] floating enable border none
+for_window [class="(?i)proton-bridge"] move container to workspace $ws9 floating enable border none
 
 for_window [class="(?i)cadence"] move container to workspace $ws7 floating enable
 for_window [class="(?i)catia"] move container to workspace $ws7 floating enable
@@ -57,12 +82,23 @@ for_window [class="(?i)ilok"] floating enable
 for_window [class="Space"] floating enable
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #B8BB26 #B8BB26 #1D2021 #2e9ef4   #B8BB26
-client.focused_inactive #83A598 #83A598 #1D2021 #484e50   #83A598
-client.unfocused        #333333 #222222 #bdae93 #292d2e   #222222
-client.urgent           #2f343a #900000 #fbf1c7 #900000   #900000
-client.placeholder      #000000 #0c0c0c #fbf1c7 #000000   #0c0c0c
-client.background       #ffffff
+# client.focused          #B8BB26 #B8BB26 #1D2021 #2e9ef4   #B8BB26
+# client.focused_inactive #83A598 #83A598 #1D2021 #484e50   #83A598
+# client.unfocused        #333333 #222222 #bdae93 #292d2e   #222222
+# client.urgent           #2f343a #900000 #fbf1c7 #900000   #900000
+# client.placeholder      #000000 #0c0c0c #fbf1c7 #000000   #0c0c0c
+# client.background       #ffffff
+
+#######################
+#### i3 appearance ####
+#######################
+#       Gruvbox Theme   brdr        bg          text    indictr     chld_brdr
+client.focused          $green     $green     $bg     $green     $green
+client.focused_inactive $blue       $blue       $bg     $blue       $blue
+client.unfocused        $bg         $bg         $bg     $bg         $bg
+client.urgent           $red        $red        $bg     $red        $red
+client.placeholder      $bg         $bg         $bg     $bg         $bg
+client.background       $bg
 
 # start a terminal
 bindsym $mod+Return exec terminal
@@ -188,7 +224,6 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 bindsym $mod+z exec "stop_and_lock"
-bindsym $mod+x exec "stop_and_lock & xset dpms force off"
 bindsym $mod+Shift+z exec "suspend-and-lock"
 
 # resize window (you can also use the mouse for that)
@@ -219,15 +254,27 @@ bar {
     output nonprimary
     font pango:Iosevka Term, FontAwesome Bold 12px
     colors {
-        background #000000
-        statusline #d5c4a1
-        separator #666666
+            # bar background color
+            background $bg
+            # text color used for blocks that do not have a color specified.
+            statusline $fg
 
-        focused_workspace  #B8BB26 #B8BB26 #3c3836
-        active_workspace   #5f676a #5f676a #fbf1c7
-        inactive_workspace #5f676a #5f676a #fbf1c7
-        urgent_workspace   #fb4934 #fb4934 #fbf1c7
-        binding_mode       #fb4934 #fb4934 #1d2021
+            # workspaces section
+            #                    border     backgr.     text
+            focused_workspace    $orange    $orange     $bg
+            inactive_workspace   $bg        $aqua       $bg
+            active_workspace     $bg        $blue       $bg
+            urgent_workspace     $red       $red        $fg
+
+        # background #000000
+        # statusline #d5c4a1
+        # separator #666666
+        #
+        # focused_workspace  #B8BB26 #B8BB26 #3c3836
+        # active_workspace   #5f676a #5f676a #fbf1c7
+        # inactive_workspace #5f676a #5f676a #fbf1c7
+        # urgent_workspace   #fb4934 #fb4934 #fbf1c7
+        # binding_mode       #fb4934 #fb4934 #1d2021
     }
 }
 
@@ -238,7 +285,7 @@ bar {
     output primary
     tray_output primary
     status_command i3status-rs-with-env ~/.config/i3status-rs/config.toml
-    font pango:Iosevka Term, FontAwesome Bold 12px
+    font pango:Iosevka Term, FontAwesome Bold 14px
     colors {
         background #000000
         statusline #d5c4a1
@@ -253,8 +300,8 @@ bar {
 }
 
 # Backlight control
-# bindsym XF86MonBrightnessUp exec --no-startup-id sudo light -A 5
-# bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 5
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 5
 # bindsym XF86Search exec --no-startup-id suspend-and-lock
 
 # Volume control

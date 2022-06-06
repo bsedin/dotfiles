@@ -1,21 +1,19 @@
 source ~/.config/mutt/colors-gruvbox-shuber.muttrc
-# For neomutt uncomment this line:
-source ~/.config/mutt/colors-gruvbox-shuber-extended.muttrc
 
 # Sidebar
 #
 # Color of the highlighted, but not open, mailbox.
 color sidebar_highlight black color8
 # Color of the divider separating the Sidebar from NeoMutt panels
-color sidebar_divider color8 color234
+color sidebar_divider color8 color235
 # Color to give mailboxes containing flagged mail
-color sidebar_flagged default color234
+color sidebar_flagged default color235
 # Color to give mailboxes containing new mail
-color sidebar_new color108 color234
+color sidebar_new color108 color235
 # color sidebar_spoolfile green default
-# color sidebar_spoolfile yellow color234
+# color sidebar_spoolfile yellow color235
 # Color to give mailboxes containing no new/flagged mail, etc.
-color sidebar_ordinary default color234
+color sidebar_ordinary default color235
 
 # Color if the attachment is autoviewed
 color   attach_headers     brightgreen     default    "Autoview"
@@ -39,9 +37,9 @@ color   attach_headers     brightmagenta   default    "invalid node with packet 
 
 # Author name, %A %a %F %L %n
 # Give the author column a dark grey background
-color index_author default color234 '.*'
+color index_author default color235 '.*'
 # Highlight a particular from (~f)
-# color index_author brightyellow color234 '~fRay Charles'
+# color index_author brightyellow color235 '~fRay Charles'
 # Message flags, %S %Z
 # Highlight the flags for flagged (~F) emails
 color index_flags default red '~F'

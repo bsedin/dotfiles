@@ -89,3 +89,11 @@ user_pref("privacy.cpd.cookies", false);
  * define on which sites to save extra session data such as form content, cookies and POST data
  * 0=everywhere, 1=unencrypted sites, 2=nowhere ***/
 user_pref("browser.sessionstore.privacy_level", 0);
+
+/* chrome/userChrome.css support */
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+
+/* dark letterbox */
+user_pref("ui.systemUsesDarkTheme", 1);
+
+user_pref("webgl.disabled", false);

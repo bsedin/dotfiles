@@ -2,5 +2,5 @@
 --mark-watched
 -f bestvideo[height<=?1080]+bestaudio/best
 --retries infinite
---socket-timeout 1
+--socket-timeout 30
 --external-downloader aria2c

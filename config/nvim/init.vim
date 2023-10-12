@@ -9,8 +9,10 @@ Plug 'tpope/vim-sensible'
 " Plug 'ellisonleao/gruvbox.nvim'
 Plug '~/Projects/libs/gruvbox.nvim'
 
-Plug 'terryma/vim-multiple-cursors'
-Plug 'Lokaltog/vim-easymotion'
+" Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
+" Plug 'Lokaltog/vim-easymotion'
+Plug 'ggandor/leap.nvim'
 
 Plug 'simrat39/rust-tools.nvim'
 " Plug 'vim-ruby/vim-ruby'
@@ -42,7 +44,6 @@ Plug 'tomtom/tcomment_vim'
 
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
-Plug 'scrooloose/nerdtree'
 Plug 'milkypostman/vim-togglelist' " <leader>l and <leader>q
 
 " Snippets
@@ -59,14 +60,18 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-eunuch'
-Plug 'rstacruz/vim-closer'
+Plug 'tpope/vim-rhubarb'
+" Plug 'rstacruz/vim-closer' # bugged
 
 Plug 'godlygeek/tabular'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'tamago324/nlsp-settings.nvim'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'folke/lsp-colors.nvim'
+" Plug 'jose-elias-alvarez/null-ls.nvim'
 
 Plug 'hrsh7th/cmp-buffer'
 " Plug 'hrsh7th/cmp-path'
@@ -77,22 +82,33 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'saadparwaiz1/cmp_luasnip'
 
 " Plug 'tpope/vim-dispatch'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
+
 Plug 'tpope/vim-fugitive'
 Plug 'kassio/neoterm'
-Plug 'janko/vim-test'
+" Plug 'janko/vim-test'
+
+Plug 'nvim-neotest/neotest'
+Plug 'olimorris/neotest-rspec'
+
+Plug 'yssl/QFEnter'
 
 " Tasks
-Plug 'blindFS/vim-taskwarrior'
+" Plug 'blindFS/vim-taskwarrior'
 Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'vimwiki/vimwiki'
-Plug 'tbabej/taskwiki'
+" Plug 'vimwiki/vimwiki'
+" Plug 'tbabej/taskwiki'
 
 Plug 'McAuleyPenney/tidy.nvim' " Remove whitespaces
 Plug 'Chiel92/vim-autoformat'
 
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
+Plug 'junegunn/fzf.vim'
+
+Plug 'MunifTanjim/nui.nvim'
+Plug 'nvim-neo-tree/neo-tree.nvim'
 
 call plug#end()
 
@@ -107,9 +123,10 @@ set termguicolors
 " let g:gruvbox_contrast_light='medium'
 
 colorscheme gruvbox
-set background=dark
-silent! map <F5> :set background=dark<CR>
-silent! map <F6> :set background=light<CR>
+" let neovim guess
+" set background=dark
+" silent! map <F5> :set background=dark<CR>
+" silent! map <F6> :set background=light<CR>
 
 " Required for operations modifying multiple buffers like rename.
 set hidden
@@ -133,6 +150,7 @@ let g:neosnippet#snippets_directory='$HOME/.config/nvim/bundle/vim-snippets/snip
 
 
 lua << EOF
+require('gitsigns').setup()
 
 -- tree-sitter
 
@@ -165,32 +183,47 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- telescope
-
-require('telescope').setup{
-  -- defaults = {
-  --   layout_config = {
-  --     vertical = { width = 0.9 }
-  --   }
-  -- },
-  pickers = {
-    find_files = {
-      theme = "ivy",
-    },
-    live_grep = {
-      theme = "ivy",
-    }
-  },
-}
+-- require('telescope').setup{
+--   -- defaults = {
+--   --   layout_config = {
+--   --     vertical = { width = 0.9 }
+--   --   }
+--   -- },
+--   defaults = {
+--     preview = {
+--       treesitter = false,
+--     },
+--   },
+--   pickers = {
+--     find_files = {
+--       theme = "ivy",
+--     },
+--     live_grep = {
+--       theme = "ivy",
+--     }
+--   },
+-- }
 
 -- nvim-lspconfig
 
 local nvim_lsp = require('lspconfig')
+local nlspsettings = require("nlspsettings")
+
+nlspsettings.setup({
+  config_home = vim.fn.stdpath('config') .. '/nlsp-settings',
+  local_settings_dir = ".nlsp-settings",
+  local_settings_root_markers_fallback = { '.git' },
+  append_default_schemas = true,
+  loader = 'json'
+})
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  client.server_capabilities.semanticTokensProvider = nil
 
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -236,16 +269,17 @@ local servers = {
   'erlangls',
   'eslint',
   'gdscript',
+  -- 'ruby_ls',
   'solargraph',
   'stylelint_lsp',
   'tsserver',
   'zls',
 }
 
+
 -- Setup lspconfig.
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
@@ -263,25 +297,25 @@ nvim_lsp.elixirls.setup{
     capabilities = capabilities
 }
 
-nvim_lsp.rust_analyzer.setup({
-    cmd = { "rust-analyzer" },
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        ["rust-analyzer"] = {
-            assist = {
-                importGranularity = "module",
-                importPrefix = "by_self",
-            },
-            cargo = {
-                loadOutDirsFromCheck = true
-            },
-            procMacro = {
-                enable = true
-            },
-        }
-    }
-})
+-- nvim_lsp.rust_analyzer.setup({
+--     cmd = { "rust-analyzer" },
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     settings = {
+--         ["rust-analyzer"] = {
+--             assist = {
+--                 importGranularity = "module",
+--                 importPrefix = "by_self",
+--             },
+--             cargo = {
+--                 loadOutDirsFromCheck = true
+--             },
+--             procMacro = {
+--                 enable = true
+--             },
+--         }
+--     }
+-- })
 
 nvim_lsp.tailwindcss.setup({
     on_attach = on_attach,
@@ -293,36 +327,86 @@ nvim_lsp.tailwindcss.setup({
     }
 })
 
-require('rust-tools').setup({
-  tools = { -- rust-tools options
-          autoSetHints = true,
-          hover_with_actions = true,
-          inlay_hints = {
-              -- show_parameter_hints = false,
-              -- parameter_hints_prefix = "",
-              -- other_hints_prefix = "",
-          },
-      },
+-- require('rust-tools').setup({
+--   tools = { -- rust-tools options
+--           autoSetHints = true,
+--           hover_with_actions = true,
+--           inlay_hints = {
+--               -- show_parameter_hints = false,
+--               -- parameter_hints_prefix = "",
+--               -- other_hints_prefix = "",
+--           },
+--       },
+--
+--       -- all the opts to send to nvim-lspconfig
+--       -- these override the defaults set by rust-tools.nvim
+--       -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+--       server = {
+--           -- on_attach is a callback called when the language server attachs to the buffer
+--           on_attach = on_attach,
+--           settings = {
+--               -- to enable rust-analyzer settings visit:
+--               -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+--               ["rust-analyzer"] = {
+--                   -- enable clippy on save
+--                   checkOnSave = {
+--                       allTargets = false,
+--                       command = "clippy"
+--                   },
+--               }
+--           }
+--       },
+-- })
 
-      -- all the opts to send to nvim-lspconfig
-      -- these override the defaults set by rust-tools.nvim
-      -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
-      server = {
-          -- on_attach is a callback called when the language server attachs to the buffer
-          on_attach = on_attach,
-          settings = {
-              -- to enable rust-analyzer settings visit:
-              -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-              ["rust-analyzer"] = {
-                  -- enable clippy on save
-                  checkOnSave = {
-                      allTargets = false,
-                      command = "clippy"
-                  },
-              }
-          }
-      },
+-- textDocument/diagnostic support until 0.10.0 is released
+_timers = {}
+local function setup_diagnostics(client, buffer)
+  if require("vim.lsp.diagnostic")._enable then
+    return
+  end
+
+  local diagnostic_handler = function()
+    local params = vim.lsp.util.make_text_document_params(buffer)
+    client.request("textDocument/diagnostic", { textDocument = params }, function(err, result)
+      if err then
+        local err_msg = string.format("diagnostics error - %s", vim.inspect(err))
+        vim.lsp.log.error(err_msg)
+      end
+      local diagnostic_items = {}
+      if result then
+        diagnostic_items = result.items
+      end
+      vim.lsp.diagnostic.on_publish_diagnostics(
+        nil,
+        vim.tbl_extend("keep", params, { diagnostics = diagnostic_items }),
+        { client_id = client.id }
+      )
+    end)
+  end
+
+  diagnostic_handler() -- to request diagnostics on buffer when first attaching
+
+  vim.api.nvim_buf_attach(buffer, false, {
+    on_lines = function()
+      if _timers[buffer] then
+        vim.fn.timer_stop(_timers[buffer])
+      end
+      _timers[buffer] = vim.fn.timer_start(200, diagnostic_handler)
+    end,
+    on_detach = function()
+      if _timers[buffer] then
+        vim.fn.timer_stop(_timers[buffer])
+      end
+    end,
+  })
+end
+
+nvim_lsp.ruby_ls.setup({
+  on_attach = function(client, buffer)
+    setup_diagnostics(client, buffer)
+  end,
 })
+
 
 -- Setup nvim-cmp.
 local cmp = require('cmp')
@@ -407,16 +491,193 @@ cmp.setup.cmdline(':', {
   })
 })
 
+require("neo-tree").setup({
+  close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+  popup_border_style = "rounded",
+  enable_git_status = false,
+  enable_diagnostics = false,
+  sort_case_insensitive = false, -- used when sorting files and directories in the tree
+  sort_function = nil , -- use a custom function for sorting files and directories in the tree
+  -- sort_function = function (a,b)
+  --       if a.type == b.type then
+  --           return a.path > b.path
+  --       else
+  --           return a.type > b.type
+  --       end
+  --   end , -- this sorts files and directories descendantly
+  default_component_configs = {
+    container = {
+      enable_character_fade = false
+    },
+    indent = {
+      indent_size = 2,
+      padding = 1, -- extra padding on left hand side
+      -- indent guides
+      with_markers = true,
+      indent_marker = "│",
+      last_indent_marker = "└",
+      highlight = "NeoTreeIndentMarker",
+      -- expander config, needed for nesting files
+      with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
+      expander_collapsed = "",
+      expander_expanded = "",
+      expander_highlight = "NeoTreeExpander",
+    },
+    icon = {
+      folder_closed = "▸",
+      folder_open = "▾",
+      folder_empty = " ",
+      -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
+      -- then these will never be used.
+      default = "",
+      highlight = "NeoTreeFileIcon"
+    },
+    modified = {
+      symbol = "[+]",
+      highlight = "NeoTreeModified",
+    },
+    name = {
+      trailing_slash = false,
+      use_git_status_colors = false,
+      highlight = "NeoTreeFileName",
+    },
+    git_status = {
+      symbols = {
+        -- Change type
+        added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
+        modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
+        deleted   = "✖",-- this can only be used in the git_status source
+        renamed   = "",-- this can only be used in the git_status source
+        -- Status type
+        untracked = "",
+        ignored   = "",
+        unstaged  = "",
+        staged    = "",
+        conflict  = "",
+      }
+    },
+  },
+  filesystem = {
+    filtered_items = {
+      visible = false,
+      never_show = {
+        ".git",
+        ".keep",
+        ".gitkeep",
+      },
+    },
+    window = {
+      mappings = {
+        ["/"] = false,
+        ["D"] = false,
+      },
+    },
+  },
+  window = {
+    position = "left",
+    width = 40,
+    mapping_options = {
+      noremap = true,
+      nowait = true,
+    },
+    mappings = {
+      ["<F4>"] = "open",
+      ["C"] = "cut_to_clipboard",
+      ["i"] = "toggle_hidden",
+      ["x"] = "close_node",
+      ["X"] = "close_all_nodes",
+      ["z"] = false,
+      ["Z"] = false,
+      ["c"] = { "copy", config = { show_path = "relative" }},
+      ["m"] = { "move", config = { show_path = "relative" }},
+      ["a"] = { "add", config = { show_path = "relative" }},
+    },
+  },
+})
+
+require('leap').set_default_keymaps()
+
+require('neotest').setup({
+  icons = {
+    -- Ascii:
+    -- { "/", "|", "\\", "-", "/", "|", "\\", "-"},
+    -- Unicode:
+    -- { "", "🞅", "🞈", "🞉", "", "", "🞉", "🞈", "🞅", "", },
+    -- {"◴" ,"◷" ,"◶", "◵"},
+    -- {"◢", "◣", "◤", "◥"},
+    -- {"◐", "◓", "◑", "◒"},
+    -- {"◰", "◳", "◲", "◱"},
+    -- {"⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷"},
+    -- {"⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"},
+    -- {"⠋", "⠙", "⠚", "⠞", "⠖", "⠦", "⠴", "⠲", "⠳", "⠓"},
+    -- {"⠄", "⠆", "⠇", "⠋", "⠙", "⠸", "⠰", "⠠", "⠰", "⠸", "⠙", "⠋", "⠇", "⠆"},
+    -- { "⠋", "⠙", "⠚", "⠒", "⠂", "⠂", "⠒", "⠲", "⠴", "⠦", "⠖", "⠒", "⠐", "⠐", "⠒", "⠓", "⠋" },
+    running_animated = {"⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾"},
+    passed = " ",
+    running = " ",
+    failed = " ",
+    skipped = "-",
+    unknown = "🞅",
+    non_collapsible = "─",
+    collapsed = "─",
+    expanded = "╮",
+    child_prefix = "├",
+    final_child_prefix = "╰",
+    child_indent = "│",
+    final_child_indent = " ",
+  },
+  adapters = {
+    require('neotest-rspec')({
+      rspec_cmd = function()
+        return vim.tbl_flatten({
+          "rspec",
+        })
+      end
+    })
+  },
+  quickfix = {
+    enabled = false,
+    open = false
+  },
+})
+
+-- local null_ls = require("null-ls")
+--
+-- null_ls.setup({
+--     sources = {
+--         null_ls.builtins.formatting.stylua,
+--         null_ls.builtins.completion.spell,
+--         null_ls.builtins.diagnostics.eslint,
+--         null_ls.builtins.diagnostics.rubocop,
+--     },
+-- })
+
+-- map("n", "<Leader>tn", ":lua require('neotest').run.run()<CR>", { noremap = false, silent = false })
+
+-- buf_set_keymap('n', '<Leader>tn', '<cmd>lua require('neotest').run.run()<CR>', opts)
+-- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+-- nnoremap <Leader>tn :TestNearest<CR>
+-- nnoremap <Leader>tf :TestFile<CR>
+-- nnoremap <Leader>ts :TestSuite<CR>
 EOF
+
+" neotest keybindings
+nnoremap <Leader>tn <cmd>lua require("neotest").run.run()<CR>
+nnoremap <Leader>ts <cmd>lua require("neotest").run.stop()<CR>
+nnoremap <Leader>tf <cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>
+nnoremap <Leader>tt <cmd>lua require("neotest").summary.open()<CR>
+nnoremap <Leader>ta <cmd>lua require("neotest").run.attach()<CR>
+nnoremap <Leader>to <cmd>lua require("neotest").output.open({ enter = true })<CR>
+nnoremap <silent>[n <cmd>lua require("neotest").jump.prev({ status = "failed" })<CR>
+nnoremap <silent>]n <cmd>lua require("neotest").jump.next({ status = "failed" })<CR>
 
 " EditorConfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
-" NerdTREE
-silent! nmap <C-g> :NERDTreeToggle<CR>
-silent! map <F4> :NERDTreeFind<CR>
-let g:NERDTreeMapActivateNode="<F4>"
-let g:NERDTreeMapPreview="<F3>"
+" NeoTree
+silent! nmap <C-g> :NeoTreeShowToggle<CR>
+silent! map <F4> :NeoTreeReveal<CR>
 
 " Lightline
 let g:lightline = {
@@ -460,24 +721,16 @@ let g:neoterm_autoinsert = 1
 let g:neoterm_default_mod = 'rightbelow'
 let g:neoterm_size = '20'
 
-" vim-test
-" make test commands execute using neoterm
-let test#strategy = "neoterm"
-
-nnoremap <Leader>tn :TestNearest<CR>
-nnoremap <Leader>tf :TestFile<CR>
-nnoremap <Leader>ts :TestSuite<CR>
-
 " Vim gitgutter
-let g:gitgutter_enabled = 1
-let g:gitgutter_signs = 1
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '~'
-let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_removed_first_line = '-'
-let g:gitgutter_sign_modified_removed = '~'
-let g:gitgutter_highlight_linenrs = 1
-let g:gitgutter_highlight_lines = 0
+" let g:gitgutter_enabled = 1
+" let g:gitgutter_signs = 1
+" let g:gitgutter_sign_added = '+'
+" let g:gitgutter_sign_modified = '~'
+" let g:gitgutter_sign_removed = '-'
+" let g:gitgutter_sign_removed_first_line = '-'
+" let g:gitgutter_sign_modified_removed = '~'
+" let g:gitgutter_highlight_linenrs = 1
+" let g:gitgutter_highlight_lines = 1
 
 " Replace current word with yanked or deleted text
 " nnoremap S "_diwP
@@ -514,15 +767,19 @@ let g:autoformat_retab = 1
 let g:autoformat_remove_trailing_spaces = 1
 
 " Vimwiki
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+" let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
 " FIXME: this is strange workaround for workaround for bug in kitty
-autocmd FileType vimwiki nnoremap <Leader>wH <Plug>VimwikiGoBackLink
+" autocmd FileType vimwiki nnoremap <Leader>wH <Plug>VimwikiGoBackLink
+
+
+" vim-markdown
+let g:markdown_syntax_conceal = 0
 
 " Taskwiki
-let g:taskwiki_markup_syntax = "markdown"
+" let g:taskwiki_markup_syntax = "markdown"
 " let g:taskwiki_source_tw_colors = "yes"
-nnoremap <Leader>tR :TaskWikiBufferLoad<CR>
+" nnoremap <Leader>tR :TaskWikiBufferLoad<CR>
 
 set noswapfile
 
@@ -588,6 +845,9 @@ set nojoinspaces
 " Disable folding
 set nofoldenable
 
+" Disable mouse
+set mouse=
+
 " Disable some keys
 noremap   <Up>       <NOP>
 noremap   <Down>     <NOP>
@@ -608,6 +868,8 @@ set splitright
 
 set completeopt=menuone,noinsert,noselect
 
+set signcolumn=yes
+
 " Quicker window movement
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -615,7 +877,19 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " telescope
-nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files()<CR>
-nnoremap <leader>g <cmd>lua require('telescope.builtin').live_grep()<CR>
-nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<CR>
-nnoremap <leader>h <cmd>lua require('telescope.builtin').help_tags()<CR>
+" nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files()<CR>
+" nnoremap <leader>g <cmd>lua require('telescope.builtin').live_grep()<CR>
+" nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<CR>
+" nnoremap <leader>h <cmd>lua require('telescope.builtin').help_tags()<CR>
+
+" FZF
+let g:fzf_layout = { 'down': '30%' }
+let g:fzf_vim = {}
+let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
+
+nnoremap <C-p> :FZF<CR>
+nnoremap <leader>g :Rg<CR>
+
+" LSP SEMANTIC HIGHLIGHTS
+" hi @lsp.type.variable guifg=GruvboxFg1
+" hi @lsp.type.class guifg=GruvboxYellow

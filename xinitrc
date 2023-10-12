@@ -4,7 +4,7 @@ export BROWSER=browser
 export TERMINAL=kitty
 export XTERM=kitty
 export LANGUAGE=en_US:en_GB:en
-export LC_TIME=ru_RU.UTF-8
+export LC_TIME=en_US.UTF-8
 export COLORTERM=truecolor
 
 export QT_QPA_PLATFORMTHEME=qt5ct
@@ -13,7 +13,7 @@ unset QT_STYLE_OVERRIDE
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_RUNTIME_DIR=/run/user/1000
-export DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
+export DOCKER_HOST=unix:///var/run/docker.sock
 
 # export VDPAU_DRIVER=radeonsi
 
@@ -28,6 +28,10 @@ xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Timeout" 200
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Axes" 6 7 4 5
 
 xinput set-prop "Primax Kensington Eagle Trackball" "Evdev Middle Button Emulation" 1
+
+# xinput map-to-output "Wacom Graphire2 4x5 Pen stylus" DP-0
+# xinput map-to-output "Wacom Graphire2 4x5 Pen eraser" DP-0
+# xinput map-to-output "Wacom Graphire2 4x5 Pen cursor" DP-0
 
 # exec ck-launch-session dbus-launch
 xrdb -merge ~/.Xresources

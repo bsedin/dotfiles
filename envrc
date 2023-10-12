@@ -1,1 +1,0 @@
-export GEM_HOME=/home/krsh/.gem/ruby/2.7.0

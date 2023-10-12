@@ -1,8 +1,8 @@
 # aliases
 alias sdr='screen -aAdr'
-alias ls='exa'
-alias la='exa -a'
-alias ll='exa -laF'
+alias ls='eza'
+alias la='eza -a'
+alias ll='eza -laF'
 alias mkpasswd='head -c16 /dev/urandom | xxd -ps'
 alias mc='mc -b'
 alias cdp='cd (~/bin/cdp); clear'
@@ -23,3 +23,6 @@ alias gitst='git st'
 # alias 'bin/ledger'='noglob bin/ledger'
 #
 # alias icat='kitty +kitten icat'
+
+alias dark="/usr/bin/kitty +kitten themes --reload-in=all Gruvbox Dark"
+alias light="/usr/bin/kitty +kitten themes --reload-in=all Gruvbox Light"

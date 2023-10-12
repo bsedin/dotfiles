@@ -24,6 +24,7 @@ report*.json
 
 /.elixir_ls/
 /.ignore/
+.nlsp-settings/
 
 .gitignore.local
 .envrc.container

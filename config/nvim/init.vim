@@ -40,7 +40,8 @@ Plug 'ziglang/zig.vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'mhinz/vim-mix-format'
 
-Plug 'tomtom/tcomment_vim'
+" Plug 'tomtom/tcomment_vim'
+Plug '~/Projects/libs/tcomment_vim'
 
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
@@ -87,10 +88,10 @@ Plug 'lewis6991/gitsigns.nvim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'kassio/neoterm'
-" Plug 'janko/vim-test'
 
-Plug 'nvim-neotest/neotest'
-Plug 'olimorris/neotest-rspec'
+Plug 'vim-test/vim-test'
+" Plug 'nvim-neotest/neotest'
+" Plug 'olimorris/neotest-rspec'
 
 Plug 'yssl/QFEnter'
 
@@ -104,8 +105,8 @@ Plug 'McAuleyPenney/tidy.nvim' " Remove whitespaces
 Plug 'Chiel92/vim-autoformat'
 
 Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
-Plug 'junegunn/fzf.vim'
+Plug 'nvim-telescope/telescope.nvim'
+" Plug 'junegunn/fzf.vim'
 
 Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'
@@ -183,29 +184,28 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- telescope
--- require('telescope').setup{
---   -- defaults = {
---   --   layout_config = {
---   --     vertical = { width = 0.9 }
---   --   }
---   -- },
---   defaults = {
---     preview = {
---       treesitter = false,
---     },
---   },
---   pickers = {
---     find_files = {
---       theme = "ivy",
---     },
---     live_grep = {
---       theme = "ivy",
---     }
---   },
--- }
+require('telescope').setup{
+  -- defaults = {
+  --   layout_config = {
+  --     vertical = { width = 0.9 }
+  --   }
+  -- },
+  defaults = {
+    preview = {
+      treesitter = false,
+    },
+  },
+  pickers = {
+    find_files = {
+      theme = "ivy",
+    },
+    live_grep = {
+      theme = "ivy",
+    }
+  },
+}
 
 -- nvim-lspconfig
-
 local nvim_lsp = require('lspconfig')
 local nlspsettings = require("nlspsettings")
 
@@ -264,15 +264,17 @@ end
 -- map buffer local keybindings when the language server attaches
 local servers = {
   'ansiblels',
+  -- 'arduino_language_server',
   'bashls',
-  'ccls',
+  -- 'ccls',
+  'clangd',
   'erlangls',
   'eslint',
   'gdscript',
-  -- 'ruby_ls',
+  -- 'ruby_lsp',
   'solargraph',
   'stylelint_lsp',
-  'tsserver',
+  'ts_ls',
   'zls',
 }
 
@@ -401,11 +403,11 @@ local function setup_diagnostics(client, buffer)
   })
 end
 
-nvim_lsp.ruby_ls.setup({
-  on_attach = function(client, buffer)
-    setup_diagnostics(client, buffer)
-  end,
-})
+-- nvim_lsp.ruby_lsp.setup({
+--   on_attach = function(client, buffer)
+--     setup_diagnostics(client, buffer)
+--   end,
+-- })
 
 
 -- Setup nvim-cmp.
@@ -597,49 +599,49 @@ require("neo-tree").setup({
 
 require('leap').set_default_keymaps()
 
-require('neotest').setup({
-  icons = {
-    -- Ascii:
-    -- { "/", "|", "\\", "-", "/", "|", "\\", "-"},
-    -- Unicode:
-    -- { "", "🞅", "🞈", "🞉", "", "", "🞉", "🞈", "🞅", "", },
-    -- {"◴" ,"◷" ,"◶", "◵"},
-    -- {"◢", "◣", "◤", "◥"},
-    -- {"◐", "◓", "◑", "◒"},
-    -- {"◰", "◳", "◲", "◱"},
-    -- {"⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷"},
-    -- {"⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"},
-    -- {"⠋", "⠙", "⠚", "⠞", "⠖", "⠦", "⠴", "⠲", "⠳", "⠓"},
-    -- {"⠄", "⠆", "⠇", "⠋", "⠙", "⠸", "⠰", "⠠", "⠰", "⠸", "⠙", "⠋", "⠇", "⠆"},
-    -- { "⠋", "⠙", "⠚", "⠒", "⠂", "⠂", "⠒", "⠲", "⠴", "⠦", "⠖", "⠒", "⠐", "⠐", "⠒", "⠓", "⠋" },
-    running_animated = {"⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾"},
-    passed = " ",
-    running = " ",
-    failed = " ",
-    skipped = "-",
-    unknown = "🞅",
-    non_collapsible = "─",
-    collapsed = "─",
-    expanded = "╮",
-    child_prefix = "├",
-    final_child_prefix = "╰",
-    child_indent = "│",
-    final_child_indent = " ",
-  },
-  adapters = {
-    require('neotest-rspec')({
-      rspec_cmd = function()
-        return vim.tbl_flatten({
-          "rspec",
-        })
-      end
-    })
-  },
-  quickfix = {
-    enabled = false,
-    open = false
-  },
-})
+-- require('neotest').setup({
+--   icons = {
+--     -- Ascii:
+--     -- { "/", "|", "\\", "-", "/", "|", "\\", "-"},
+--     -- Unicode:
+--     -- { "", "🞅", "🞈", "🞉", "", "", "🞉", "🞈", "🞅", "", },
+--     -- {"◴" ,"◷" ,"◶", "◵"},
+--     -- {"◢", "◣", "◤", "◥"},
+--     -- {"◐", "◓", "◑", "◒"},
+--     -- {"◰", "◳", "◲", "◱"},
+--     -- {"⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷"},
+--     -- {"⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"},
+--     -- {"⠋", "⠙", "⠚", "⠞", "⠖", "⠦", "⠴", "⠲", "⠳", "⠓"},
+--     -- {"⠄", "⠆", "⠇", "⠋", "⠙", "⠸", "⠰", "⠠", "⠰", "⠸", "⠙", "⠋", "⠇", "⠆"},
+--     -- { "⠋", "⠙", "⠚", "⠒", "⠂", "⠂", "⠒", "⠲", "⠴", "⠦", "⠖", "⠒", "⠐", "⠐", "⠒", "⠓", "⠋" },
+--     running_animated = {"⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾"},
+--     passed = " ",
+--     running = " ",
+--     failed = " ",
+--     skipped = "-",
+--     unknown = "🞅",
+--     non_collapsible = "─",
+--     collapsed = "─",
+--     expanded = "╮",
+--     child_prefix = "├",
+--     final_child_prefix = "╰",
+--     child_indent = "│",
+--     final_child_indent = " ",
+--   },
+--   adapters = {
+--     require('neotest-rspec')({
+--       rspec_cmd = function()
+--         return vim.tbl_flatten({
+--           "rspec",
+--         })
+--       end
+--     })
+--   },
+--   quickfix = {
+--     enabled = false,
+--     open = false
+--   },
+-- })
 
 -- local null_ls = require("null-ls")
 --
@@ -657,20 +659,27 @@ require('neotest').setup({
 -- buf_set_keymap('n', '<Leader>tn', '<cmd>lua require('neotest').run.run()<CR>', opts)
 -- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
--- nnoremap <Leader>tn :TestNearest<CR>
--- nnoremap <Leader>tf :TestFile<CR>
--- nnoremap <Leader>ts :TestSuite<CR>
 EOF
 
 " neotest keybindings
-nnoremap <Leader>tn <cmd>lua require("neotest").run.run()<CR>
-nnoremap <Leader>ts <cmd>lua require("neotest").run.stop()<CR>
-nnoremap <Leader>tf <cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>
-nnoremap <Leader>tt <cmd>lua require("neotest").summary.open()<CR>
-nnoremap <Leader>ta <cmd>lua require("neotest").run.attach()<CR>
-nnoremap <Leader>to <cmd>lua require("neotest").output.open({ enter = true })<CR>
-nnoremap <silent>[n <cmd>lua require("neotest").jump.prev({ status = "failed" })<CR>
-nnoremap <silent>]n <cmd>lua require("neotest").jump.next({ status = "failed" })<CR>
+" nnoremap <Leader>tn <cmd>lua require("neotest").run.run()<CR>
+" nnoremap <Leader>ts <cmd>lua require("neotest").run.stop()<CR>
+" nnoremap <Leader>tf <cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>
+" nnoremap <Leader>tt <cmd>lua require("neotest").summary.open()<CR>
+" nnoremap <Leader>ta <cmd>lua require("neotest").run.attach()<CR>
+" nnoremap <Leader>to <cmd>lua require("neotest").output.open({ enter = true })<CR>
+" nnoremap <silent>[n <cmd>lua require("neotest").jump.prev({ status = "failed" })<CR>
+" nnoremap <silent>]n <cmd>lua require("neotest").jump.next({ status = "failed" })<CR>
+
+let test#strategy = "neovim"
+let g:test#preserve_screen = 1
+let g:test#neovim#start_normal = 1 " If using neovim strategy
+let g:test#basic#start_normal = 1 " If using basic strategy
+let g:test#ruby#bundle_exec = 0
+
+nnoremap <Leader>tn :TestNearest<CR>
+nnoremap <Leader>tf :TestFile<CR>
+nnoremap <Leader>ts :TestSuite<CR>
 
 " EditorConfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
@@ -681,7 +690,7 @@ silent! map <F4> :NeoTreeReveal<CR>
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'powerlineish',
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
       \ },
@@ -877,18 +886,31 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " telescope
-" nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files()<CR>
-" nnoremap <leader>g <cmd>lua require('telescope.builtin').live_grep()<CR>
-" nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<CR>
-" nnoremap <leader>h <cmd>lua require('telescope.builtin').help_tags()<CR>
+nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files()<CR>
+nnoremap <leader>g <cmd>lua require('telescope.builtin').live_grep()<CR>
+nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<CR>
+nnoremap <leader>h <cmd>lua require('telescope.builtin').help_tags()<CR>
 
 " FZF
-let g:fzf_layout = { 'down': '30%' }
-let g:fzf_vim = {}
-let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
-
-nnoremap <C-p> :FZF<CR>
-nnoremap <leader>g :Rg<CR>
+" let g:fzf_layout = { 'down': '50%' }
+" let g:fzf_vim = {}
+" let g:fzf_vim.listproc = { list -> fzf#vim#listproc#quickfix(list) }
+" let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
+"
+" function! s:build_quickfix_list(lines)
+"   call setqflist(map(copy(a:lines), '{ "filename": v:val, "lnum": 1 }'))
+"   copen
+"   cc
+" endfunction
+"
+" let g:fzf_action = {
+"   \ 'ctrl-q': function('s:build_quickfix_list'),
+"   \ 'ctrl-t': 'tab split',
+"   \ 'ctrl-x': 'split',
+"   \ 'ctrl-v': 'vsplit' }
+"
+" nnoremap <C-p> :FZF<CR>
+" nnoremap <leader>g :Rg<CR>
 
 " LSP SEMANTIC HIGHLIGHTS
 " hi @lsp.type.variable guifg=GruvboxFg1

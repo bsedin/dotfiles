@@ -21,6 +21,15 @@ export DOCKER_HOST=unix:///var/run/docker.sock
 export WINEFSYNC=1
 export SUDO_ASKPASS=/usr/bin/ssh-askpass-fullscreen
 
+# Nvidia vaapi https://github.com/elFarto/nvidia-vaapi-driver?tab=readme-ov-file#direct-backend
+# export NVD_BACKEND=direct
+# export LIBVA_DRIVER_NAME=nvidia
+# export MOZ_DISABLE_RDD_SANDBOX=1
+# export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json
+
+# xrandr --setprovideroutputsource modesetting NVIDIA-0
+# xrandr --auto
+
 # TrackPoint+Middleclick scroll
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Button" 2

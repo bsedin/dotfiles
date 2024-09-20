@@ -1,4 +1,5 @@
 shell fish
+shell_integration no-sudo no-cursor
 
 font_family      Iosevka Custom Medium
 font_size        12.0
@@ -8,7 +9,6 @@ bold_italic_font Iosevka Custom Bold
 adjust_line_height  98%
 
 cursor_shape block
-shell_integration no-cursor
 
 scrollback_lines 2000
 

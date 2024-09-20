@@ -27,9 +27,9 @@ uda.totalactivetime.label=Total active time
 uda.totalactivetime.values=
 
 uda.priority.values=H,M,,L
-urgency.uda.priority.H.coefficient=3.0
+urgency.uda.priority.H.coefficient=1.5
 urgency.uda.priority.L.coefficient=0.5
-urgency.uda.priority.M.coefficient=2.0
+urgency.uda.priority.M.coefficient=1.0
 
 default.command=list
 
@@ -38,4 +38,4 @@ report.active.labels=ID,Project,Description,Time
 
 report.list.labels=ID,Active,Age,Time,D,P,Project,Tags,R,Sch,Due,Until,Description,Urg
 report.list.columns=id,start.age,entry.age,totalactivetime,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
-news.version=2.6.0
+news.version=3.0.2

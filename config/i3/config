@@ -71,6 +71,7 @@ for_window [class="mpv"] floating enable border none
 for_window [class="(?i)zooout"] floating enable
 for_window [class="(?i)netsurf"] floating enable
 for_window [class="(?i)proton-bridge"] move container to workspace $ws9 floating enable border none
+for_window [class="(?i)easyeffects"] move container to workspace $ws10
 
 # for_window [class="(?i)cadence"] move container to workspace $ws7 floating enable
 # for_window [class="(?i)catia"] move container to workspace $ws7 floating enable
@@ -211,8 +212,8 @@ workspace $ws5 output primary
 workspace $ws6 output primary
 workspace $ws7 output primary
 workspace $ws8 output primary
-workspace $ws9 output primary
-workspace $ws10 output eDP-1-0
+workspace $ws9 output HDMI-0
+workspace $ws10 output eDP
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -233,7 +234,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $mod+z exec "stop_and_lock"
+bindsym $mod+z exec "i3lock"
+bindsym $mod+x exec "taskwarrior_stop"
 bindsym $mod+Shift+z exec "suspend-and-lock"
 
 # resize window (you can also use the mouse for that)
@@ -264,27 +266,15 @@ bar {
     output nonprimary
     font pango:Iosevka Term, FontAwesome Bold 12px
     colors {
-            # bar background color
-            background $bg
-            # text color used for blocks that do not have a color specified.
-            statusline $fg
+        background $bg
+        statusline $fg
+        separator #666666
 
-            # workspaces section
-            #                    border     backgr.     text
-            focused_workspace    $orange    $orange     $bg
-            inactive_workspace   $bg        $aqua       $bg
-            active_workspace     $bg        $blue       $bg
-            urgent_workspace     $red       $red        $fg
-
-        # background #000000
-        # statusline #d5c4a1
-        # separator #666666
-        #
-        # focused_workspace  #B8BB26 #B8BB26 #3c3836
-        # active_workspace   #5f676a #5f676a #fbf1c7
-        # inactive_workspace #5f676a #5f676a #fbf1c7
-        # urgent_workspace   #fb4934 #fb4934 #fbf1c7
-        # binding_mode       #fb4934 #fb4934 #1d2021
+        focused_workspace  $orange  $orange $bg
+        inactive_workspace $aqua    $bg     $aqua
+        active_workspace   $aqua    $aqua   $bg
+        urgent_workspace   $red     $red    $fg
+        binding_mode       $red     $red    $bg
     }
 }
 
@@ -297,15 +287,15 @@ bar {
     status_command i3status-rs-with-env ~/.config/i3status-rust/config.toml
     font pango:Iosevka Term, FontAwesome Bold 14px
     colors {
-        background #000000
-        statusline #d5c4a1
+        background $bg
+        statusline $fg
         separator #666666
 
-        focused_workspace  #B8BB26 #B8BB26 #3c3836
-        active_workspace   #5f676a #5f676a #fbf1c7
-        inactive_workspace #5f676a #5f676a #fbf1c7
-        urgent_workspace   #fb4934 #fb4934 #fbf1c7
-        binding_mode       #fb4934 #fb4934 #1d2021
+        focused_workspace  $orange  $orange $bg
+        inactive_workspace $aqua    $bg     $aqua
+        active_workspace   $aqua    $aqua   $bg
+        urgent_workspace   $red     $red    $fg
+        binding_mode       $red     $red    $bg
     }
 }
 
@@ -315,8 +305,8 @@ bindsym XF86MonBrightnessDown exec --no-startup-id doas /usr/bin/light -U 5
 # bindsym XF86Search exec --no-startup-id suspend-and-lock
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # bindsym XF86AudioPrev exec --no-startup-id mpc prev

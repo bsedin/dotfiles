@@ -42,7 +42,7 @@ user_pref("privacy.sanitize.timeSpan", 2);
 // -------------------------------------------------------------------------- //
 
 user_pref("geo.enabled", false);
-user_pref("full-screen-api.enabled", false);
+user_pref("full-screen-api.enabled", true);
 user_pref("permissions.default.geo", 0);
 user_pref("permissions.default.camera", 0);
 user_pref("permissions.default.microphone", 0);

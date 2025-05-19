@@ -690,7 +690,7 @@ silent! map <F4> :NeoTreeReveal<CR>
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'powerlineish',
+      \ 'colorscheme': 'gruvbox',
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
       \ },
@@ -769,6 +769,13 @@ let g:tagbar_type_ruby = {
       \ 'F:singleton methods'
   \ ]
 \}
+let g:tagbar_type_gdscript = {
+  \ 'ctagstype' :'gdscript',
+  \ 'kinds': [
+    \ 'v:variables',
+    \ 'f:functions',
+  \ ]
+\ }
 
 " vim-autoformat
 let g:autoformat_autoindent = 1

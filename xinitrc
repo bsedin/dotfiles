@@ -1,8 +1,8 @@
 #!/bin/bash
 
 export BROWSER=browser
-export TERMINAL=kitty
-export XTERM=kitty
+export TERMINAL=st
+export XTERM=st
 export LANGUAGE=en_US:en_GB:en
 export LC_TIME=en_US.UTF-8
 export COLORTERM=truecolor
@@ -22,13 +22,13 @@ export WINEFSYNC=1
 export SUDO_ASKPASS=/usr/bin/ssh-askpass-fullscreen
 
 # Nvidia vaapi https://github.com/elFarto/nvidia-vaapi-driver?tab=readme-ov-file#direct-backend
-# export NVD_BACKEND=direct
-# export LIBVA_DRIVER_NAME=nvidia
-# export MOZ_DISABLE_RDD_SANDBOX=1
-# export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json
+export NVD_BACKEND=direct
+export LIBVA_DRIVER_NAME=nvidia
+export MOZ_DISABLE_RDD_SANDBOX=1
+export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json
 
-# xrandr --setprovideroutputsource modesetting NVIDIA-0
-# xrandr --auto
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
 
 # TrackPoint+Middleclick scroll
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1

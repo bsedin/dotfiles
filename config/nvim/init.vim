@@ -151,6 +151,13 @@ let g:neosnippet#snippets_directory='$HOME/.config/nvim/bundle/vim-snippets/snip
 
 
 lua << EOF
+vim.cmd [[
+  highlight Normal guibg=none
+  highlight NonText guibg=none
+  highlight Normal ctermbg=none
+  highlight NonText ctermbg=none
+]]
+
 require('gitsigns').setup()
 
 -- tree-sitter

@@ -31,11 +31,15 @@ xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 
 # TrackPoint+Middleclick scroll
-xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1
-xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Button" 2
-xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Timeout" 200
-xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Axes" 6 7 4 5
+# xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1
+# xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Button" 2
+# xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Timeout" 200
+# xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Axes" 6 7 4 5
 
+# Disable edge scrolling
+xinput set-prop "SynPS/2 Synaptics TouchPad" "Synaptics Edge Scrolling" 0 0 0
+
+# Enable middle button emulation by pressing left and right buttons together
 xinput set-prop "Primax Kensington Eagle Trackball" "Evdev Middle Button Emulation" 1
 
 # xinput map-to-output "Wacom Graphire2 4x5 Pen stylus" DP-0

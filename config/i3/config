@@ -42,6 +42,9 @@ set $purple   #d3869b
 set $aqua     #89b482
 set $darkgray #282828
 
+gaps inner 6
+smart_gaps on
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -56,8 +59,8 @@ set $darkgray #282828
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-default_border pixel 2
-default_floating_border pixel 2
+default_border pixel 1
+default_floating_border pixel 1
 hide_edge_borders smart
 focus_follows_mouse no
 
@@ -72,6 +75,7 @@ for_window [class="(?i)zooout"] floating enable
 for_window [class="(?i)netsurf"] floating enable
 for_window [class="(?i)proton-bridge"] move container to workspace $ws9 floating enable border none
 for_window [class="(?i)easyeffects"] move container to workspace $ws10
+for_window [class="(?i)xterm-256color"] border none
 
 # for_window [class="(?i)cadence"] move container to workspace $ws7 floating enable
 # for_window [class="(?i)catia"] move container to workspace $ws7 floating enable
@@ -215,7 +219,7 @@ workspace $ws8 output primary
 # workspace $ws9 output HDMI-1-0
 workspace $ws9 output eDP
 # workspace $ws10 output eDP
-workspace $ws10 output HDMI-1-0
+workspace $ws10 output eDP
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1

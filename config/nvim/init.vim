@@ -213,7 +213,6 @@ require('telescope').setup{
 }
 
 -- nvim-lspconfig
-local nvim_lsp = require('lspconfig')
 local nlspsettings = require("nlspsettings")
 
 nlspsettings.setup({
@@ -290,23 +289,26 @@ local servers = {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
+vim.lsp['*'] = {
+  flags = {
+    debounce_text_changes = 500,
+  },
+  on_attach = on_attach,
+  capabilities = capabilities,
+  root_markers = { '.git' },
+}
+
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    flags = {
-      debounce_text_changes = 1000,
-    },
-    on_attach = on_attach,
-    capabilities = capabilities
-  }
+  vim.lsp.enable(lsp)
 end
 
-nvim_lsp.elixirls.setup{
+vim.lsp['elixirls'] = {
     cmd = { "elixir-ls" },
     on_attach = on_attach,
     capabilities = capabilities
 }
 
--- nvim_lsp.rust_analyzer.setup({
+-- vim.lsp['rust_analyzer'] = {
 --     cmd = { "rust-analyzer" },
 --     on_attach = on_attach,
 --     capabilities = capabilities,
@@ -324,9 +326,9 @@ nvim_lsp.elixirls.setup{
 --             },
 --         }
 --     }
--- })
+-- }
 
-nvim_lsp.tailwindcss.setup({
+vim.lsp.config['tailwindcss'] = {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -334,7 +336,7 @@ nvim_lsp.tailwindcss.setup({
         emmetCompletions = true,
       }
     }
-})
+}
 
 -- require('rust-tools').setup({
 --   tools = { -- rust-tools options
@@ -410,7 +412,7 @@ local function setup_diagnostics(client, buffer)
   })
 end
 
--- nvim_lsp.ruby_lsp.setup({
+-- vim.lsp.config('ruby_lsp', {
 --   on_attach = function(client, buffer)
 --     setup_diagnostics(client, buffer)
 --   end,

@@ -217,9 +217,9 @@ workspace $ws6 output primary
 workspace $ws7 output primary
 workspace $ws8 output primary
 # workspace $ws9 output HDMI-1-0
-workspace $ws9 output eDP
+workspace $ws9 output HDMI-1-0
 # workspace $ws10 output eDP
-workspace $ws10 output eDP
+workspace $ws10 output HDMI-1-0
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1

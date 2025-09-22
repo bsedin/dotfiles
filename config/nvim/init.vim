@@ -6,8 +6,8 @@ call plug#begin('$HOME/.config/nvim/bundle')
 Plug 'tpope/vim-sensible'
 
 " Gruvbox colors
-" Plug 'ellisonleao/gruvbox.nvim'
-Plug '~/Projects/libs/gruvbox.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
+" Plug '~/Projects/libs/gruvbox.nvim'
 
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'mg979/vim-visual-multi'
@@ -40,8 +40,7 @@ Plug 'ziglang/zig.vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'mhinz/vim-mix-format'
 
-" Plug 'tomtom/tcomment_vim'
-Plug '~/Projects/libs/tcomment_vim'
+Plug 'tomtom/tcomment_vim'
 
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
@@ -118,12 +117,6 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set t_Co=256
 set termguicolors
 
-" Gruvbox colors
-" autocmd vimenter * ++nested colorscheme mygruvbox
-" let g:gruvbox_contrast_dark='medium'
-" let g:gruvbox_contrast_light='medium'
-
-colorscheme gruvbox
 " let neovim guess
 " set background=dark
 " silent! map <F5> :set background=dark<CR>
@@ -157,6 +150,15 @@ vim.cmd [[
   highlight Normal ctermbg=none
   highlight NonText ctermbg=none
 ]]
+
+require("gruvbox").setup({
+  overrides = {
+    NeoTreeDirectoryName = { link = "GruvboxBlue" },
+    Identifier = { link = "GruvboxGreen" },
+    Function = { link = "GruvboxBlue" },
+  }
+})
+vim.cmd("colorscheme gruvbox")
 
 require('gitsigns').setup()
 

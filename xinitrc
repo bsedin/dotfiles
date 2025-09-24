@@ -1,8 +1,7 @@
 #!/bin/bash
 
 export BROWSER=browser
-export TERMINAL=st
-export XTERM=st
+export TERMINAL=kitty
 export LANGUAGE=en_US:en_GB:en
 export LC_TIME=en_US.UTF-8
 export COLORTERM=truecolor
@@ -27,8 +26,8 @@ export LIBVA_DRIVER_NAME=nvidia
 export MOZ_DISABLE_RDD_SANDBOX=1
 export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json
 
-xrandr --setprovideroutputsource modesetting NVIDIA-0
-xrandr --auto
+# xrandr --setprovideroutputsource modesetting NVIDIA-0
+# xrandr --auto
 
 # TrackPoint+Middleclick scroll
 # xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1
@@ -37,10 +36,10 @@ xrandr --auto
 # xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Axes" 6 7 4 5
 
 # Disable edge scrolling
-xinput set-prop "SynPS/2 Synaptics TouchPad" "Synaptics Edge Scrolling" 0 0 0
+# xinput set-prop "SynPS/2 Synaptics TouchPad" "Synaptics Edge Scrolling" 0 0 0
 
 # Enable middle button emulation by pressing left and right buttons together
-xinput set-prop "Primax Kensington Eagle Trackball" "Evdev Middle Button Emulation" 1
+# xinput set-prop "Primax Kensington Eagle Trackball" "Evdev Middle Button Emulation" 1
 
 # xinput map-to-output "Wacom Graphire2 4x5 Pen stylus" DP-0
 # xinput map-to-output "Wacom Graphire2 4x5 Pen eraser" DP-0
@@ -49,4 +48,4 @@ xinput set-prop "Primax Kensington Eagle Trackball" "Evdev Middle Button Emulati
 # exec ck-launch-session dbus-launch
 xrdb -merge ~/.Xresources
 
-exec dbus-launch --exit-with-x11 i3 > $HOME/log/i3.txt 2>&1
+# exec dbus-launch --exit-with-x11 i3 > $HOME/log/i3.txt 2>&1

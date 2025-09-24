@@ -15,9 +15,27 @@ export LC_ALL=
 export LANGUAGE=en_US:en_GB:en
 
 export TIMELOG=$HOME/.work-ledger/ledger/timelogger.ldg
-export TERMINAL=xst
-export XTERM=xst
+export TERMINAL=foot
+export XTERM=foot
 export EDITOR=nvim
+export BROWSER=browser
+
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_RUNTIME_DIR=/run/user/1000
+export DOCKER_HOST=unix:///var/run/docker.sock
+export WINEFSYNC=1
+export SUDO_ASKPASS=/usr/bin/ssh-askpass-fullscreen
+
+# OG
+# export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json
+# wayland
+# export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/egl/egl_external_platform.d/10_nvidia_wayland.json
+# export __GLX_VENDOR_LIBRARY_NAME=nvidia
+# export GBM_BACKEND=nvidia-drm
+# export NVD_BACKEND=direct
+# export WLR_DRM_DEVICES=/dev/dri/card0:/dev/dri/card1
+# export DRI_PRIME=0
 
 # pass
 export PASSWORD_STORE_CLIP_TIME=10

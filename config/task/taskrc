@@ -33,8 +33,8 @@ urgency.uda.priority.M.coefficient=1.0
 
 default.command=list
 
-report.active.columns=id,project,description.truncated,start.age
-report.active.labels=ID,Project,Description,Time
+report.active.columns=id,description.truncated,start.age
+report.active.labels=ID,Description,Time
 
 report.list.labels=ID,Active,Age,Time,D,P,Project,Tags,R,Sch,Due,Until,Description,Urg
 report.list.columns=id,start.age,entry.age,totalactivetime,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency

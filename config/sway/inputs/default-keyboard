@@ -1,0 +1,13 @@
+### Input configuration
+#
+# Example configuration:
+
+#   input type:keyboard {
+#       xkb_layout "eu"
+#   }
+
+input type:keyboard {
+  xkb_layout "us,ru"
+  xkb_variant "colemak,winkeys"
+  xkb_options "grp:shifts_toggle,grp_led:caps"
+}

@@ -1,0 +1,15 @@
+set $mode_split "<span foreground='$color10'>󰉸</span>  \
+<span foreground='$color5'><b>Horizontal</b></span> <span foreground='$color10'>(<b>h</b>)</span> \
+<span foreground='$color5'><b>Vertical</b></span> <span foreground='$color10'>(<b>v</b>)</span>"
+
+mode --pango_markup $mode_split {
+    $bindsym h splith, mode "default"
+    $bindsym $mod+h splith, mode "default"
+    $bindsym v splitv, mode "default"
+    $bindsym $mod+v splitv, mode "default"
+
+    $bindsym Escape mode "default"
+    $bindsym Return mode "default"
+}
+## Launch // Resize Mode ##
+$bindsym $mod+s mode $mode_split

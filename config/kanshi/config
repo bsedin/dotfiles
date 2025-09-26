@@ -1,0 +1,25 @@
+profile "Internal" {
+	output eDP-1 enable
+}
+
+profile "Full setup" {
+	output eDP-1 disable
+	output DP-1 enable scale 1.25 position 0,0
+	output HDMI-A-1 enable position 3072,0
+
+  exec swaymsg focus output DP-1
+}
+
+profile "Internal + External" {
+	output eDP-1 disable
+	output DP-1 enable scale 1.25 position 0,0
+
+  exec swaymsg focus output DP-1
+}
+
+profile "Internal + Kamvas" {
+	output eDP-1 enable position 0,0
+	output HDMI-A-1 enable position 2560,0
+
+  exec swaymsg focus output eDP-1
+}

@@ -46,7 +46,7 @@
 @define-color ok                @aqua2;
 @define-color workspaces-text-color  @fg4;
 @define-color workspaces-hover  @yellow2;
-@define-color workspaces-focused  @yellow1;
+@define-color workspaces-focused  @aqua1;
 @define-color day               @orange1;
 @define-color time              @orange2;
 @define-color date              @orange1;
@@ -206,7 +206,8 @@ window#waybar {
 }
 
 #mode {
-    background: @background_color;
+    background-color: @background_color;
+    color: @aqua2;
 }
 
 #network.disconnected {
@@ -255,6 +256,14 @@ window#waybar {
 
 #custom-taskwarrior {
     background-color: @warning_color;
+    color: @theme_base_color;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#custom-playerctl {
+    background-color: @aqua1;
     color: @theme_base_color;
     font-weight: bold;
     padding-left: 10px;

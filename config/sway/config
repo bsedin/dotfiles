@@ -25,7 +25,7 @@ include $HOME/.config/sway/config.d/*
 gaps inner 6
 smart_gaps on
 
-default_border pixel 1
+default_border pixel 2
 default_floating_border pixel 1
 hide_edge_borders smart
 focus_follows_mouse no
@@ -99,6 +99,7 @@ for_window [class="(?i)zooout"] floating enable
 for_window [class="(?i)netsurf"] floating enable
 for_window [class="(?i)proton-bridge"] move container to workspace $ws9 floating enable border none
 for_window [class="(?i)easyeffects"] move container to workspace $ws10
+for_window [class="(?i)rhythm-space"] floating enable
 # for_window [class="(?i)xterm-256color"] border none
 
 # for_window [class="(?i)cadence"] move container to workspace $ws7 floating enable
